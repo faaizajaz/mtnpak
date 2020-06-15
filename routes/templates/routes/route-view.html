@@ -17,12 +17,18 @@
 
 	<h1>{{ route.rname }}</h1>
 
+
+	<!-- If the route only has one pitch, display the grade-->
 	{% if route.pitch_set.all|length == 1 %}
 		{% for pitch in route.pitch_set.all %}
 			<p>{{ pitch.pgrade.ggrade }}</p>
 		{% endfor %}
-
 	{% endif %}
+
+
+	<!-- Otherwise, if the route has more than one pitch, list pitches-->
+
+
 
 	
 	{% for ascent in route.ascent_set.all %}

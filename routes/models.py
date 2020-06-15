@@ -10,6 +10,9 @@ class Route(models.Model):
     ropener = models.CharField(max_length=500, verbose_name='Route Opener')
     rcrag = models.ForeignKey(Crag, on_delete=models.CASCADE, verbose_name='Crag')
 
+    # equal to pitch length if one pitch, otherwise sum of pitch length
+    rlength = models.FloatField(verbose_name='Route Length', default=0.0)
+
 
     def __str__(self):
         return self.rname
