@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile for {{object.username}}</title>
+</head>
+<body>
+	<h1>This is the profile page for {{object.username}}</h1>
+	<img src="{{ object.profile.image.url }}">
+	<p>Email address: {{object.email}}</p>
+	<p>First Name: {{object.first_name}}</p>
+	<p>Last Name: {{object.last_name}}</p>
+	<h3>Routes climbed</h3>
+	{% for ascent in object.ascent_set.all %}
+		<p><a href="{% url 'route-view' route_id=ascent.route.id %}">{{ ascent.route }}--------</a>
+		<a href="{% url 'crag-view' crag_id=ascent.route.rcrag.id %}">{{ ascent.route.rcrag}}--------</a>
+		{{ascent.date}}</p>
+	{% endfor %}
+</body>
+</html>

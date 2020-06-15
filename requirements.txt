@@ -1,0 +1,4 @@
+# Put all Python package requirements here
+
+Django==2.1.2
+Pillow==5.3.0

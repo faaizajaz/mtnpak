@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+	Crags
+{% endblock %}
+
+
+
+
+{% block content %}
+
+	<h1>This is the Crags page</h1>
+	
+	{% if user.is_authenticated %}
+		<a href="{% url 'logout' %}">Log out</a>
+		<br>
+		<a href="{% url 'profile' username=user.username %}">My Profile</a>
+	{% else %}	
+		<a href="{% url 'login' %}">Log in</a>
+	{% endif %}
+
+	{% for crag in crag_list %}
+		<h2><a href="{% url 'crag-view' crag_id=crag.id %}">{{ crag.cname }}</a></h2>		
+	{% endfor %}
+
+	</body>
+
+{% endblock %}

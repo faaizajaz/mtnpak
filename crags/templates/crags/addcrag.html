@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add a crag</title>
+</head>
+<body>
+	<form method = "POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div>
+			<button type="submit">
+				Add carag
+			</button>
+		</div>
+	</form>
+</body>
+</html>

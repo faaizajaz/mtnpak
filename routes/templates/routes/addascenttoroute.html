@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Record an ascent</title>
+</head>
+<body>
+	<form method = "POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div>
+			<button type="submit">
+				Add Ascent
+			</button>
+		</div>
+	</form>
+</body>
+</html>

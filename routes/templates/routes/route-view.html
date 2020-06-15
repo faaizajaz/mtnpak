@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Route View</title>
+</head>
+<body>
+	<h1>This is the Routes View page</h1>
+
+	{% if user.is_authenticated %}
+		<a href="{% url 'logout' %}">Log out</a>
+		<br>
+		<a href="{% url 'profile' username=user.username %}">My Profile</a>
+	{% else %}	
+		<a href="{% url 'login' %}">Log in</a>
+	{% endif %}
+
+
+	<h1>{{ route.rname }}</h1>
+	
+	{% for ascent in route.ascent_set.all %}
+		<p>{{ ascent.date }}  <a href="{% url 'profile' username=ascent.climber.username %}">{{ ascent.climber.username }}</a></p>
+	{% endfor %}
+	<br>
+	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>
+
+	
+	</body>
+</html>
