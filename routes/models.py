@@ -10,6 +10,7 @@ class Route(models.Model):
     ropener = models.CharField(max_length=500, verbose_name='Route Opener')
     rcrag = models.ForeignKey(Crag, on_delete=models.CASCADE, verbose_name='Crag')
 
+
     def __str__(self):
         return self.rname
 

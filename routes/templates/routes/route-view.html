@@ -16,9 +16,18 @@
 
 
 	<h1>{{ route.rname }}</h1>
+
+	{% if route.pitch_set.all|length == 1 %}
+		{% for pitch in route.pitch_set.all %}
+			<p>{{ pitch.pgrade.ggrade }}</p>
+		{% endfor %}
+
+	{% endif %}
+
 	
 	{% for ascent in route.ascent_set.all %}
 		<p>{{ ascent.date }}  <a href="{% url 'profile' username=ascent.climber.username %}">{{ ascent.climber.username }}</a></p>
+
 	{% endfor %}
 	<br>
 	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>

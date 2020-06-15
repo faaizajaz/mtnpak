@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from routes.forms import AddAscentToRouteForm
 
 
-
+#this is the view for a routes home page.
 class RoutesHome(generic.ListView):
 	template_name = 'routes/routes-home.html'
 	model = Route
@@ -13,6 +13,7 @@ class RoutesHome(generic.ListView):
 	def get_queryset(self):
 		return Route.objects.all()
 
+#this is the view you get when you click on a route.
 class RouteView(generic.DetailView):
 	template_name = 'routes/route-view.html'
 	model = Route
