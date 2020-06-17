@@ -11,3 +11,5 @@ class Ascent(models.Model):
 	def __str(self):
 		return self.route.rcrag.cname #this should return something else, right now just cragname
 		
+
+#class FlashAscent()
