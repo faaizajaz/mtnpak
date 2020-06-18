@@ -3,6 +3,7 @@ from .models import Crag
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from .forms import AddRouteForm, AddCragForm
+from pitches.forms import AddPitchForm
 
 
 class CragsHome(generic.ListView):
@@ -23,16 +24,22 @@ class CragView(generic.DetailView):
 def AddRoute(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteForm(request.POST)
-		if form.is_valid():
+		form2 = AddPitchForm(request.POST)
+		if form.is_valid(): #and form2.is_valid():
 			newroute = form.save(commit=False)
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 			newroute.save()
 
+			newpitch = form2.save(commit=False)
+			newpitch.proute = newroute
+			newpitch.save()
+
 			return redirect('crag-view', crag_id=kwargs['crag_id'])
 	else:
 		form = AddRouteForm()
-	return render(request, 'crags/addroute.html', {'form': form})
+		form2 = AddPitchForm()
+	return render(request, 'crags/addroute.html', {'form': form, 'form2':form2})
 
 
 def AddCrag(request, **kwargs):

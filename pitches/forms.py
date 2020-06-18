@@ -6,3 +6,4 @@ class AddPitchForm(ModelForm):
 
 	class Meta:
 		model = Pitch
+		exclude = ['proute']
