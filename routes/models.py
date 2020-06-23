@@ -20,6 +20,9 @@ class Route(models.Model):
 
     rtype = models.ForeignKey(RouteType, on_delete=models.SET_NULL, null=True)
 
+    numpitch = models.CharField(max_length=500, verbose_name='Single or Multi')
+
+
     # When I need to list all routes, can do:
     # routes = Route.objects.select_subclasses(TradRoute)
 

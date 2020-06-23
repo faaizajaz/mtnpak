@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Route type</title>
+</head>
+<body>
+	<form method = "POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+
+		<div>
+			<button type="submit">
+				Submit
+			</button>
+		</div>
+	</form>
+</body>
+</html>

@@ -20,6 +20,8 @@
 
 	<h1>{{ route.rname }}</h1>
 
+	<p>{{ route.numpitch }}</p>
+
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.pitch_set.all|length == 1 %}
@@ -46,6 +48,10 @@
 	{% endfor %}
 	<br>
 	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>
+
+	{% if route.numpitch == 'Multipitch' %}
+		<h3><a href="#">Add a pitch</a></h3>
+	{% endif %}
 
 	
 {% endblock %}

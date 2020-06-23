@@ -28,6 +28,8 @@
 
 	{% if user.is_authenticated %}
 		<h4><a href="{% url 'add-route' crag_id=crag.id %}">Add Route</a></h4>
+
+		<h4><a href="{% url 'route-choice' crag_id=crag.id %}">Route Choice</a></h4>
 	{% endif %}
 
 {% endblock %}
