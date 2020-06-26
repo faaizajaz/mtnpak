@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+
+{% block page_title %}
+	{{ crag.cname }}
+{% endblock %}
+
+{% block content %}
+
+	<h1>This is the Crags View page</h1>
+
+	{% if user.is_authenticated %}
+		<a href="{% url 'logout' %}">Log out</a>
+		<br>
+		<a href="{% url 'profile' username=user.username %}">My Profile</a>
+	{% else %}	
+		<a href="{% url 'login' %}">Log in</a>
+	{% endif %}
+	<h1>{{ crag.cname }}</h1>
+	<h4>Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></h4>
+	{% for route in object.route_set.all %}
+		<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a></p>
+
+	
+	{% endfor %}
+
+	<br><br><br>
+
+	{% if user.is_authenticated %}
+		<h4><a href="{% url 'route-choice' crag_id=crag.id %}">Add new route</a></h4>
+	{% endif %}
+
+{% endblock %}

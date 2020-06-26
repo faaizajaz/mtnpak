@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+	Crags.pk
+{% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+
+	{% for message in messages %}
+
+		{{message}}
+
+	{% endfor %}
+	
+{% endif %}
+{% if user.is_authenticated %}
+	<a href="{% url 'logout' %}">Log out</a>
+	<br>
+	<a href="{% url 'profile' username=user.username %}">My Profile</a>
+{% else %}	
+	<a href="{% url 'login' %}">Log in</a>
+{% endif %}
+<br>
+<a href="{% url 'crags-home' %}">See crags</a>
+<br>
+<a href="{% url 'register' %}">Sign up now</a>
+
+{% endblock %}
