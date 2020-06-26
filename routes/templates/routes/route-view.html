@@ -24,7 +24,7 @@
 
 
 	<!-- If the route only has one pitch, display the grade-->
-	{% if route.pitch_set.all|length == 1 %}
+	{% if route.numpitch == 'Singlepitch' %}
 		{% for pitch in route.pitch_set.all %}
 			<p>{{ pitch.pgrade.ggrade }}</p>
 		{% endfor %}
@@ -32,7 +32,14 @@
 
 
 	<!-- Otherwise, if the route has more than one pitch, list pitches-->
+	
+	{% if route.numpitch == 'Multipitch' %}
 
+		{% for pitch in route.pitch_set.all %}
+			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+		{% endfor %}
+
+	{% endif %}
 
 
 
@@ -49,8 +56,9 @@
 	<br>
 	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>
 
+	<!--If route is multipitch, show add pitch button -->
 	{% if route.numpitch == 'Multipitch' %}
-		<h3><a href="#">Add a pitch</a></h3>
+		<h3><a href="{% url 'add-pitch-multi' route_id=route.id %}">Add a pitch</a></h3>
 	{% endif %}
 
 	

@@ -53,12 +53,14 @@ def AddRouteMulti(request, **kwargs):
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 			newroute.numpitch = 'Multipitch'
 			newroute.save()
-			return redirect('crag-view', crag_id=kwargs['crag_id'])
+			#return redirect('crag-view', crag_id=kwargs['crag_id'])
+			return redirect('route-view', route_id=newroute.id)
 	else:
 		form = AddRouteMultiForm()
 	return render(request, 'crags/addroute.html', {'form': form})
 
 
+#choose between single and multipitch when adding new route.
 def RouteChoice(request, **kwargs):
 	if request.method == 'POST':
 		form = RouteChoiceForm(request.POST)

@@ -3,6 +3,7 @@ from .models import Route
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from routes.forms import AddAscentToRouteForm
+from pitches.forms import AddPitchMultiForm
 
 
 #this is the view for a routes home page.
@@ -38,4 +39,20 @@ def AddAscentToRoute(request, **kwargs):
 		#form = AddAscentForm(initial={'climber': request.user})
 		form = AddAscentToRouteForm()
 	return render(request, 'routes/addascenttoroute.html', {'form': form})
+
+
+def AddPitchMulti(request, **kwargs):
+	if request.method == 'POST':
+		form = AddPitchMultiForm(request.POST)
+		if form.is_valid():
+			newpitch = form.save(commit=False)
+			newpitch.proute = Route.objects.get(pk=kwargs['route_id'])
+			newpitch.save()
+			return redirect('route-view', route_id=kwargs['route_id'])
+	else:
+		form = AddPitchMultiForm()
+	return render(request, 'routes/addpitch.html', {'form': form})
+
+
+
 
