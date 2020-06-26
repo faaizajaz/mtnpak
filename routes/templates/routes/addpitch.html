@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add a pitch to this multipich</title>
+</head>
+<body>
+	<form method = "POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div>
+			<button type="submit">
+				Add pitch
+			</button>
+		</div>
+	</form>
+</body>
+</html>
