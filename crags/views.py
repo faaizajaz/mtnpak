@@ -4,6 +4,7 @@ from django.views import generic
 from django.shortcuts import get_object_or_404
 from .forms import AddRouteForm, AddCragForm, RouteChoiceForm, AddRouteMultiForm
 from pitches.forms import AddPitchForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -22,6 +23,7 @@ class CragView(generic.DetailView):
 		return get_object_or_404(Crag, pk=self.kwargs['crag_id'])
 
 # replace with class based form view
+@login_required
 def AddRoute(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteForm(request.POST)
@@ -44,6 +46,7 @@ def AddRoute(request, **kwargs):
 		form2 = AddPitchForm()
 	return render(request, 'crags/addroute.html', {'form': form, 'form2':form2})
 
+@login_required
 def AddRouteMulti(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteMultiForm(request.POST)
@@ -61,6 +64,7 @@ def AddRouteMulti(request, **kwargs):
 
 
 #choose between single and multipitch when adding new route.
+@login_required
 def RouteChoice(request, **kwargs):
 	if request.method == 'POST':
 		form = RouteChoiceForm(request.POST)

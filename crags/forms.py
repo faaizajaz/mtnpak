@@ -13,7 +13,7 @@ class AddRouteForm(ModelForm):
 
 	class Meta:
 		model = Route
-		exclude = ['rcrag', 'ropener', 'numpitch']
+		exclude = ['rcrag', 'ropener', 'numpitch', 'rlength']
 
 
 class AddRouteMultiForm(ModelForm):

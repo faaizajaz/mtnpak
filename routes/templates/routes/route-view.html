@@ -20,13 +20,14 @@
 
 	<h1>{{ route.rname }}</h1>
 
-	<p>{{ route.numpitch }}</p>
+	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.numpitch == 'Singlepitch' %}
+		<p>{{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
-			<p>{{ pitch.pgrade.ggrade }}</p>
+			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
 		{% endfor %}
 	{% endif %}
 
@@ -34,7 +35,7 @@
 	<!-- Otherwise, if the route has more than one pitch, list pitches-->
 	
 	{% if route.numpitch == 'Multipitch' %}
-
+		<p>{{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
 		{% endfor %}

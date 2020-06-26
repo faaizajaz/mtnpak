@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def RegisterUser(request):
@@ -24,11 +25,11 @@ def RegisterUser(request):
 	return render(request, 'users/register.html', {'form': form})
 
 
-#@login_required
-#def UserProfile(request):
-#	return render(request, 'users/profile.html')
 
-class UserProfile(generic.DetailView):
+#USED MIXIN TO MAKE LOGIN MANDATORY
+class UserProfile(LoginRequiredMixin, generic.DetailView):
+
+	login_url='/login/'
 
 	template_name = 'users/profile.html'
 	model = User
@@ -37,6 +38,7 @@ class UserProfile(generic.DetailView):
 		return get_object_or_404(User, username=self.kwargs['username'])
 
 
+@login_required
 def EditProfile(request, **kwargs):
 
 	instance = User.objects.get(username=kwargs['username'])

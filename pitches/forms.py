@@ -7,7 +7,7 @@ class AddPitchForm(ModelForm):
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'plength', 'pdescription']
+		exclude = ['proute', 'pdescription']
 
 #use this form for adding pitches to multipitch
 class AddPitchMultiForm(ModelForm):
