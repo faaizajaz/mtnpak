@@ -29,6 +29,7 @@ def RegisterUser(request):
 #USED MIXIN TO MAKE LOGIN MANDATORY
 class UserProfile(LoginRequiredMixin, generic.DetailView):
 
+	#if not logged in, redirect to here to login
 	login_url='/login/'
 
 	template_name = 'users/profile.html'
@@ -47,7 +48,7 @@ def EditProfile(request, **kwargs):
 		user_form = UserUpdateForm(request.POST)
 		if user_form.is_valid():
 			user_form.save()
-			return
+			return redirect('profile', username=kwargs['username'])
 	else:
 		user_form = UserUpdateForm(instance=instance)
 	return render(request, 'users/editprofile.html', {'user_form': user_form})

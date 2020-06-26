@@ -84,7 +84,7 @@ def RouteChoice(request, **kwargs):
 	return render(request, 'crags/routechoice.html', {'form': form})
 
 
-
+@login_required
 def AddCrag(request, **kwargs):
 	if request.method == 'POST':
 		form = AddCragForm(request.POST)

@@ -25,4 +25,10 @@
 		<h2><a href="{% url 'crag-view' crag_id=crag.id %}">{{ crag.cname }}</a></h2>		
 	{% endfor %}
 
+	<br><br><br><br>
+	
+	{% if user.is_authenticated %}
+		<h4><a href="{% url 'add-crag' %}">Add a new crag</a></h4>
+	{% endif %}
+
 {% endblock %}

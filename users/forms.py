@@ -42,7 +42,7 @@ class UserUpdateForm(forms.ModelForm):
 	class Meta:
 		# When form validates, User object is created (form.save will save to user model)
 		model = User
-		fields = ['username', 'firstname', 'lastname', 'email']
+		fields = ['firstname', 'lastname', 'username', 'email']
 
 
 class ProfileUpdateForm(forms.ModelForm):

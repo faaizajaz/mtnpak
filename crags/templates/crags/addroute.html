@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Add a route</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+	Add a route
+{% endblock %}
+
+{% block content %}
 	<form method = "POST">
 		{% csrf_token %}
 		{{ form.as_p }}
@@ -18,5 +20,4 @@
 			</button>
 		</div>
 	</form>
-</body>
-</html>
+{% endblock %}
