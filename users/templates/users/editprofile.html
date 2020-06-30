@@ -4,9 +4,11 @@
 	<title>Edit your profile {{ user.first_name }}</title>
 </head>
 <body>
-	<form method = "POST">
+	<!-- Use enctype for having multiple forms on one (in this case, userdata and profile -->
+	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ user_form.as_p }}
+		{{ profile_form.as_p }}
 		<div>
 			<button type="submit">
 				Update

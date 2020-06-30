@@ -33,8 +33,7 @@ def AddRoute(request, **kwargs):
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 			newroute.numpitch = 'Singlepitch'
-			newroute.save()
-			
+			newroute.save()		
 
 			newpitch = form2.save(commit=False)
 			newpitch.proute = newroute
@@ -73,11 +72,9 @@ def RouteChoice(request, **kwargs):
 			choice = cd.get('choice')
 			if choice == 'single':
 				crag_id=kwargs['crag_id']
-				print('single putch')
 				return redirect('add-route', crag_id=crag_id)
 			elif choice == 'multi':
 				crag_id=kwargs['crag_id']
-				print('multipitch')
 				return redirect('add-route-multi', crag_id=crag_id)
 	else:
 		form = RouteChoiceForm()
