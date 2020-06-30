@@ -9,6 +9,7 @@
 
 	{% if user.is_authenticated %}
 		<h5><a href="{% url 'edit-profile' username=user.username %}">Edit profile</a></h5>
+		<h5><a href="{% url 'edit-prefs' username=user.username %}">Edit preferences</a></h5>
 	{% endif %}
 
 	<img src="{{ object.profile.image.url }}" width="200">
