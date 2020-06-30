@@ -9,7 +9,7 @@ class Profile(models.Model):
 	def __str__(self):
 		return f'{self.user.username} Profile'
 
-#OVERRIDE save method
+#OVERRIDE save method to change image size upon submission
 #gets run after model is saved
 	def save(self):
 		#run parent class save method first

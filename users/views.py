@@ -60,4 +60,3 @@ def EditProfile(request, **kwargs):
 	return render(request, 'users/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-		
