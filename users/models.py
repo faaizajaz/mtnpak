@@ -9,7 +9,7 @@ class Profile(models.Model):
 	def __str__(self):
 		return f'{self.user.username} Profile'
 
-#OVERRIDE save method
+#OVERRIDE save method to change image size upon submission
 #gets run after model is saved
 	def save(self):
 		#run parent class save method first
@@ -21,3 +21,12 @@ class Profile(models.Model):
 			output_size = (300, 300)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
+
+class UserPref(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+	grade_pref = models.CharField(max_length=100, verbose_name='Grading system user preference')
+	measurement_pref = models.CharField(max_length=100, verbose_name='Measurement system preferece')
+
+	def __str__(self):
+		return self.user.first_name

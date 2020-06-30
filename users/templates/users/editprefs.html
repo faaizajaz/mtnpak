@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit your preferences {{ user.first_name }}</title>
+</head>
+<body>
+	<!-- Use enctype for having multiple forms on one (in this case, userdata and profile -->
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div>
+			<button type="submit">
+				Update
+			</button>
+		</div>
+	</form>
+</body>
+</html>
