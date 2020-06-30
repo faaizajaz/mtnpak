@@ -1,8 +1,8 @@
 from django.db.models.signals import post_save  # gets triggered after object is saved
 from django.contrib.auth.models import User  # User is the object which is saved (sender)
 from django.dispatch import receiver
-from .models import Profile
-from userprefs.models import UserPref
+from .models import Profile, UserPref
+
 
 
 #sent at end of User models save() -> i.e. when User is created
