@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, UserPref
 
 
 #here we are extending the usercreation form to add some additional fields
@@ -49,3 +49,15 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['image']
+
+
+class UpdateUserPrefsForm(forms.ModelForm):
+
+	grade_pref = forms.CharField(required=True, max_length=50)
+	grade_pref.label = "Choose the grading system you want displayed"
+	measurement_pref = forms.CharField(required=True, max_length=50)
+	measurement_pref.label = "Choose your measurement preference"
+
+	class Meta:
+		model = UserPref
+		fields = ['grade_pref', 'measurement_pref']

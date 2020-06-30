@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm,  UpdateUserPrefsForm
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib.auth.models import User
@@ -60,3 +60,18 @@ def EditProfile(request, **kwargs):
 	return render(request, 'users/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
+@login_required
+def UpdateUserPrefs(request, **kwargs):
+
+	instance = User.objects.get(username=kwargs['username']).userpref
+
+	if request.method == 'POST':
+		form = UpdateUserPrefsForm(request.POST, instance = instance)
+		if form.is_valid():
+			#newpref = form.save(commit=False)
+			#newpref.user = request.user
+			form.save()
+			return redirect('profile', username=kwargs['username'])
+	else:
+		form = UpdateUserPrefsForm(instance = instance)
+	return render(request, 'users/editprefs.html', {'form': form})
