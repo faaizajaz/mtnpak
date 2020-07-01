@@ -3,7 +3,7 @@ from .models import Crag
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from .forms import AddRouteForm, AddCragForm, RouteChoiceForm, AddRouteMultiForm
-from pitches.forms import AddPitchForm
+from pitches.forms import *
 from django.contrib.auth.decorators import login_required
 
 
@@ -22,17 +22,28 @@ class CragView(generic.DetailView):
 	def get_object(self):
 		return get_object_or_404(Crag, pk=self.kwargs['crag_id'])
 
-# replace with class based form view
+#IN AddRoute, a route and pitch form are both created since for single
+#the route only had 1 pitch. We create the pitch and route here simultatenous
 @login_required
 def AddRoute(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteForm(request.POST)
-		form2 = AddPitchForm(request.POST)
+		#form2 = AddPitchForm(request.POST)
+		
+		if request.session['grade_pref'] == "YDS":
+			form2 = AddPitchFormYDS(request.POST)
+		elif request.session['grade_pref'] == "French":
+			form2 = AddPitchFormFrench(request.POST)
+
 		if form.is_valid(): #and form2.is_valid():
 			newroute = form.save(commit=False)
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
+
+			#numpitch tells the template what to display. could replace with
+			#session variable
 			newroute.numpitch = 'Singlepitch'
+
 			newroute.save()		
 
 			newpitch = form2.save(commit=False)
@@ -42,9 +53,19 @@ def AddRoute(request, **kwargs):
 			return redirect('crag-view', crag_id=kwargs['crag_id'])
 	else:
 		form = AddRouteForm()
-		form2 = AddPitchForm()
+		#form2 = AddPitchForm(request)
+		if request.session['grade_pref'] == "YDS":
+			form2 = AddPitchFormYDS()
+		elif request.session['grade_pref'] == "French":
+			form2 = AddPitchFormFrench()
 	return render(request, 'crags/addroute.html', {'form': form, 'form2':form2})
 
+#add mixin for login requirement
+
+
+
+#However when adding a multipitch route, we need to first create a route
+#with no grade or length field in the form (because those are per pitch)
 @login_required
 def AddRouteMulti(request, **kwargs):
 	if request.method == 'POST':

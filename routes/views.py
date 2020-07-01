@@ -51,6 +51,8 @@ def AddAscentToRoute(request, **kwargs):
 		form = AddAscentToRouteForm()
 	return render(request, 'routes/addascenttoroute.html', {'form': form})
 
+
+#WHY IS THIS VIEW HERE? OR RATHER WHY ARE ADD ROUTE/MULTI AND ROUTE CHOICE in crags.views?
 @login_required
 def AddPitchMulti(request, **kwargs):
 	if request.method == 'POST':
