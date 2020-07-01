@@ -25,7 +25,7 @@
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.numpitch == 'Singlepitch' %}
-		<p>{{ route.rlength }}</p>
+		<p>This single pitch is {{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
 		{% endfor %}

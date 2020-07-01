@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from model_utils import Choices
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -25,8 +26,22 @@ class Profile(models.Model):
 class UserPref(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-	grade_pref = models.CharField(max_length=100, verbose_name='Grading system user preference')
-	measurement_pref = models.CharField(max_length=100, verbose_name='Measurement system preferece')
+	GRADE_PREF = Choices('French', 'YDS', 'Aus', 'UIAA', 'SA', 'UK')
+	MEASUREMENT_PREF = Choices('Meters', 'Feet')
+
+	grade_pref = models.CharField(
+		choices=GRADE_PREF,
+		default=GRADE_PREF.French,
+		verbose_name='Grading system user preference',
+		max_length=20
+		)
+
+	measurement_pref = models.CharField(
+		choices=MEASUREMENT_PREF,
+		default=MEASUREMENT_PREF.Meters,
+		verbose_name='Measurement system preference',
+		max_length=20
+		)
 
 	def __str__(self):
 		return self.user.first_name
