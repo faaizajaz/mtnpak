@@ -28,6 +28,7 @@
 		<p>This single pitch is {{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
 
+			<!--CHECK GRADE PREFERENCE AND DISPLAU GRADE ACCORDINGLY -->
 			{% if request.session.grade_pref == "French" %}
 
 				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
