@@ -27,8 +27,35 @@
 	{% if route.numpitch == 'Singlepitch' %}
 		<p>This single pitch is {{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
-			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+
+			{% if request.session.grade_pref == "French" %}
+
+				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "YDS" %}
+
+				<p>{{ pitch.pgrade.ydsgrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "Aus" %}
+
+				<p>{{ pitch.pgrade.ausgrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "UIAA" %}
+
+				<p>{{ pitch.pgrade.uiaagrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "SA" %}
+
+				<p>{{ pitch.pgrade.sagrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "UK" %}
+
+				<p>{{ pitch.pgrade.ukgrade }} {{ pitch.plength }}</p>
+
+			{% endif %}
+
 		{% endfor %}
+
 	{% endif %}
 
 

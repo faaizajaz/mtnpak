@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm,  UpdateUserPrefsForm
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm, UpdateUserPrefsForm
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib.auth.models import User
@@ -39,6 +39,7 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
 		return get_object_or_404(User, username=self.kwargs['username'])
 
 
+
 #This still does not check to see if current user is same as that to edit.
 @login_required
 def EditProfile(request, **kwargs):
@@ -68,9 +69,13 @@ def UpdateUserPrefs(request, **kwargs):
 	if request.method == 'POST':
 		form = UpdateUserPrefsForm(request.POST, instance = instance)
 		if form.is_valid():
-			#newpref = form.save(commit=False)
-			#newpref.user = request.user
 			form.save()
+
+			#Set session variable for grade preference when prefs updated.
+			#Also done in users.signals.create_pref_session when session is created
+			request.session['grade_pref'] = request.user.userpref.grade_pref
+
+			print(request.session['grade_pref'])
 			return redirect('profile', username=kwargs['username'])
 	else:
 		form = UpdateUserPrefsForm(instance = instance)
