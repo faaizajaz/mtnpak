@@ -26,9 +26,11 @@ class Profile(models.Model):
 class UserPref(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+	#Set the choices for user preferences (these are in dropdown)
 	GRADE_PREF = Choices('French', 'YDS', 'Aus', 'UIAA', 'SA', 'UK')
 	MEASUREMENT_PREF = Choices('Meters', 'Feet')
 
+	#Assign choices to charfield
 	grade_pref = models.CharField(
 		choices=GRADE_PREF,
 		default=GRADE_PREF.French,
@@ -36,6 +38,7 @@ class UserPref(models.Model):
 		max_length=20
 		)
 
+	#Assign choices to charfield
 	measurement_pref = models.CharField(
 		choices=MEASUREMENT_PREF,
 		default=MEASUREMENT_PREF.Meters,
