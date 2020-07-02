@@ -25,7 +25,6 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
-		
 		#for all pitches in DB with proute = the current route, sum lengths
 		#and set rlength to sum.
 		for pitch in Pitch.objects.filter(proute=current_route):

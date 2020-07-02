@@ -26,8 +26,8 @@ def create_userprefs(sender, instance, created, **kwargs):
 		UserPref.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def save_userprefs(sender, user, **kwargs):
-	user.userpref.save()
+def save_userprefs(sender, instance, **kwargs):
+	instance.userpref.save()
 	#request.session['grade_pref'] = user.userpref.grade_pref
 
 

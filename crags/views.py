@@ -28,14 +28,22 @@ class CragView(generic.DetailView):
 def AddRoute(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteForm(request.POST)
-		#form2 = AddPitchForm(request.POST)
-		
+
+		#Choose view based on user pref		
 		if request.session['grade_pref'] == "YDS":
 			form2 = AddPitchFormYDS(request.POST)
 		elif request.session['grade_pref'] == "French":
 			form2 = AddPitchFormFrench(request.POST)
+		elif request.session['grade_pref'] == "Aus":
+			form2 = AddPitchFormAus(request.POST)
+		elif request.session['grade_pref'] == "UIAA":
+			form2 = AddPitchFormUIAA(request.POST)
+		elif request.session['grade_pref'] == "SA":
+			form2 = AddPitchFormSA(request.POST)
+		elif request.session['grade_pref'] == "UK":
+			form2 = AddPitchFormUK(request.POST)
 
-		if form.is_valid(): #and form2.is_valid():
+		if form.is_valid() and form2.is_valid():
 			newroute = form.save(commit=False)
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
@@ -53,16 +61,21 @@ def AddRoute(request, **kwargs):
 			return redirect('crag-view', crag_id=kwargs['crag_id'])
 	else:
 		form = AddRouteForm()
-		#form2 = AddPitchForm(request)
+		
 		if request.session['grade_pref'] == "YDS":
 			form2 = AddPitchFormYDS()
 		elif request.session['grade_pref'] == "French":
 			form2 = AddPitchFormFrench()
+		elif request.session['grade_pref'] == "Aus":
+			form2 = AddPitchFormAus()
+		elif request.session['grade_pref'] == "UIAA":
+			form2 = AddPitchFormUIAA()
+		elif request.session['grade_pref'] == "SA":
+			form2 = AddPitchFormSA()
+		elif request.session['grade_pref'] == "UK":
+			form2 = AddPitchFormUK()
+
 	return render(request, 'crags/addroute.html', {'form': form, 'form2':form2})
-
-#add mixin for login requirement
-
-
 
 #However when adding a multipitch route, we need to first create a route
 #with no grade or length field in the form (because those are per pitch)

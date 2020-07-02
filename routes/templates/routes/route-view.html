@@ -52,8 +52,12 @@
 			{% elif request.session.grade_pref == "UK" %}
 
 				<p>{{ pitch.pgrade.ukgrade }} {{ pitch.plength }}</p>
+			{% else %}
+
+				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
 
 			{% endif %}
+
 
 		{% endfor %}
 
