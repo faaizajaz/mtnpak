@@ -25,12 +25,10 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
-		#grade_pref = self.request.session['grade_pref']
 		#for all pitches in DB with proute = the current route, sum lengths
 		#and set rlength to sum.
 		for pitch in Pitch.objects.filter(proute=current_route):
 			current_route.rlength += pitch.plength
-			#if grade_pref == 'French'
 		return current_route
 		#return get_object_or_404(Route, pk=self.kwargs['route_id'])
 
