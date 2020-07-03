@@ -52,6 +52,7 @@
 			{% elif request.session.grade_pref == "UK" %}
 
 				<p>{{ pitch.pgrade.ukgrade }} {{ pitch.plength }}</p>
+
 			{% else %}
 
 				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
@@ -67,9 +68,43 @@
 	<!-- Otherwise, if the route has more than one pitch, list pitches-->
 	
 	{% if route.numpitch == 'Multipitch' %}
+
 		<p>{{ route.rlength }}</p>
+
 		{% for pitch in route.pitch_set.all %}
-			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+
+			<!-- <p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p> -->
+			{% if request.session.grade_pref == "French" %}
+
+				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "YDS" %}
+
+				<p>{{ pitch.pgrade.ydsgrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "Aus" %}
+
+				<p>{{ pitch.pgrade.ausgrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "UIAA" %}
+
+				<p>{{ pitch.pgrade.uiaagrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "SA" %}
+
+				<p>{{ pitch.pgrade.sagrade }} {{ pitch.plength }}</p>
+
+			{% elif request.session.grade_pref == "UK" %}
+
+				<p>{{ pitch.pgrade.ukgrade }} {{ pitch.plength }}</p>
+
+			{% else %}
+
+				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+
+			{% endif %}
+
+
 		{% endfor %}
 
 	{% endif %}
@@ -78,7 +113,7 @@
 
 
 
-	<p>{{ route.rdescription }}</p>
+	<p><b>Description:</b> {{ route.rdescription }}</p>
 
 
 	
@@ -88,6 +123,7 @@
 	{% endfor %}
 	<br>
 	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>
+
 
 	<!--If route is multipitch, show add pitch button -->
 	{% if route.numpitch == 'Multipitch' %}

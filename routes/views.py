@@ -3,9 +3,9 @@ from .models import Route
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from routes.forms import AddAscentToRouteForm
-from pitches.forms import AddPitchMultiForm
 from pitches.models import Pitch
 from django.contrib.auth.decorators import login_required
+from pitches.forms import *
 
 
 
@@ -54,15 +54,43 @@ def AddAscentToRoute(request, **kwargs):
 #WHY IS THIS VIEW HERE? OR RATHER WHY ARE ADD ROUTE/MULTI AND ROUTE CHOICE in crags.views?
 @login_required
 def AddPitchMulti(request, **kwargs):
+	grade_pref = request.session['grade_pref']
+
 	if request.method == 'POST':
-		form = AddPitchMultiForm(request.POST)
+		
+
+		if grade_pref == "YDS":
+			form = AddPitchFormYDSMulti(request.POST)
+		elif grade_pref == "French":
+			form = AddPitchFormFrenchMulti(request.POST)
+		elif grade_pref == "Aus":
+			form = AddPitchFormAusMulti(request.POST)
+		elif grade_pref == "UIAA":
+			form = AddPitchFormUIAAMulti(request.POST)
+		elif grade_pref == "SA":
+			form = AddPitchFormSAMulti(request.POST)
+		elif grade_pref == "UK":
+			form = AddPitchFormUKMulti(request.POST)
+
+		#form = AddPitchMultiForm(request.POST)
 		if form.is_valid():
 			newpitch = form.save(commit=False)
 			newpitch.proute = Route.objects.get(pk=kwargs['route_id'])
 			newpitch.save()
 			return redirect('route-view', route_id=kwargs['route_id'])
 	else:
-		form = AddPitchMultiForm()
+		if grade_pref == "YDS":
+			form = AddPitchFormYDSMulti()
+		elif grade_pref == "French":
+			form = AddPitchFormFrenchMulti()
+		elif grade_pref == "Aus":
+			form = AddPitchFormAusMulti()
+		elif grade_pref == "UIAA":
+			form = AddPitchFormUIAAMulti()
+		elif grade_pref == "SA":
+			form = AddPitchFormSAMulti()
+		elif grade_pref == "UK":
+			form = AddPitchFormUKMulti()
 	return render(request, 'routes/addpitch.html', {'form': form})
 
 
