@@ -44,6 +44,8 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
 @login_required
 def EditProfile(request, **kwargs):
 
+	#if i do this like request.user.profile is it safer?
+
 	u_instance = User.objects.get(username=kwargs['username'])
 	p_instance = User.objects.get(username=kwargs['username']).profile
 

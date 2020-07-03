@@ -1,5 +1,6 @@
 
 {% extends 'base.html' %}
+{% load grade_filters %}
 
 {% block page_title %}
 	{{ crag.cname }}
@@ -18,8 +19,15 @@
 	{% endif %}
 	<h1>{{ crag.cname }}</h1>
 	<h4>Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></h4>
+	
+
+	<!-- list all the routes -->
 	{% for route in object.route_set.all %}
-		<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a></p>
+		<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a>
+		{% for pitch in route.pitch_set.all %}
+			{{ pitch.pgrade|grade_display:request }}
+		{% endfor %}
+		</p>
 
 	
 	{% endfor %}
