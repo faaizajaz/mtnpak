@@ -1,11 +1,9 @@
 from django.forms import ModelForm
 from grades.models import Grade
-from .fields import *
-
-    
+from .fields import *    
 from .models import Pitch
 
-#This is the single pitch class.
+#for singlepitch forms
 class AddPitchFormYDS(ModelForm):		
 	pgrade = YDSModelChoiceField(queryset=Grade.objects.all())
 
@@ -50,18 +48,7 @@ class AddPitchFormUK(ModelForm):
 
 
 
-
-
-
-
-#use this form for adding pitches to multipitch
-#class AddPitchMultiForm(ModelForm):
-
-#	class Meta:
-#		model = Pitch
-#		exclude = ['proute']
-
-
+#For multipitch forms
 class AddPitchFormYDSMulti(ModelForm):		
 	pgrade = YDSModelChoiceField(queryset=Grade.objects.all())
 
