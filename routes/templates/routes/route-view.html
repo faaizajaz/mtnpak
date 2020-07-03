@@ -42,13 +42,16 @@
 		{% endfor %}
 	{% endif %}
 
-
+	<!-- route description displayed here -->
 	<p><b>Description:</b> {{ route.rdescription }}</p>
 	
+	<!-- display all ascents for the route -->
 	{% for ascent in route.ascent_set.all %}
 		<p>{{ ascent.date }}  <a href="{% url 'profile' username=ascent.climber.username %}">{{ ascent.climber.username }}</a></p>
-
 	{% endfor %}
+	
+	<!-- add ascent button -->
+
 	<br>
 	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>
 

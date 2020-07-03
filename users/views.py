@@ -44,13 +44,15 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
 @login_required
 def EditProfile(request, **kwargs):
 
+	#if i do this like request.user.profile is it safer?
+
 	u_instance = User.objects.get(username=kwargs['username'])
 	p_instance = User.objects.get(username=kwargs['username']).profile
 
 	if request.method == 'POST':
 		#we pass instances here to prepopulate forms with current.
 		user_form = UserUpdateForm(request.POST, instance=u_instance)
-		profile_form = ProfileUpdateForm(request.POST, instance=p_instance)
+		profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=p_instance)
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()

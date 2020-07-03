@@ -8,6 +8,8 @@ from .models import Profile, UserPref
 # Add any other fields you want here
 class UserRegistrationForm(UserCreationForm):
 	email = forms.EmailField(required=True)
+	#user field is actually first_name by default, but we use firstname as 
+	#intermediate so we can clean the data before setting it to first_name
 	firstname = forms.CharField(required=True, max_length=200)
 	lastname = forms.CharField(required=True, max_length=200)
 	firstname.label = "First Name"
@@ -34,15 +36,24 @@ class UserRegistrationForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
 
 	email = forms.EmailField(required=True)
-	firstname = forms.CharField(required=True, max_length=200)
-	lastname = forms.CharField(required=True, max_length=200)
-	firstname.label = "First Name"
-	lastname.label = "Last Name"
+	first_name = forms.CharField(required=True, max_length=200)
+	last_name = forms.CharField(required=True, max_length=200)
+	first_name.label = "First Name"
+	last_name.label = "Last Name"
 
 	class Meta:
 		# When form validates, User object is created (form.save will save to user model)
 		model = User
-		fields = ['firstname', 'lastname', 'username', 'email']
+		fields = ['first_name', 'last_name', 'username', 'email']
+
+	def save(self, commit=True):
+		user = super(UserUpdateForm, self).save(commit=False)
+		user.first_name = self.cleaned_data['first_name']
+		user.last_name = self.cleaned_data['last_name']
+
+		if commit:
+			user.save()
+		return user
 
 
 class ProfileUpdateForm(forms.ModelForm):
