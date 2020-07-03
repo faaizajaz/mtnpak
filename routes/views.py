@@ -58,7 +58,7 @@ def AddPitchMulti(request, **kwargs):
 
 	if request.method == 'POST':
 		
-
+		# render the correct form with correct fields depending on user_pref
 		if grade_pref == "YDS":
 			form = AddPitchFormYDSMulti(request.POST)
 		elif grade_pref == "French":
@@ -91,6 +91,7 @@ def AddPitchMulti(request, **kwargs):
 			form = AddPitchFormSAMulti()
 		elif grade_pref == "UK":
 			form = AddPitchFormUKMulti()
+
 	return render(request, 'routes/addpitch.html', {'form': form})
 
 
