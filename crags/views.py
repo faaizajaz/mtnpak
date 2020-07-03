@@ -56,6 +56,7 @@ def AddRoute(request, **kwargs):
 
 			newpitch = form2.save(commit=False)
 			newpitch.proute = newroute
+
 			newpitch.save()
 
 			return redirect('crag-view', crag_id=kwargs['crag_id'])

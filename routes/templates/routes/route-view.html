@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load grade_filters %}
+
 {% block page_title %}
 	{{ route.rname }}
 {% endblock %}
@@ -27,60 +29,21 @@
 	{% if route.numpitch == 'Singlepitch' %}
 		<p>This single pitch is {{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
-
 			<!--CHECK GRADE PREFERENCE AND DISPLAU GRADE ACCORDINGLY -->
-			{% if request.session.grade_pref == "French" %}
-
-				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
-
-			{% elif request.session.grade_pref == "YDS" %}
-
-				<p>{{ pitch.pgrade.ydsgrade }} {{ pitch.plength }}</p>
-
-			{% elif request.session.grade_pref == "Aus" %}
-
-				<p>{{ pitch.pgrade.ausgrade }} {{ pitch.plength }}</p>
-
-			{% elif request.session.grade_pref == "UIAA" %}
-
-				<p>{{ pitch.pgrade.uiaagrade }} {{ pitch.plength }}</p>
-
-			{% elif request.session.grade_pref == "SA" %}
-
-				<p>{{ pitch.pgrade.sagrade }} {{ pitch.plength }}</p>
-
-			{% elif request.session.grade_pref == "UK" %}
-
-				<p>{{ pitch.pgrade.ukgrade }} {{ pitch.plength }}</p>
-			{% else %}
-
-				<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
-
-			{% endif %}
-
-
+			{{ pitch.pgrade|grade_display:request }} {{ pitch.plength }}
 		{% endfor %}
-
 	{% endif %}
 
-
-	<!-- Otherwise, if the route has more than one pitch, list pitches-->
-	
+	<!-- Otherwise, if the route has more than one pitch, list pitches-->	
 	{% if route.numpitch == 'Multipitch' %}
 		<p>{{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
-			<p>{{ pitch.pgrade.ggrade }} {{ pitch.plength }}</p>
+				<p>{{ pitch.pgrade|grade_display:request }} {{ pitch.plength }} {{ pitch.pdescription }}</p>
 		{% endfor %}
-
 	{% endif %}
 
 
-
-
-
-	<p>{{ route.rdescription }}</p>
-
-
+	<p><b>Description:</b> {{ route.rdescription }}</p>
 	
 	{% for ascent in route.ascent_set.all %}
 		<p>{{ ascent.date }}  <a href="{% url 'profile' username=ascent.climber.username %}">{{ ascent.climber.username }}</a></p>
@@ -88,6 +51,7 @@
 	{% endfor %}
 	<br>
 	<h3><a href="{% url 'add-ascent-to-route' route_id=route.id %}">ADD YOUR ASCENT</a></h3>
+
 
 	<!--If route is multipitch, show add pitch button -->
 	{% if route.numpitch == 'Multipitch' %}
