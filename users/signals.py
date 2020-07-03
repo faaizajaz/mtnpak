@@ -15,6 +15,7 @@ def create_profile(sender, instance, created, **kwargs):
 		#the user attribute for the Profile object
 		Profile.objects.create(user=instance)
 
+#save profile if user is saved afain
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
 	instance.profile.save()

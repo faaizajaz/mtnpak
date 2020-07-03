@@ -45,6 +45,8 @@ class UserUpdateForm(forms.ModelForm):
 		fields = ['firstname', 'lastname', 'username', 'email']
 
 
+
+
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
