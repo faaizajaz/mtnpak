@@ -54,8 +54,8 @@ def AddRoute(request, **kwargs):
 			newroute.numpitch = 'Singlepitch'
 			
 			newpitch.proute = newroute
-			newpitch.pbase_unit = request.session['measurement_pref']
-			newroute.rbase_unit = request.session['measurement_pref']
+			newpitch.base_unit = request.session['measurement_pref']
+			newroute.base_unit = request.session['measurement_pref']
 			
 			newroute.save()	
 			newpitch.save()			
@@ -90,6 +90,10 @@ def AddRouteMulti(request, **kwargs):
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 			newroute.numpitch = 'Multipitch'
+
+			#probably don't need to do this as rbase_unit is not used at all
+			newroute.base_unit = request.session['measurement_pref']
+
 			newroute.save()
 			#return redirect('crag-view', crag_id=kwargs['crag_id'])
 			return redirect('route-view', route_id=newroute.id)

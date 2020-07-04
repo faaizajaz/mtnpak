@@ -12,12 +12,12 @@ class Route(models.Model):
     rname = models.CharField(max_length=500, verbose_name='Route Name')
     rdescription = models.TextField(verbose_name='Route Description')
     ropener = models.CharField(max_length=500, verbose_name='Route Opener')
-    rcrag = models.ForeignKey(Crag, on_delete=models.CASCADE, verbose_name='Crag')
+    rcrag = models.ForeignKey(Crag, on_delete=models.SET_NULL, null=True, verbose_name='Crag')
     
     # equal to pitch length if one pitch, otherwise sum of pitch length
-    rlength = models.IntegerField(verbose_name='Route Length', default=0)
+    length = models.IntegerField(verbose_name='Route Length', default=0)
     # this should be set once and never changed.
-    rbase_unit = models.CharField(max_length=50, verbose_name='R Base_unit')
+    base_unit = models.CharField(max_length=50, verbose_name='R Base_unit')
 
     rtype = models.ForeignKey(RouteType, on_delete=models.SET_NULL, null=True)
 

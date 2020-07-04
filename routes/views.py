@@ -28,7 +28,7 @@ class RouteView(generic.DetailView):
 		#for all pitches in DB with proute = the current route, sum lengths
 		#and set rlength to sum.
 		for pitch in Pitch.objects.filter(proute=current_route):
-			current_route.rlength += pitch.plength
+			current_route.length += pitch.length
 		return current_route
 		#return get_object_or_404(Route, pk=self.kwargs['route_id'])
 
@@ -55,6 +55,9 @@ def AddAscentToRoute(request, **kwargs):
 @login_required
 def AddPitchMulti(request, **kwargs):
 	grade_pref = request.session['grade_pref']
+	measurement_pref = request.session['measurement_pref']
+
+	print("measurement pref is " + measurement_pref)
 
 	if request.method == 'POST':
 		
@@ -75,10 +78,12 @@ def AddPitchMulti(request, **kwargs):
 		
 
 		#TODO: add assignment session measpref to newpitch.proute.pbase_unit
+
 		
 		if form.is_valid():
 			newpitch = form.save(commit=False)
 			newpitch.proute = Route.objects.get(pk=kwargs['route_id'])
+			newpitch.base_unit = measurement_pref
 			newpitch.save()
 			return redirect('route-view', route_id=kwargs['route_id'])
 	else:

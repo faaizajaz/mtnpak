@@ -12,14 +12,14 @@ class AddRouteForm(ModelForm):
 	class Meta:
 		model = Route
 		#rlength is set equal to pitch length once pitch is created
-		exclude = ['rcrag', 'ropener', 'numpitch', 'rlength', 'rbase_unit']
+		exclude = ['rcrag', 'ropener', 'numpitch', 'length', 'base_unit']
 
 
 class AddRouteMultiForm(ModelForm):
 
 	class Meta:
 		model = Route
-		exclude = ['rcrag', 'ropener', 'rlength', 'numpitch', 'rbase_unit']
+		exclude = ['rcrag', 'ropener', 'length', 'numpitch', 'base_unit']
 
 
 

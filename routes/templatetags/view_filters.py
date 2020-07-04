@@ -42,7 +42,7 @@ def measurement_unit_display(pitch, request):
 	except KeyError:
 		measurement_pref = 'meters'
 
-	if measurement_pref == pitch.pbase_unit:
+	if measurement_pref == pitch.base_unit:
 		return measurement_pref
 	else:
 		if measurement_pref == 'meters':
@@ -60,7 +60,9 @@ def measurement_display(pitch, request):
 	except KeyError:
 		measurement_pref = 'meters'	
 
-	return convert_units(pitch.pbase_unit, measurement_pref, pitch.plength)
+	print("converting from " + pitch.base_unit + " to " + measurement_pref)
+
+	return convert_units(pitch.base_unit, measurement_pref, pitch.length)
 
 
 
