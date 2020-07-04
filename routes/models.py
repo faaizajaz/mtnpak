@@ -15,7 +15,7 @@ class Route(models.Model):
     rcrag = models.ForeignKey(Crag, on_delete=models.SET_NULL, null=True, verbose_name='Crag')
     
     # equal to pitch length if one pitch, otherwise sum of pitch length
-    length = models.IntegerField(verbose_name='Route Length', default=0)
+    length = models.FloatField(verbose_name='Route Length', default=0)
     # this should be set once and never changed.
     base_unit = models.CharField(max_length=50, verbose_name='R Base_unit')
 
@@ -24,28 +24,10 @@ class Route(models.Model):
     numpitch = models.CharField(max_length=500, verbose_name='Single or Multi')
 
 
-    # When I need to list all routes, can do:
-    # routes = Route.objects.select_subclasses(TradRoute)
-
-
     def __str__(self):
         return self.rname
 
 
-#class TradRoute(Route):
-
-#	def __str__(self):
-#		return self.rname
-	#specific route properties for trad routes
-
-
-
-#class SportRoute(Route):
-	#specific route properties for sport routes
-
-
-#class MixedRoute(Route):
-	#specific properties for sport routes
 
 
 

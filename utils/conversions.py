@@ -1,6 +1,5 @@
 #conversion function checks what conversion needs to take place
 def convert_units(original, desired, value):
-
 	if original == desired:
 		return value
 	else:
@@ -14,7 +13,7 @@ def convert_units(original, desired, value):
 
 #unit conversions
 def feet_to_meters(value):
-	return value/3.28
+	return value/3.28084
 
 def meters_to_feet(value):
-	return value*3.28
+	return value*3.28084

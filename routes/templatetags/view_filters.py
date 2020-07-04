@@ -46,13 +46,13 @@ def measurement_unit_display(pitch, request):
 #filter to change how actual measurements are displayed (in which unit)
 #this filter calls a conversion helper function to decide how to convert
 @register.filter(name='measurement_display')
-def measurement_display(pitch, request):
+def measurement_display(obj, request):
 	try:
 		measurement_pref = request.session['measurement_pref']
 	#if no user logged in, then default to meters
 	except KeyError:
 		measurement_pref = 'meters'	
-	return convert_units(pitch.base_unit, measurement_pref, pitch.length)
+	return convert_units(obj.base_unit, measurement_pref, obj.length)
 
 
 

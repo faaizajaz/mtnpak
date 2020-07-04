@@ -27,9 +27,10 @@
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.numpitch == 'Singlepitch' %}
-		<p>This single pitch is {{ route.length }}</p>
+		
+		<p>This single pitch is {{ route|measurement_display:request }}</p>
 		{% for pitch in route.pitch_set.all %}
-			<!--CHECK GRADE PREFERENCE AND DISPLAU GRADE ACCORDINGLY -->
+			<!--CHECK GRADE PREFERENCE AND DISPLAY GRADE ACCORDINGLY -->
 			{{ pitch.pgrade|grade_display:request }}
 			{{ pitch|measurement_display:request }}
 			{{ pitch|measurement_unit_display:request }}
@@ -40,8 +41,8 @@
 
 	<!-- Otherwise, if the route has more than one pitch, list pitches-->	
 	{% if route.numpitch == 'Multipitch' %}
-		<!-- <p>{{ route|measurement_display:request }}</p> -->
-		<p>{{ route.length }}</p>
+
+		<p>This multipitch is {{ route|measurement_display:request }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<p>
 			{{ pitch.pgrade|grade_display:request }}

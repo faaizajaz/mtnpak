@@ -52,10 +52,14 @@ def AddRoute(request, **kwargs):
 			#numpitch tells the template what to display. could replace with
 			#session variable
 			newroute.numpitch = 'Singlepitch'
-			
+			# create route variable
 			newpitch.proute = newroute
+			
+			# set base unit for both pitch and route (always equal since single pitch)
 			newpitch.base_unit = request.session['measurement_pref']
 			newroute.base_unit = request.session['measurement_pref']
+
+			newroute.length = newpitch.length
 			
 			newroute.save()	
 			newpitch.save()			
