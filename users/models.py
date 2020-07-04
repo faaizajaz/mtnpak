@@ -31,7 +31,7 @@ class UserPref(models.Model):
 
 	#Set the choices for user preferences (these are in dropdown)
 	GRADE_PREF = Choices('French', 'YDS', 'Aus', 'UIAA', 'SA', 'UK')
-	MEASUREMENT_PREF = Choices('Meters', 'Feet')
+	MEASUREMENT_PREF = Choices('meters', 'feet')
 
 	#Assign choices to charfield
 	grade_pref = models.CharField(
@@ -44,7 +44,7 @@ class UserPref(models.Model):
 	#Assign choices to charfield
 	measurement_pref = models.CharField(
 		choices=MEASUREMENT_PREF,
-		default=MEASUREMENT_PREF.Meters,
+		default=MEASUREMENT_PREF.meters,
 		verbose_name='Measurement system preference',
 		max_length=20
 		)

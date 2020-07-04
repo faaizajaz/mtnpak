@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load grade_filters %}
+{% load view_filters %}
 
 {% block page_title %}
 	{{ route.rname }}
@@ -30,9 +30,15 @@
 		<p>This single pitch is {{ route.rlength }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<!--CHECK GRADE PREFERENCE AND DISPLAU GRADE ACCORDINGLY -->
-			{{ pitch.pgrade|grade_display:request }} {{ pitch.plength }}
+			{{ pitch.pgrade|grade_display:request }} {{ pitch|measurement_display:request }}
+			{{ pitch|measurement_unit_display:request }}
+
 		{% endfor %}
 	{% endif %}
+
+	<!-- 1. check if userpref == rbase_unit
+		2. if so, display rbase_unit as unit
+		3. if not, check what is userpref, and conver rbase accordingly -->
 
 	<!-- Otherwise, if the route has more than one pitch, list pitches-->	
 	{% if route.numpitch == 'Multipitch' %}

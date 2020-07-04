@@ -72,7 +72,10 @@ def AddPitchMulti(request, **kwargs):
 		elif grade_pref == "UK":
 			form = AddPitchFormUKMulti(request.POST)
 
-		#form = AddPitchMultiForm(request.POST)
+		
+
+		#TODO: add assignment session measpref to newpitch.proute.pbase_unit
+		
 		if form.is_valid():
 			newpitch = form.save(commit=False)
 			newpitch.proute = Route.objects.get(pk=kwargs['route_id'])

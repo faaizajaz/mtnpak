@@ -45,19 +45,20 @@ def AddRoute(request, **kwargs):
 
 		if form.is_valid() and form2.is_valid():
 			newroute = form.save(commit=False)
+			newpitch = form2.save(commit=False)
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 
 			#numpitch tells the template what to display. could replace with
 			#session variable
 			newroute.numpitch = 'Singlepitch'
-
-			newroute.save()		
-
-			newpitch = form2.save(commit=False)
+			
 			newpitch.proute = newroute
-
-			newpitch.save()
+			newpitch.pbase_unit = request.session['measurement_pref']
+			newroute.rbase_unit = request.session['measurement_pref']
+			
+			newroute.save()	
+			newpitch.save()			
 
 			return redirect('crag-view', crag_id=kwargs['crag_id'])
 	else:

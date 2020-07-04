@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from crags.models import Crag
 from routetypes.models import *
 
@@ -17,6 +16,8 @@ class Route(models.Model):
     
     # equal to pitch length if one pitch, otherwise sum of pitch length
     rlength = models.IntegerField(verbose_name='Route Length', default=0)
+    # this should be set once and never changed.
+    rbase_unit = models.CharField(max_length=50, verbose_name='R Base_unit')
 
     rtype = models.ForeignKey(RouteType, on_delete=models.SET_NULL, null=True)
 

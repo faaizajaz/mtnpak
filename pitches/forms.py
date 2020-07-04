@@ -9,42 +9,42 @@ class AddPitchFormYDS(ModelForm):
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormFrench(ModelForm):
 	pgrade = FrenchModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormAus(ModelForm):
 	pgrade = AusModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormUIAA(ModelForm):
 	pgrade = UIAAModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormSA(ModelForm):
 	pgrade = SAModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormUK(ModelForm):
 	pgrade = UKModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 
 
@@ -54,39 +54,39 @@ class AddPitchFormYDSMulti(ModelForm):
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormFrenchMulti(ModelForm):
 	pgrade = FrenchModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormAusMulti(ModelForm):
 	pgrade = AusModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormUIAAMulti(ModelForm):
 	pgrade = UIAAModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormSAMulti(ModelForm):
 	pgrade = SAModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
 
 class AddPitchFormUKMulti(ModelForm):
 	pgrade = UKModelChoiceField(queryset=Grade.objects.all())
 
 	class Meta:
 		model = Pitch
-		exclude = ['proute', 'pdescription']
+		exclude = ['proute', 'pdescription', 'pbase_unit']
