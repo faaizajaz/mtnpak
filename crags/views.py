@@ -56,6 +56,7 @@ def AddRoute(request, **kwargs):
 			newpitch.proute = newroute
 			
 			# set base unit for both pitch and route (always equal since single pitch)
+			# both are only set once.
 			newpitch.base_unit = request.session['measurement_pref']
 			newroute.base_unit = request.session['measurement_pref']
 
@@ -95,7 +96,7 @@ def AddRouteMulti(request, **kwargs):
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 			newroute.numpitch = 'Multipitch'
 
-			#probably don't need to do this as rbase_unit is not used at all
+			# ROUTE base unit is set only once, when route is added.
 			newroute.base_unit = request.session['measurement_pref']
 
 			newroute.save()
