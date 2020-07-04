@@ -40,7 +40,8 @@
 
 	<!-- Otherwise, if the route has more than one pitch, list pitches-->	
 	{% if route.numpitch == 'Multipitch' %}
-		<p>{{ route|measurement_display:request }}</p>
+		<!-- <p>{{ route|measurement_display:request }}</p> -->
+		<p>{{ route.length }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<p>
 			{{ pitch.pgrade|grade_display:request }}

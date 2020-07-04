@@ -6,6 +6,7 @@ from routes.forms import AddAscentToRouteForm
 from pitches.models import Pitch
 from django.contrib.auth.decorators import login_required
 from pitches.forms import *
+from utils.conversions import convert_units
 
 
 
@@ -25,10 +26,22 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
+		try:
+			measurement_pref = self.request.session['measurement_pref']
+		except KeyError:
+			measurement_pref = 'meters'
 		#for all pitches in DB with proute = the current route, sum lengths
 		#and set rlength to sum.
 		for pitch in Pitch.objects.filter(proute=current_route):
-			current_route.length += pitch.length
+			if pitch.base_unit == measurement_pref:
+				current_route.length += pitch.length
+				print(pitch.length)
+			else:
+				current_route.length += convert_units(pitch.base_unit, measurement_pref, pitch.length)
+				print(convert_units(pitch.base_unit, measurement_pref, pitch.length))
+
+			#current_route.length += pitch.length
+			
 		return current_route
 		#return get_object_or_404(Route, pk=self.kwargs['route_id'])
 
@@ -56,8 +69,6 @@ def AddAscentToRoute(request, **kwargs):
 def AddPitchMulti(request, **kwargs):
 	grade_pref = request.session['grade_pref']
 	measurement_pref = request.session['measurement_pref']
-
-	print("measurement pref is " + measurement_pref)
 
 	if request.method == 'POST':
 		

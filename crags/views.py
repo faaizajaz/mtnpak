@@ -114,7 +114,7 @@ def RouteChoice(request, **kwargs):
 				crag_id=kwargs['crag_id']
 				return redirect('add-route', crag_id=crag_id)
 			elif choice == 'multi':
-				crag_id=kwargs['crag_id']
+				crag_id = kwargs['crag_id']
 				return redirect('add-route-multi', crag_id=crag_id)
 	else:
 		form = RouteChoiceForm()

@@ -41,14 +41,7 @@ def measurement_unit_display(pitch, request):
 	#if no user logged in, then default to meters
 	except KeyError:
 		measurement_pref = 'meters'
-
-	if measurement_pref == pitch.base_unit:
-		return measurement_pref
-	else:
-		if measurement_pref == 'meters':
-			return measurement_pref
-		elif measurement_pref == 'feet':
-			return measurement_pref
+	return measurement_pref
 
 #filter to change how actual measurements are displayed (in which unit)
 #this filter calls a conversion helper function to decide how to convert
@@ -59,9 +52,6 @@ def measurement_display(pitch, request):
 	#if no user logged in, then default to meters
 	except KeyError:
 		measurement_pref = 'meters'	
-
-	print("converting from " + pitch.base_unit + " to " + measurement_pref)
-
 	return convert_units(pitch.base_unit, measurement_pref, pitch.length)
 
 
