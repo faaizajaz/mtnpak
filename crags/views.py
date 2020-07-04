@@ -49,8 +49,6 @@ def AddRoute(request, **kwargs):
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 
-			#numpitch tells the template what to display. could replace with
-			#session variable
 			newroute.numpitch = 'Singlepitch'
 			# create route variable
 			newpitch.proute = newroute
