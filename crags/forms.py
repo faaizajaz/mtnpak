@@ -1,7 +1,5 @@
 from django import forms
 from django.forms import ModelForm
-from django.views.generic.edit import FormView
-from django.contrib.auth.models import User
 from routes.models import Route
 from .models import Crag
 from routetypes.models import RouteType
@@ -14,14 +12,14 @@ class AddRouteForm(ModelForm):
 	class Meta:
 		model = Route
 		#rlength is set equal to pitch length once pitch is created
-		exclude = ['rcrag', 'ropener', 'numpitch', 'rlength']
+		exclude = ['rcrag', 'ropener', 'numpitch', 'length', 'base_unit']
 
 
 class AddRouteMultiForm(ModelForm):
 
 	class Meta:
 		model = Route
-		exclude = ['rcrag', 'ropener', 'rlength', 'numpitch']
+		exclude = ['rcrag', 'ropener', 'length', 'numpitch', 'base_unit']
 
 
 

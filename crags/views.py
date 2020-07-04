@@ -45,19 +45,23 @@ def AddRoute(request, **kwargs):
 
 		if form.is_valid() and form2.is_valid():
 			newroute = form.save(commit=False)
+			newpitch = form2.save(commit=False)
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 
-			#numpitch tells the template what to display. could replace with
-			#session variable
 			newroute.numpitch = 'Singlepitch'
-
-			newroute.save()		
-
-			newpitch = form2.save(commit=False)
+			# create route variable
 			newpitch.proute = newroute
+			
+			# set base unit for both pitch and route (always equal since single pitch)
+			# both are only set once.
+			newpitch.base_unit = request.session['measurement_pref']
+			newroute.base_unit = request.session['measurement_pref']
 
-			newpitch.save()
+			newroute.length = newpitch.length
+			
+			newroute.save()	
+			newpitch.save()			
 
 			return redirect('crag-view', crag_id=kwargs['crag_id'])
 	else:
@@ -89,6 +93,10 @@ def AddRouteMulti(request, **kwargs):
 			newroute.ropener = request.user
 			newroute.rcrag = Crag.objects.get(pk=kwargs['crag_id'])
 			newroute.numpitch = 'Multipitch'
+
+			# ROUTE base unit is set only once, when route is added.
+			newroute.base_unit = request.session['measurement_pref']
+
 			newroute.save()
 			#return redirect('crag-view', crag_id=kwargs['crag_id'])
 			return redirect('route-view', route_id=newroute.id)
@@ -109,7 +117,7 @@ def RouteChoice(request, **kwargs):
 				crag_id=kwargs['crag_id']
 				return redirect('add-route', crag_id=crag_id)
 			elif choice == 'multi':
-				crag_id=kwargs['crag_id']
+				crag_id = kwargs['crag_id']
 				return redirect('add-route-multi', crag_id=crag_id)
 	else:
 		form = RouteChoiceForm()

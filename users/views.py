@@ -76,8 +76,7 @@ def UpdateUserPrefs(request, **kwargs):
 			#Set session variable for grade preference when prefs updated.
 			#Also done in users.signals.create_pref_session when session is created
 			request.session['grade_pref'] = request.user.userpref.grade_pref
-
-			print(request.session['grade_pref'])
+			request.session['measurement_pref'] = request.user.userpref.measurement_pref
 			return redirect('profile', username=kwargs['username'])
 	else:
 		form = UpdateUserPrefsForm(instance = instance)

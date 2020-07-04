@@ -29,12 +29,17 @@ def create_userprefs(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_userprefs(sender, instance, **kwargs):
 	instance.userpref.save()
-	
 
+
+
+##NOTE: TO save request session vars on update userprefs, need to add to
+## user.views.UpdateUserPrefs
 
 #creating request variables when user logs in
 def create_pref_session(sender, user, request, **kwargs):	
 	request.session['grade_pref'] = user.userpref.grade_pref
+	request.session['measurement_pref'] = user.userpref.measurement_pref
+
 #IDK but this done because @receiver(user_logged_in,...) didn;t work
 user_logged_in.connect(create_pref_session)
 

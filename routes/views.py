@@ -6,6 +6,7 @@ from routes.forms import AddAscentToRouteForm
 from pitches.models import Pitch
 from django.contrib.auth.decorators import login_required
 from pitches.forms import *
+from utils.conversions import convert_units
 
 
 
@@ -25,10 +26,22 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
+#		try:
+#			measurement_pref = self.request.session['measurement_pref']
+#		except KeyError:
+#			measurement_pref = 'meters'
 		#for all pitches in DB with proute = the current route, sum lengths
 		#and set rlength to sum.
-		for pitch in Pitch.objects.filter(proute=current_route):
-			current_route.rlength += pitch.plength
+#		for pitch in Pitch.objects.filter(proute=current_route):
+#			if pitch.base_unit == measurement_pref:
+#				current_route.length += pitch.length
+#				print(pitch.length)
+#			else:
+#				current_route.length += convert_units(pitch.base_unit, measurement_pref, pitch.length)
+#				print(convert_units(pitch.base_unit, measurement_pref, pitch.length))
+
+			#current_route.length += pitch.length
+			
 		return current_route
 		#return get_object_or_404(Route, pk=self.kwargs['route_id'])
 
@@ -54,7 +67,13 @@ def AddAscentToRoute(request, **kwargs):
 #WHY IS THIS VIEW HERE? OR RATHER WHY ARE ADD ROUTE/MULTI AND ROUTE CHOICE in crags.views?
 @login_required
 def AddPitchMulti(request, **kwargs):
-	grade_pref = request.session['grade_pref']
+	##SET SESSION PREFERENCE VARIABLES
+	try:
+		grade_pref = request.session['grade_pref']
+		measurement_pref = request.session['measurement_pref']
+	except KeyError:
+		grade_pref = 'French'
+		measurement_pref = 'meters'
 
 	if request.method == 'POST':
 		
@@ -71,11 +90,25 @@ def AddPitchMulti(request, **kwargs):
 			form = AddPitchFormSAMulti(request.POST)
 		elif grade_pref == "UK":
 			form = AddPitchFormUKMulti(request.POST)
+		
 
-		#form = AddPitchMultiForm(request.POST)
 		if form.is_valid():
 			newpitch = form.save(commit=False)
 			newpitch.proute = Route.objects.get(pk=kwargs['route_id'])
+			
+			#Set base unit for the new pitch to pref of user adding it.
+			newpitch.base_unit = measurement_pref
+
+			#check if ROUTE base unit is equal to base unit of pitch being added
+			if newpitch.proute.base_unit == newpitch.base_unit:
+				# if equal, add to route length
+				newpitch.proute.length += newpitch.length
+				newpitch.proute.save()
+			else:
+				# if not equal, convery current pitch length to ROUTE base unit, then add
+				newpitch.proute.length += convert_units(newpitch.base_unit, newpitch.proute.base_unit, newpitch.length)
+				newpitch.proute.save()
+
 			newpitch.save()
 			return redirect('route-view', route_id=kwargs['route_id'])
 	else:
