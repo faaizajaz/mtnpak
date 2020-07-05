@@ -3,11 +3,6 @@ from crags.models import Crag
 from routetypes.models import *
 
 
-
-
-
-
-
 class Route(models.Model):
     rname = models.CharField(max_length=500, verbose_name='Route Name')
     rdescription = models.TextField(verbose_name='Route Description')
