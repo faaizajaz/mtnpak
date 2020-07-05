@@ -9,7 +9,4 @@ class Ascent(models.Model):
 	date = models.DateField(auto_now=False)
 
 	def __str(self):
-		return self.route.rcrag.cname #this should return something else, right now just cragname
-		
-
-#class FlashAscent()
+		return self.route.rcrag.cname 
