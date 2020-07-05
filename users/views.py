@@ -56,7 +56,9 @@ def EditProfile(request, **kwargs):
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()
-			return redirect('profile', username=kwargs['username'])
+
+			#redirect using u_instance.username in case user changes username
+			return redirect('profile', username=u_instance.username)
 	else:
 		user_form = UserUpdateForm(instance=u_instance)
 		profile_form = ProfileUpdateForm(instance=p_instance)
@@ -78,6 +80,7 @@ def UpdateUserPrefs(request, **kwargs):
 			request.session['grade_pref'] = request.user.userpref.grade_pref
 			request.session['measurement_pref'] = request.user.userpref.measurement_pref
 			return redirect('profile', username=kwargs['username'])
+			
 	else:
 		form = UpdateUserPrefsForm(instance = instance)
 	return render(request, 'users/editprefs.html', {'form': form})

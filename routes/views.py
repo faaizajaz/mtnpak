@@ -3,7 +3,6 @@ from .models import Route
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from routes.forms import AddAscentToRouteForm
-from pitches.models import Pitch
 from django.contrib.auth.decorators import login_required
 from pitches.forms import *
 from utils.conversions import convert_units
