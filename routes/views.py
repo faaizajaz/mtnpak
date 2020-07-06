@@ -30,23 +30,25 @@ class RouteView(generic.DetailView):
 
 #create view to add rating to route
 class RouteRatingRedirect(generic.RedirectView):
-	#override
+	#override redirect url of this gneeric.RedirectView
 	def get_redirect_url(self, **kwargs):
+		# save pk of current route
 		route_id = self.kwargs['route_id']
+		#get the route object using route_id
 		obj = get_object_or_404(Route, pk=route_id)
+		# do a reverse lookup of the URL of the original route so we can redirect after rating		
 		route_url = obj.get_absolute_url()
+		# set the user to current user
 		user = self.request.user
-		# in CBV don't need to pass in request
-		rating = Rating(rating=5, route=obj, user=user)
+		# create a rating object with the score, current route, and current user
+		rating = Rating(score=5, route=obj, user=user)
 
-		
-
-
-		#print(rating.rating)
-		print(user.first_name)
+		#save the rating and add it to the Route's ratings
 		if user.is_authenticated:
 			rating.save()
 			obj.rating_set.add(rating)
+
+		#redirect to the original route's page
 		return route_url
 
 
