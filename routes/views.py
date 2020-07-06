@@ -3,7 +3,6 @@ from .models import Route
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from routes.forms import AddAscentToRouteForm
-from pitches.models import Pitch
 from django.contrib.auth.decorators import login_required
 from pitches.forms import *
 from utils.conversions import convert_units
@@ -26,24 +25,8 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
-#		try:
-#			measurement_pref = self.request.session['measurement_pref']
-#		except KeyError:
-#			measurement_pref = 'meters'
-		#for all pitches in DB with proute = the current route, sum lengths
-		#and set rlength to sum.
-#		for pitch in Pitch.objects.filter(proute=current_route):
-#			if pitch.base_unit == measurement_pref:
-#				current_route.length += pitch.length
-#				print(pitch.length)
-#			else:
-#				current_route.length += convert_units(pitch.base_unit, measurement_pref, pitch.length)
-#				print(convert_units(pitch.base_unit, measurement_pref, pitch.length))
-
-			#current_route.length += pitch.length
-			
 		return current_route
-		#return get_object_or_404(Route, pk=self.kwargs['route_id'])
+		
 
 @login_required
 def AddAscentToRoute(request, **kwargs):

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'routetypes.apps.RoutetypesConfig',
     'grades.apps.GradesConfig',
     'homepage.apps.HomepageConfig',
+    'ratings.apps.RatingsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
