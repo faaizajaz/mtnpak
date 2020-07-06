@@ -18,10 +18,14 @@
 
     <!-- Bootstrap CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    
+    {% block style %}
+    {% endblock %}
 
   </head>
 
   <body>
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -77,8 +81,11 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'jquery/jquery.slim.min.js' %}"></script>
+  <script src="{% static 'jquery/jquery.min.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  {% block javascript %}
+  {% endblock %}
 
   </body>
 </html>

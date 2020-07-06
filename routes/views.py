@@ -6,6 +6,7 @@ from routes.forms import AddAscentToRouteForm
 from django.contrib.auth.decorators import login_required
 from pitches.forms import *
 from utils.conversions import convert_units
+from ratings.models import Rating
 
 
 
@@ -26,7 +27,28 @@ class RouteView(generic.DetailView):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
 		return current_route
+
+#create view to add rating to route
+class RouteRatingRedirect(generic.RedirectView):
+	#override
+	def get_redirect_url(self, **kwargs):
+		route_id = self.kwargs['route_id']
+		obj = get_object_or_404(Route, pk=route_id)
+		route_url = obj.get_absolute_url()
+		user = self.request.user
+		# in CBV don't need to pass in request
+		rating = Rating(rating=5, route=obj, user=user)
+
 		
+
+
+		#print(rating.rating)
+		print(user.first_name)
+		if user.is_authenticated:
+			rating.save()
+			obj.rating_set.add(rating)
+		return route_url
+
 
 @login_required
 def AddAscentToRoute(request, **kwargs):

@@ -2,7 +2,6 @@ from django.db import models
 from crags.models import Crag
 from routetypes.models import *
 
-
 class Route(models.Model):
     rname = models.CharField(max_length=500, verbose_name='Route Name')
     rdescription = models.TextField(verbose_name='Route Description')
@@ -23,6 +22,13 @@ class Route(models.Model):
 
     def __str__(self):
         return self.rname
+
+    # I need this method for route rating    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        # return the string URL for route-view (in urls.py) using self.id as arg
+        return reverse('route-view', args=[str(self.id)])
+
 
 
 

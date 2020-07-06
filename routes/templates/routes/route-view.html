@@ -24,6 +24,9 @@
 
 	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
+	<a href="{% url 'rate-route' route_id=route.id %}">Give 5 stars!</a>
+	<br><br>
+	<p>{{route.rating_set.all}}</p>
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.numpitch == 'Singlepitch' %}
