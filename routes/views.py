@@ -45,11 +45,49 @@ class RouteRatingRedirect(generic.RedirectView):
 
 		#save the rating and add it to the Route's ratings
 		if user.is_authenticated:
+			##### do something like #####
+			# if user in obj.rating_set or something
 			rating.save()
 			obj.rating_set.add(rating)
-
 		#redirect to the original route's page
 		return route_url
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+
+#Making an API view
+class RouteRatingRedirectAPI(APIView):
+
+	#I guess django rest needs to do this
+	authentication_classes = (authentication.SessionAuthentication,)
+	permission_classes = (permissions.IsAuthenticated,)
+
+	# i think route_id=None otherwise it saus get got unexpected keyword arg
+	def get(self, request, format=None, route_id=None):
+		#get the route object using route_id
+		obj = get_object_or_404(Route, pk=route_id)
+		# set the user to current user
+		user = self.request.user
+		# create a rating object with the score, current route, and current user
+		rating = Rating(score=5, route=obj, user=user)
+
+		#save the rating and add it to the Route's ratings
+		if user.is_authenticated:
+			##### do something like #####
+			# if user in obj.rating_set or something, then obj.rating_set.remove()
+			# and then save the new rating. This allows users to re-rate.
+			rating.save()
+			obj.rating_set.add(rating)
+			#THIS SHOULD BE SOME OTHER DATA ABOUT THE RATING? OR IF USER HAS RATED? IDK
+			data = {
+				'hello': "Dumb",
+				'now': "idiot"	
+			}
+		return Response(data)
+
+
+
 
 
 @login_required
