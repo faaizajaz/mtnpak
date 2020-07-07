@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% load view_filters %}
 
+
+
 {% block page_title %}
 	{{ route.rname }}
 {% endblock %}
 
+
+<!--href="{% url 'rate-route' route_id=route.id %}"-->
 
 {% block content %}
 
@@ -24,6 +28,9 @@
 
 	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
+	<a class='rate-btn' data-href='{{ route.get_api_rate_url }}' href="{% url 'rate-route' route_id=route.id %}">Rate me!</a>
+	<br><br>
+	<p id="avg_score">{{route.avg_rating}}</p>
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.numpitch == 'Singlepitch' %}
@@ -72,5 +79,32 @@
 		<h3><a href="{% url 'add-pitch-multi' route_id=route.id %}">Add a pitch</a></h3>
 	{% endif %}
 
-	
+<script>
+	$(document).ready(function(){
+		console.log("helooo")
+		$(".rate-btn").click(function(e){
+			console.log("this function started");
+			e.preventDefault();
+
+			var this_ = $(this);
+			var rateUrl = this_.attr("data-href");
+			$.ajax({
+				type: 'GET',
+				url: rateUrl,
+				data: {},
+				success: function(data){
+					//console.log(data);
+					//console.log("success");
+					//console.log(html(data));
+					$("#avg_score").html(data);
+
+				}, error: function(error){
+					console.log(error);
+					console.log("error");
+				}
+			});
+		});
+	});
+
+</script>
 {% endblock %}

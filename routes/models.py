@@ -2,7 +2,6 @@ from django.db import models
 from crags.models import Crag
 from routetypes.models import *
 
-
 class Route(models.Model):
     rname = models.CharField(max_length=500, verbose_name='Route Name')
     rdescription = models.TextField(verbose_name='Route Description')
@@ -18,11 +17,23 @@ class Route(models.Model):
 
     numpitch = models.CharField(max_length=500, verbose_name='Single or Multi')
 
-    avg_rating = models.IntegerField(verbose_name='Average rating', default=0)
+    avg_rating = models.FloatField(verbose_name='Average rating', default=0)
 
 
     def __str__(self):
         return self.rname
+
+    # I need this method for route rating    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        # return the string URL for route-view (in urls.py) using self.id as arg
+        return reverse('route-view', args=[str(self.id)])
+
+    #Needed for API
+    def get_api_rate_url(self):
+        from django.urls import reverse
+        return reverse('rate-route-api', args=[str(self.id)])
+
 
 
 

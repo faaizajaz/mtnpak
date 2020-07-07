@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login to MTNPAK</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block page_title %}
+Login to MTNPAK
+{% endblock %}
+{% block content %}
 	{% if messages %}
 		{% for message in messages %}
 			{{message}}
@@ -18,5 +18,4 @@
 			</button>
 		</div>
 	<a href="{% url 'register' %}">Sign up here</a>
-</body>
-</html>
+{% endblock %}

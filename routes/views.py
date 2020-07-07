@@ -6,6 +6,7 @@ from routes.forms import AddAscentToRouteForm
 from django.contrib.auth.decorators import login_required
 from pitches.forms import *
 from utils.conversions import convert_units
+from ratings.models import Rating
 
 
 
@@ -26,7 +27,83 @@ class RouteView(generic.DetailView):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
 		return current_route
-		
+
+#create view to add rating to route
+class RouteRatingRedirect(generic.RedirectView):
+	#override redirect url of this gneeric.RedirectView
+	def get_redirect_url(self, **kwargs):
+		# save pk of current route
+		route_id = self.kwargs['route_id']
+		#get the route object using route_id
+		obj = get_object_or_404(Route, pk=route_id)
+		# do a reverse lookup of the URL of the original route so we can redirect after rating		
+		route_url = obj.get_absolute_url()
+		# set the user to current user
+		user = self.request.user
+		# create a rating object with the score, current route, and current user
+		rating = Rating(score=5, route=obj, user=user)
+
+		#save the rating and add it to the Route's ratings
+		if user.is_authenticated:
+			##### do something like #####
+			# if user in obj.rating_set or something
+			rating.save()
+			obj.rating_set.add(rating)
+		#redirect to the original route's page
+		return route_url
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+
+#Making an API view
+class RouteRatingRedirectAPI(APIView):
+
+	#I guess django rest needs to do this
+	authentication_classes = (authentication.SessionAuthentication,)
+	permission_classes = (permissions.IsAuthenticated,)
+
+	# i think route_id=None otherwise it saus get got unexpected keyword arg
+	def get(self, request, format=None, route_id=None):
+		#get the route object using route_id
+		route = get_object_or_404(Route, pk=route_id)
+		# set the user to current user
+		user = self.request.user
+		# create a rating object with the score, current route, and current user
+		rating = Rating(score=2.0, route=route, user=user)
+
+		#save the rating and add it to the Route's ratings
+		if user.is_authenticated:
+			##### do something like #####
+			# if user in obj.rating_set or something, then obj.rating_set.remove()
+			# and then save the new rating. This allows users to re-rate.
+			
+			#Save the rating object
+			rating.save()
+			#add the rating object to the route's rating set
+			route.rating_set.add(rating)
+			#get total number of ratings
+			n = route.rating_set.count()
+			#create variable to store total of all ratings
+			running_total = 0
+			#Calculate average rating
+			for i in route.rating_set.all():
+				running_total += i.score
+
+			if n > 0:
+				route.avg_rating = running_total / n
+				route.save()
+			else:
+				route.avg_rating = 0.0
+
+
+
+			data = route.avg_rating
+		return Response(data)
+
+
+
+
 
 @login_required
 def AddAscentToRoute(request, **kwargs):

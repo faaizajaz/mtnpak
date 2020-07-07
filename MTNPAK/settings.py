@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'grades.apps.GradesConfig',
     'homepage.apps.HomepageConfig',
     'ratings.apps.RatingsConfig',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
