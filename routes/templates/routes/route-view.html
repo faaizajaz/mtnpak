@@ -26,13 +26,11 @@
 
 	<h1>{{ route.rname }}</h1>
 
-	<p>{{route.get_api_rate_url}}</p>
-
 	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
-	<a class='rate-btn' data-href='{{ route.get_api_rate_url }}' href="{% url 'rate-route' route_id=route.id %}">Give 5 stars!</a>
+	<a class='rate-btn' data-href='{{ route.get_api_rate_url }}' href="{% url 'rate-route' route_id=route.id %}">Rate me!</a>
 	<br><br>
-	<p>{{route.rating_set.all.count}}</p>
+	<p id="avg_score">{{route.avg_rating}}</p>
 
 	<!-- If the route only has one pitch, display the grade-->
 	{% if route.numpitch == 'Singlepitch' %}
@@ -95,8 +93,11 @@
 				url: rateUrl,
 				data: {},
 				success: function(data){
-					console.log(data);
-					console.log("success");
+					//console.log(data);
+					//console.log("success");
+					//console.log(html(data));
+					$("#avg_score").html(data);
+
 				}, error: function(error){
 					console.log(error);
 					console.log("error");

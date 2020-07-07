@@ -17,7 +17,7 @@ class Route(models.Model):
 
     numpitch = models.CharField(max_length=500, verbose_name='Single or Multi')
 
-    avg_rating = models.IntegerField(verbose_name='Average rating', default=0)
+    avg_rating = models.FloatField(verbose_name='Average rating', default=0)
 
 
     def __str__(self):

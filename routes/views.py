@@ -66,24 +66,39 @@ class RouteRatingRedirectAPI(APIView):
 	# i think route_id=None otherwise it saus get got unexpected keyword arg
 	def get(self, request, format=None, route_id=None):
 		#get the route object using route_id
-		obj = get_object_or_404(Route, pk=route_id)
+		route = get_object_or_404(Route, pk=route_id)
 		# set the user to current user
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
-		rating = Rating(score=5, route=obj, user=user)
+		rating = Rating(score=2.0, route=route, user=user)
 
 		#save the rating and add it to the Route's ratings
 		if user.is_authenticated:
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
+			
+			#Save the rating object
 			rating.save()
-			obj.rating_set.add(rating)
-			#THIS SHOULD BE SOME OTHER DATA ABOUT THE RATING? OR IF USER HAS RATED? IDK
-			data = {
-				'hello': "Dumb",
-				'now': "idiot"	
-			}
+			#add the rating object to the route's rating set
+			route.rating_set.add(rating)
+			#get total number of ratings
+			n = route.rating_set.count()
+			#create variable to store total of all ratings
+			running_total = 0
+			#Calculate average rating
+			for i in route.rating_set.all():
+				running_total += i.score
+
+			if n > 0:
+				route.avg_rating = running_total / n
+				route.save()
+			else:
+				route.avg_rating = 0.0
+
+
+
+			data = route.avg_rating
 		return Response(data)
 
 
