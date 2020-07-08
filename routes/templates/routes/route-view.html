@@ -36,7 +36,8 @@
 	<!--custom CSS for star ratings -->
 	<link rel="stylesheet" type="text/css" href="{% static 'star_rating.css' %}" rel="stylesheet">
 
-	<fieldset class="rating" id="star_rating">
+	<div data-api="{{ route.get_api_rate_url }}" class="rating" id="star-rating">
+
 	    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stars"></label>
 
 	    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4 stars"></label>
@@ -47,7 +48,7 @@
 	
 	    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1 star"></label>
 
-	</fieldset>
+	</div>
 
 	<br><br>
 

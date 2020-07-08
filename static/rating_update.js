@@ -1,9 +1,10 @@
 $(document).ready(function(){
-	$(".rate-btn").click(function(e){
+	$(".rating").click(function(e){
 	//$("input[name='rating']").click(function(e){
 		e.preventDefault();
 		var this_ = $(this);
-		var rateUrl = this_.attr("data-href");
+		var rateUrl = this_.attr("data-api");
+		console.log(rateUrl)
 			$.ajax({
 				type: 'GET',
 				url: rateUrl,
