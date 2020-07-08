@@ -70,14 +70,20 @@ class RouteRatingRedirectAPI(APIView):
 		# set the user to current user
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
-		rating = Rating(score=2.0, route=route, user=user)
+		rating = Rating(score=5.0, route=route, user=user)
 
 		#save the rating and add it to the Route's ratings
 		if user.is_authenticated:
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
-			
+			if user.username != 'faaiz': #God mode	
+				existing_ratings = route.rating_set.filter(user=user).count()
+				if existing_ratings == 1:
+					route.rating_set.get(user=user).delete()
+				elif existing_ratings > 1:
+					print("Must be in God mode.")
+					#return a response
 			#Save the rating object
 			rating.save()
 			#add the rating object to the route's rating set
@@ -89,14 +95,11 @@ class RouteRatingRedirectAPI(APIView):
 			#Calculate average rating
 			for i in route.rating_set.all():
 				running_total += i.score
-
 			if n > 0:
 				route.avg_rating = running_total / n
 				route.save()
 			else:
 				route.avg_rating = 0.0
-
-
 
 			data = route.avg_rating
 		return Response(data)
