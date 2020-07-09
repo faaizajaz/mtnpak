@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load view_filters %}
+{% load define %}
 {% load static %}
 
 
@@ -33,10 +34,25 @@
 	<br><br>
 	<p id="avg_score">{{route.avg_rating}}</p>
 
+
+
+
+
+
+
+
+
+
+
 	<!--custom CSS for star ratings -->
 	<link rel="stylesheet" type="text/css" href="{% static 'ratings/star_rating.css' %}" rel="stylesheet">
 
+
+	
+
+
 	<div data-api="{{ route.get_api_rate_url }}" class="rating" id="star-rating">
+		Rate it yourself:
 
 	    <input type="radio" id="star5" name="rating" value="5" data-api="{{ route.get_api_rate_url_5 }}"/><label class = "full" for="star5" title="5 stars"></label>
 
@@ -101,5 +117,7 @@
 	{% endif %}
 
 <script src="{% static 'ratings/rating_update.js' %}" type="text/javascript"></script>
+
+
 
 {% endblock %}

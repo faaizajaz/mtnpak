@@ -1,0 +1,56 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.score {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 1.25em;
+  margin: 1px;
+  color: #ccc;
+  position: relative;
+  content: "\f005"
+}
+.score::before,
+.score::after {
+  content: "\f005\f005\f005\f005\f005";
+  display: block;
+}
+.score::after {
+  color: gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.score.s0::after {
+  width: 0%;
+}
+.score.s1::after {
+  width: 10%;
+}
+.score.s2::after {
+  width: 20%;
+}
+.score.s3::after {
+  width: 30%;
+}
+.score.s4::after {
+  width: 40%;
+}
+.score.s5::after {
+  width: 50%;
+}
+.score.s6::after {
+  width: 60%;
+}
+.score.s7::after {
+  width: 70%;
+}
+.score.s8::after {
+  width: 80%;
+}
+.score.s9::after {
+  width: 90%;
+}
+.score.s10::after {
+  width: 100%;
+}
