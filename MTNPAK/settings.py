@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'ratings.apps.RatingsConfig',
     'rest_framework',
+    'mathfilters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

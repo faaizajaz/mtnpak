@@ -103,6 +103,7 @@ class RouteRatingRedirectAPI1(APIView):
 			else:
 				route.avg_rating = 0.0
 
+			#percent_rating = round(route.avg_rating/5)
 			data = route.avg_rating
 		return Response(data)
 
