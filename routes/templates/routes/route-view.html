@@ -15,6 +15,9 @@
 
 {% block content %}
 
+	<!--custom CSS for star ratings -->
+	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
+
 
 	<h1>This is the Routes View page</h1>
 
@@ -33,79 +36,8 @@
 
 {# 	<a class='rate-btn' data-href='{{ route.get_api_rate_url }}' href="{% url 'rate-route' route_id=route.id %}">Rate me!</a> #}
 	<br><br>
-	<p id="avg_score">{{route.avg_rating}}</p>
-
-
-
-	<!--custom CSS for star ratings -->
-	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
-
-	{% with percentage_rating=route.avg_rating|mul:100|intdiv:5 %}	
+	<p id="avg_score">{{route.avg_rating}} {{ route|inline_rating }}</p>
 	
-		{% if percentage_rating == 0 %}
-
-			<span class="score s0"></span>
-
-		{% elif percentage_rating >= 0 and percentage_rating < 11 %}
-			
-			<span class="score s1"></span>
-
-		{% elif percentage_rating >= 11 and percentage_rating < 21 %}
-			
-			<span class="score s2"></span>
-
-		{% elif percentage_rating >= 21 and percentage_rating < 31 %}
-			
-			<span class="score s3"></span>
-
-		{% elif percentage_rating >= 31 and percentage_rating < 41 %}
-			
-			<span class="score s4"></span>
-
-		{% elif percentage_rating >= 41 and percentage_rating < 51 %}
-			
-			<span class="score s5"></span>
-
-		{% elif percentage_rating >= 51 and percentage_rating < 61 %}
-			
-			<span class="score s6"></span>
-
-		{% elif percentage_rating >= 61 and percentage_rating < 71 %}
-			
-			<span class="score s7"></span>
-
-		{% elif percentage_rating >= 71 and percentage_rating < 81 %}
-			
-			<span class="score s8"></span>
-
-		{% elif percentage_rating >= 81 and percentage_rating < 91 %}
-			
-			<span class="score s9"></span>
-
-		{% elif percentage_rating >= 91 and percentage_rating <= 100 %}
-			
-			<span class="score s10"></span>
-
-		{% endif %}
-	
-
-	<p>per {{percentage_rating}}</p>
-
-	{% endwith %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	<!--custom CSS for star ratings -->

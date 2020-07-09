@@ -8,7 +8,7 @@
 {% block content %}
 	<form method = "POST">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 		<div>
 			<button type="submit">
 				Add crag

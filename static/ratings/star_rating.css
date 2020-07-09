@@ -9,6 +9,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating { 
   border: none;
   float: left;
+  color: #ddd;
 }
 
 .rating > input { display: none; } 
@@ -26,11 +27,11 @@ h1 { font-size: 1.5em; margin: 10px; }
  float: right; 
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
+/***** CSS Magic to Highlight Stars on Hover #FFD700*****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label { color: gold;  } /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,

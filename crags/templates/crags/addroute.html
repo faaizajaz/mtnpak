@@ -8,10 +8,10 @@
 {% block content %}
 	<form method = "POST">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 
 		{% csrf_token %}
-		{{ form2.as_p }}
+		{{ form2|crispy }}
 
 
 		<div>
