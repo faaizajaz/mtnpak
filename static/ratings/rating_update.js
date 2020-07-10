@@ -10,7 +10,7 @@ $(document).ready(function(){
 			url: rateUrl,
 			data: {},
 			success: function(data){
-				$("#avg_score").html(data);
+				//$("#avg_score").html(data);
 
 			}, error: function(error){
 				console.log(error);
@@ -30,7 +30,7 @@ $(document).ready(function(){
 			url: rateUrl,
 			data: {},
 			success: function(data){
-				$("#avg_score").html(data);
+				//$("#avg_score").html(data);
 
 			}, error: function(error){
 				console.log(error);
@@ -50,7 +50,7 @@ $(document).ready(function(){
 			url: rateUrl,
 			data: {},
 			success: function(data){
-				$("#avg_score").html(data);
+				//$("#avg_score").html(data);
 
 			}, error: function(error){
 				console.log(error);
@@ -70,7 +70,7 @@ $(document).ready(function(){
 			url: rateUrl,
 			data: {},
 			success: function(data){
-				$("#avg_score").html(data);
+				//$("#avg_score").html(data);
 
 			}, error: function(error){
 				console.log(error);
@@ -90,7 +90,7 @@ $(document).ready(function(){
 			url: rateUrl,
 			data: {},
 			success: function(data){
-				$("#avg_score").html(data);
+				//$("#avg_score").html(data);
 				
 			}, error: function(error){
 				console.log(error);

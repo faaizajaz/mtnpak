@@ -15,8 +15,7 @@
 
 {% block content %}
 
-	<!--custom CSS for star ratings -->
-	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
+
 
 
 	<h1>This is the Routes View page</h1>
@@ -34,9 +33,7 @@
 
 	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
-{# 	<a class='rate-btn' data-href='{{ route.get_api_rate_url }}' href="{% url 'rate-route' route_id=route.id %}">Rate me!</a> #}
-	<br><br>
-	<p id="avg_score">{{route.avg_rating}} {{ route|inline_rating }}</p>
+	<p id="avg_score">Route is rated: {{ route|inline_rating }}</p>
 	
 
 
