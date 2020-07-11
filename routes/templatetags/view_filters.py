@@ -1,6 +1,7 @@
 from django import template
 from utils.conversions import convert_units
 from django.utils.safestring import mark_safe
+from django.utils.html import escape
 #from grades.models import Grade
 
 register = template.Library()
@@ -106,56 +107,187 @@ def inline_rating(route):
 		return("ERROR")
 
 
+# @register.filter(name='inline_user_rating')
+# def inline_user_rating(route, user):
+
+# 	if route.rating_set.filter(user=user).count() > 0:
+
+# 		if route.rating_set.filter(user=user).count() > 1:
+# 			return("You are in god mode")
+# 		else:
+# 			user_percentage_rating = (route.rating_set.get(user=user).score*100)//5
+
+# 		if user_percentage_rating == 0:
+
+# 			return mark_safe('<span class="score s0"></span>')
+
+# 		elif user_percentage_rating >= 0 and user_percentage_rating < 11:
+			
+# 			return mark_safe('<span class="score s1"></span>')
+
+# 		elif user_percentage_rating >= 11 and user_percentage_rating < 21:
+			
+# 			return mark_safe('<span class="score s2"></span>')
+
+# 		elif user_percentage_rating >= 21 and user_percentage_rating < 31:
+			
+# 			return mark_safe('<span class="score s3"></span>')
+
+# 		elif user_percentage_rating >= 31 and user_percentage_rating < 41:
+			
+# 			return mark_safe('<span class="score s4"></span>')
+
+# 		elif user_percentage_rating >= 41 and user_percentage_rating < 51:
+			
+# 			return mark_safe('<span class="score s5"></span>')
+
+# 		elif user_percentage_rating >= 51 and user_percentage_rating < 61:
+			
+# 			return mark_safe('<span class="score s6"></span>')
+
+# 		elif user_percentage_rating >= 61 and user_percentage_rating < 71:
+			
+# 			return mark_safe('<span class="score s7"></span>')
+
+# 		elif user_percentage_rating >= 71 and user_percentage_rating < 81:
+			
+# 			return mark_safe('<span class="score s8"></span>')
+
+# 		elif user_percentage_rating >= 81 and user_percentage_rating < 91:
+			
+# 			return mark_safe('<span class="score s9"></span>')
+
+# 		elif user_percentage_rating >= 91 and user_percentage_rating <= 100:
+			
+# 			return mark_safe('<span class="score s10"></span>')
+
+# 		else:
+# 			return("ERROR")
+
 @register.filter(name='inline_user_rating')
 def inline_user_rating(route, user):
 
-	if route.rating_set.filter(user=user).count() > 0:
+	user_rating_count = route.rating_set.filter(user=user).count()
 
-		user_percentage_rating = (route.rating_set.get(user=user).score*100)//5
+	if user_rating_count == 0:
 
-		if user_percentage_rating == 0:
+		return
 
-			return mark_safe('<span class="score s0"></span>')
+	elif route.rating_set.filter(user=user).count() > 0:
 
-		elif user_percentage_rating >= 0 and user_percentage_rating < 11:
+		if route.rating_set.filter(user=user).count() > 1:
+			return("You are in god mode")
+		elif route.rating_set.filter(user=user).count() == 1:
+			user_rating = route.rating_set.get(user=user).score
+
+		if user_rating == 0:
+
+			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
+				<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+				<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+				<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+				<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+				</div>'	% (
+					
+				route.get_api_rate_url_5(),
+				route.get_api_rate_url_4(),
+				route.get_api_rate_url_3(),
+				route.get_api_rate_url_2(),
+				route.get_api_rate_url_1(),	
+
+				))
+
+		elif user_rating == 1 :
 			
-			return mark_safe('<span class="score s1"></span>')
+			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
+				<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+				<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+				<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+				<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+				<input type="radio" id="star1" name="rating" value="1" data-api="%s" checked/><label class="full" for="star1" title="1 star"></label>\
+				</div>'	% (
+					
+				route.get_api_rate_url_5(),
+				route.get_api_rate_url_4(),
+				route.get_api_rate_url_3(),
+				route.get_api_rate_url_2(),
+				route.get_api_rate_url_1(),	
 
-		elif user_percentage_rating >= 11 and user_percentage_rating < 21:
-			
-			return mark_safe('<span class="score s2"></span>')
+				))
 
-		elif user_percentage_rating >= 21 and user_percentage_rating < 31:
+		elif user_rating == 2:
 			
-			return mark_safe('<span class="score s3"></span>')
+			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
+				<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+				<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+				<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+				<input type="radio" id="star2" name="rating" value="2" data-api="%s" checked/><label class="full" for="star2" title="2 stars"></label> \
+				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+				</div>'	% (
+					
+				route.get_api_rate_url_5(),
+				route.get_api_rate_url_4(),
+				route.get_api_rate_url_3(),
+				route.get_api_rate_url_2(),
+				route.get_api_rate_url_1(),	
 
-		elif user_percentage_rating >= 31 and user_percentage_rating < 41:
-			
-			return mark_safe('<span class="score s4"></span>')
+				))
 
-		elif user_percentage_rating >= 41 and user_percentage_rating < 51:
+		elif user_rating == 3:
 			
-			return mark_safe('<span class="score s5"></span>')
+			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
+				<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+				<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+				<input type="radio" id="star3" name="rating" value="3" data-api="%s" checked/><label class="full" for="star3" title="3 stars"></label> \
+				<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+				</div>'	% (
+					
+				route.get_api_rate_url_5(),
+				route.get_api_rate_url_4(),
+				route.get_api_rate_url_3(),
+				route.get_api_rate_url_2(),
+				route.get_api_rate_url_1(),	
 
-		elif user_percentage_rating >= 51 and user_percentage_rating < 61:
-			
-			return mark_safe('<span class="score s6"></span>')
+				))
 
-		elif user_percentage_rating >= 61 and user_percentage_rating < 71:
-			
-			return mark_safe('<span class="score s7"></span>')
+		elif user_rating == 4:
 
-		elif user_percentage_rating >= 71 and user_percentage_rating < 81:
-			
-			return mark_safe('<span class="score s8"></span>')
+			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
+				<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+				<input type="radio" id="star4" name="rating" value="4" data-api="%s" checked/><label class="full" for="star4" title="4 stars"></label> \
+				<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+				<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+				</div>'	% (
+					
+				route.get_api_rate_url_5(),
+				route.get_api_rate_url_4(),
+				route.get_api_rate_url_3(),
+				route.get_api_rate_url_2(),
+				route.get_api_rate_url_1(),	
 
-		elif user_percentage_rating >= 81 and user_percentage_rating < 91:
-			
-			return mark_safe('<span class="score s9"></span>')
+				))
 
-		elif user_percentage_rating >= 91 and user_percentage_rating <= 100:
-			
-			return mark_safe('<span class="score s10"></span>')
+		elif user_rating == 5:
+
+			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
+				<input type="radio" id="star5" name="rating" value="5" data-api="%s" checked/><label class="full" for="star5" title="5 stars"></label> \
+				<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+				<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+				<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+				</div>'	% (
+
+				route.get_api_rate_url_5(),
+				route.get_api_rate_url_4(),
+				route.get_api_rate_url_3(),
+				route.get_api_rate_url_2(),
+				route.get_api_rate_url_1(),	
+
+				))
+	
 
 		else:
 			return("ERROR")

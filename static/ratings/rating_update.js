@@ -1,7 +1,7 @@
 $(document).ready(function(){
+	$("#re-rate").hide();
+
 	$("#star5").click(function(e){
-	//$("input[name='rating']").click(function(e){
-		//e.preventDefault();
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");
 		console.log(rateUrl)
@@ -10,11 +10,8 @@ $(document).ready(function(){
 			url: rateUrl,
 			data: {},
 			success: function(data){
-				//$(".rating").hide();
-				//$(".user-rating").show();
-
-				//$("#avg_score").html(data);
-
+				//refresh the route rting div only. spaces here are necessary
+				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
 				console.log("error");
@@ -36,6 +33,7 @@ $(document).ready(function(){
 				//$("#avg_score").html(data);
 				//$(".rating").hide();
 				//$(".user-rating").show();
+				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
 				console.log("error");
@@ -57,6 +55,7 @@ $(document).ready(function(){
 				//$("#avg_score").html(data);
 				//$(".rating").hide();
 				//$(".user-rating").show();
+				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
 				console.log("error");
@@ -78,6 +77,7 @@ $(document).ready(function(){
 				//$("#avg_score").html(data);
 				//$(".rating").hide();
 				//$(".user-rating").show();
+				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
 				console.log("error");
@@ -99,6 +99,7 @@ $(document).ready(function(){
 				//$("#avg_score").html(data);
 				//$(".rating").hide();
 				//$(".user-rating").show();
+				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
 				console.log("error");
@@ -106,5 +107,15 @@ $(document).ready(function(){
 		});
 
 	});
+
+
+	//$("#user-rating").click(function(){
+	//	$("#re-rate").show();
+	//});
+
+	//$("#re-rate-link").click(function(){
+		//alert("want to re-rate")
+		
+	//});
 });
 //data.liked
