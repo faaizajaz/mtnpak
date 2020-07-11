@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	$("#re-rate").hide();
-
 	$("#star5").click(function(e){
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");

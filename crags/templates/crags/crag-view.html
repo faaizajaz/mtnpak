@@ -1,5 +1,5 @@
-
 {% extends 'base.html' %}
+{% load static %}
 {% load view_filters %}
 
 {% block page_title %}
@@ -27,9 +27,8 @@
 		{% for pitch in route.pitch_set.all %}
 			{{ pitch.pgrade|grade_display:request }}
 		{% endfor %}
-		</p>
-
-	
+		{{route|inline_rating}}
+		</p>	
 	{% endfor %}
 
 	<br><br><br>
