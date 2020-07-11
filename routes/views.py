@@ -11,6 +11,7 @@ from ratings.models import Rating
 
 
 #this is the view for a routes home page.
+# I have not created a tmeplate for this.
 class RoutesHome(generic.ListView):
 	template_name = 'routes/routes-home.html'
 	model = Route
@@ -130,8 +131,10 @@ class RouteRatingRedirectAPI2(APIView):
 			# and then save the new rating. This allows users to re-rate.
 			if user.username != 'faaiz': #God mode	
 				existing_ratings = route.rating_set.filter(user=user).count()
+				
 				if existing_ratings == 1:
 					route.rating_set.get(user=user).delete()
+
 				elif existing_ratings > 1:
 					print("Must be in God mode.")
 					#return a response
