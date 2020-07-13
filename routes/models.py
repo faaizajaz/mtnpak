@@ -23,17 +23,20 @@ class Route(models.Model):
     def __str__(self):
         return self.rname
 
+    #function to add rating object to route
     def add_rating(self, user, rating):
-
         if user.is_authenticated:
-
+            #get users eisting ratings for the route
             existing_ratings = self.rating_set.filter(user=user).count()
-
+            #if there is already a rating
             if existing_ratings == 1:
+                #delete that rating
                 self.rating_set.get(user=user).delete()
+            #If more than 1 rating exists, then something is wrong.
             elif existing_ratings > 1:
                 print("errormode")
 
+            #save the current rating.
             rating.save()
             self.rating_set.add(rating)
             ratings_count = self.rating_set.count()

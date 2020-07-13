@@ -35,11 +35,9 @@ class RouteView(generic.DetailView):
 
 #Making an API view
 class RouteRatingRedirectAPI1(APIView):
-
 	#I guess django rest needs to do this
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)
-
 	# i think route_id=None otherwise it saus get got unexpected keyword arg
 	def get(self, request, format=None, route_id=None):
 		#get the route object using route_id
@@ -48,16 +46,13 @@ class RouteRatingRedirectAPI1(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=1.0, route=route, user=user)
-
 		data = route.add_rating(user, rating)
 		return Response(data)
 
 class RouteRatingRedirectAPI2(APIView):
-
 	#I guess django rest needs to do this
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)
-
 	# i think route_id=None otherwise it saus get got unexpected keyword arg
 	def get(self, request, format=None, route_id=None):
 		#get the route object using route_id
@@ -67,15 +62,12 @@ class RouteRatingRedirectAPI2(APIView):
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=2.0, route=route, user=user)
 		data = route.add_rating(user, rating)
-
 		return Response(data)
 
 class RouteRatingRedirectAPI3(APIView):
-
 	#I guess django rest needs to do this
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)
-
 	# i think route_id=None otherwise it saus get got unexpected keyword arg
 	def get(self, request, format=None, route_id=None):
 		#get the route object using route_id
@@ -88,11 +80,9 @@ class RouteRatingRedirectAPI3(APIView):
 		return Response(data)
 
 class RouteRatingRedirectAPI4(APIView):
-
 	#I guess django rest needs to do this
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)
-
 	# i think route_id=None otherwise it saus get got unexpected keyword arg
 	def get(self, request, format=None, route_id=None):
 		#get the route object using route_id
@@ -105,11 +95,9 @@ class RouteRatingRedirectAPI4(APIView):
 		return Response(data)
 
 class RouteRatingRedirectAPI5(APIView):
-
 	#I guess django rest needs to do this
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)
-
 	# i think route_id=None otherwise it saus get got unexpected keyword arg
 	def get(self, request, format=None, route_id=None):
 		#get the route object using route_id
