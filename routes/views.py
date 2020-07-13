@@ -48,38 +48,8 @@ class RouteRatingRedirectAPI1(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=1.0, route=route, user=user)
-		print("made a rating from API 1")
 
-		#save the rating and add it to the Route's ratings
-		if user.is_authenticated:
-			##### do something like #####
-			# if user in obj.rating_set or something, then obj.rating_set.remove()
-			# and then save the new rating. This allows users to re-rate.
-			existing_ratings = route.rating_set.filter(user=user).count()
-			if existing_ratings == 1:
-				route.rating_set.get(user=user).delete()
-			elif existing_ratings > 1:
-				print("Must be in God mode.")
-					#return a response
-			#Save the rating object
-			rating.save()
-			#add the rating object to the route's rating set
-			route.rating_set.add(rating)
-			#get total number of ratings
-			n = route.rating_set.count()
-			#create variable to store total of all ratings
-			running_total = 0
-			#Calculate average rating
-			for i in route.rating_set.all():
-				running_total += i.score
-			if n > 0:
-				route.avg_rating = running_total / n
-				route.save()
-			else:
-				route.avg_rating = 0.0
-
-			#percent_rating = round(route.avg_rating/5)
-			data = route.avg_rating
+		data = route.add_rating(user, rating)
 		return Response(data)
 
 class RouteRatingRedirectAPI2(APIView):
@@ -96,40 +66,8 @@ class RouteRatingRedirectAPI2(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=2.0, route=route, user=user)
-		print("made a rating from API 2")
+		data = route.add_rating(user, rating)
 
-		#save the rating and add it to the Route's ratings
-		if user.is_authenticated:
-			##### do something like #####
-			# if user in obj.rating_set or something, then obj.rating_set.remove()
-			# and then save the new rating. This allows users to re-rate.
-
-			existing_ratings = route.rating_set.filter(user=user).count()
-			
-			if existing_ratings == 1:
-				route.rating_set.get(user=user).delete()
-
-			elif existing_ratings > 1:
-				print("Must be in God mode.")
-					#return a response
-			#Save the rating object
-			rating.save()
-			#add the rating object to the route's rating set
-			route.rating_set.add(rating)
-			#get total number of ratings
-			n = route.rating_set.count()
-			#create variable to store total of all ratings
-			running_total = 0
-			#Calculate average rating
-			for i in route.rating_set.all():
-				running_total += i.score
-			if n > 0:
-				route.avg_rating = running_total / n
-				route.save()
-			else:
-				route.avg_rating = 0.0
-
-			data = route.avg_rating
 		return Response(data)
 
 class RouteRatingRedirectAPI3(APIView):
@@ -146,38 +84,7 @@ class RouteRatingRedirectAPI3(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=3.0, route=route, user=user)
-		print("made a rating from API 3")
-
-		#save the rating and add it to the Route's ratings
-		if user.is_authenticated:
-			##### do something like #####
-			# if user in obj.rating_set or something, then obj.rating_set.remove()
-			# and then save the new rating. This allows users to re-rate.
-
-			existing_ratings = route.rating_set.filter(user=user).count()
-			if existing_ratings == 1:
-				route.rating_set.get(user=user).delete()
-			elif existing_ratings > 1:
-				print("Must be in God mode.")
-					#return a response
-			#Save the rating object
-			rating.save()
-			#add the rating object to the route's rating set
-			route.rating_set.add(rating)
-			#get total number of ratings
-			n = route.rating_set.count()
-			#create variable to store total of all ratings
-			running_total = 0
-			#Calculate average rating
-			for i in route.rating_set.all():
-				running_total += i.score
-			if n > 0:
-				route.avg_rating = running_total / n
-				route.save()
-			else:
-				route.avg_rating = 0.0
-
-			data = route.avg_rating
+		data = route.add_rating(user, rating)
 		return Response(data)
 
 class RouteRatingRedirectAPI4(APIView):
@@ -194,38 +101,7 @@ class RouteRatingRedirectAPI4(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=4.0, route=route, user=user)
-		print("made a rating from API 4")
-
-		#save the rating and add it to the Route's ratings
-		if user.is_authenticated:
-			##### do something like #####
-			# if user in obj.rating_set or something, then obj.rating_set.remove()
-			# and then save the new rating. This allows users to re-rate.
-
-			existing_ratings = route.rating_set.filter(user=user).count()
-			if existing_ratings == 1:
-				route.rating_set.get(user=user).delete()
-			elif existing_ratings > 1:
-				print("Must be in God mode.")
-					#return a response
-			#Save the rating object
-			rating.save()
-			#add the rating object to the route's rating set
-			route.rating_set.add(rating)
-			#get total number of ratings
-			n = route.rating_set.count()
-			#create variable to store total of all ratings
-			running_total = 0
-			#Calculate average rating
-			for i in route.rating_set.all():
-				running_total += i.score
-			if n > 0:
-				route.avg_rating = running_total / n
-				route.save()
-			else:
-				route.avg_rating = 0.0
-
-			data = route.avg_rating
+		data = route.add_rating(user, rating)
 		return Response(data)
 
 class RouteRatingRedirectAPI5(APIView):
@@ -242,38 +118,7 @@ class RouteRatingRedirectAPI5(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=5.0, route=route, user=user)
-		print("made a rating from API 5")
-
-		#save the rating and add it to the Route's ratings
-		if user.is_authenticated:
-			##### do something like #####
-			# if user in obj.rating_set or something, then obj.rating_set.remove()
-			# and then save the new rating. This allows users to re-rate.
-
-			existing_ratings = route.rating_set.filter(user=user).count()
-			if existing_ratings == 1:
-				route.rating_set.get(user=user).delete()
-			elif existing_ratings > 1:
-				print("Must be in God mode.")
-					#return a response
-			#Save the rating object
-			rating.save()
-			#add the rating object to the route's rating set
-			route.rating_set.add(rating)
-			#get total number of ratings
-			n = route.rating_set.count()
-			#create variable to store total of all ratings
-			running_total = 0
-			#Calculate average rating
-			for i in route.rating_set.all():
-				running_total += i.score
-			if n > 0:
-				route.avg_rating = running_total / n
-				route.save()
-			else:
-				route.avg_rating = 0.0
-
-			data = route.avg_rating
+		data = route.add_rating(user, rating)
 		return Response(data)
 
 

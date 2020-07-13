@@ -23,6 +23,33 @@ class Route(models.Model):
     def __str__(self):
         return self.rname
 
+    def add_rating(self, user, rating):
+
+        if user.is_authenticated:
+
+            existing_ratings = self.rating_set.filter(user=user).count()
+
+            if existing_ratings == 1:
+                self.rating_set.get(user=user).delete()
+            elif existing_ratings > 1:
+                print("errormode")
+
+            rating.save()
+            self.rating_set.add(rating)
+            ratings_count = self.rating_set.count()
+            running_total = 0
+
+            for i in self.rating_set.all():
+                running_total+= i.score
+
+            if ratings_count > 0 :
+                self.avg_rating = running_total / ratings_count
+                self.save()
+            else:
+                self.avg_rating = 0.0
+
+            return self.avg_rating
+
     # I need this method for route rating    
     def get_absolute_url(self):
         from django.urls import reverse
@@ -49,6 +76,10 @@ class Route(models.Model):
     def get_api_rate_url_5(self):
         from django.urls import reverse
         return reverse('rate-route-api-5', args=[str(self.id)])
+
+
+
+
 
 
 
