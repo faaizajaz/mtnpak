@@ -46,8 +46,7 @@ class RouteRatingRedirectAPI1(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=1.0, route=route, user=user)
-		data = route.add_rating(user, rating)
-		return Response(data)
+		return Response(route.add_rating(user, rating))
 
 class RouteRatingRedirectAPI2(APIView):
 	#I guess django rest needs to do this
@@ -61,8 +60,7 @@ class RouteRatingRedirectAPI2(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=2.0, route=route, user=user)
-		data = route.add_rating(user, rating)
-		return Response(data)
+		return Response(route.add_rating(user, rating))
 
 class RouteRatingRedirectAPI3(APIView):
 	#I guess django rest needs to do this
@@ -76,8 +74,7 @@ class RouteRatingRedirectAPI3(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=3.0, route=route, user=user)
-		data = route.add_rating(user, rating)
-		return Response(data)
+		return Response(route.add_rating(user, rating))
 
 class RouteRatingRedirectAPI4(APIView):
 	#I guess django rest needs to do this
@@ -91,8 +88,7 @@ class RouteRatingRedirectAPI4(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=4.0, route=route, user=user)
-		data = route.add_rating(user, rating)
-		return Response(data)
+		return Response(route.add_rating(user, rating))
 
 class RouteRatingRedirectAPI5(APIView):
 	#I guess django rest needs to do this
@@ -106,8 +102,7 @@ class RouteRatingRedirectAPI5(APIView):
 		user = self.request.user
 		# create a rating object with the score, current route, and current user
 		rating = Rating(score=5.0, route=route, user=user)
-		data = route.add_rating(user, rating)
-		return Response(data)
+		return Response(route.add_rating(user, rating))
 
 
 @login_required
