@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from pitches.forms import *
 from utils.conversions import convert_units
 from ratings.models import Rating
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
 
 
@@ -29,34 +32,6 @@ class RouteView(generic.DetailView):
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
 		return current_route
 
-#create view to add rating to route
-class RouteRatingRedirect(generic.RedirectView):
-	#override redirect url of this gneeric.RedirectView
-	def get_redirect_url(self, **kwargs):
-		# save pk of current route
-		route_id = self.kwargs['route_id']
-		#get the route object using route_id
-		obj = get_object_or_404(Route, pk=route_id)
-		# do a reverse lookup of the URL of the original route so we can redirect after rating		
-		route_url = obj.get_absolute_url()
-		# set the user to current user
-		user = self.request.user
-		# create a rating object with the score, current route, and current user
-		rating = Rating(score=5, route=obj, user=user)
-		print("made a raring from route rating")
-
-		#save the rating and add it to the Route's ratings
-		if user.is_authenticated:
-			##### do something like #####
-			# if user in obj.rating_set or something
-			rating.save()
-			obj.rating_set.add(rating)
-		#redirect to the original route's page
-		return route_url
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import authentication, permissions
 
 #Making an API view
 class RouteRatingRedirectAPI1(APIView):
@@ -80,12 +55,11 @@ class RouteRatingRedirectAPI1(APIView):
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
-			if user.username != 'faaiz': #God mode	
-				existing_ratings = route.rating_set.filter(user=user).count()
-				if existing_ratings == 1:
-					route.rating_set.get(user=user).delete()
-				elif existing_ratings > 1:
-					print("Must be in God mode.")
+			existing_ratings = route.rating_set.filter(user=user).count()
+			if existing_ratings == 1:
+				route.rating_set.get(user=user).delete()
+			elif existing_ratings > 1:
+				print("Must be in God mode.")
 					#return a response
 			#Save the rating object
 			rating.save()
@@ -129,14 +103,14 @@ class RouteRatingRedirectAPI2(APIView):
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
-			if user.username != 'faaiz': #God mode	
-				existing_ratings = route.rating_set.filter(user=user).count()
-				
-				if existing_ratings == 1:
-					route.rating_set.get(user=user).delete()
 
-				elif existing_ratings > 1:
-					print("Must be in God mode.")
+			existing_ratings = route.rating_set.filter(user=user).count()
+			
+			if existing_ratings == 1:
+				route.rating_set.get(user=user).delete()
+
+			elif existing_ratings > 1:
+				print("Must be in God mode.")
 					#return a response
 			#Save the rating object
 			rating.save()
@@ -179,12 +153,12 @@ class RouteRatingRedirectAPI3(APIView):
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
-			if user.username != 'faaiz': #God mode	
-				existing_ratings = route.rating_set.filter(user=user).count()
-				if existing_ratings == 1:
-					route.rating_set.get(user=user).delete()
-				elif existing_ratings > 1:
-					print("Must be in God mode.")
+
+			existing_ratings = route.rating_set.filter(user=user).count()
+			if existing_ratings == 1:
+				route.rating_set.get(user=user).delete()
+			elif existing_ratings > 1:
+				print("Must be in God mode.")
 					#return a response
 			#Save the rating object
 			rating.save()
@@ -227,12 +201,12 @@ class RouteRatingRedirectAPI4(APIView):
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
-			if user.username != 'faaiz': #God mode	
-				existing_ratings = route.rating_set.filter(user=user).count()
-				if existing_ratings == 1:
-					route.rating_set.get(user=user).delete()
-				elif existing_ratings > 1:
-					print("Must be in God mode.")
+
+			existing_ratings = route.rating_set.filter(user=user).count()
+			if existing_ratings == 1:
+				route.rating_set.get(user=user).delete()
+			elif existing_ratings > 1:
+				print("Must be in God mode.")
 					#return a response
 			#Save the rating object
 			rating.save()
@@ -275,12 +249,12 @@ class RouteRatingRedirectAPI5(APIView):
 			##### do something like #####
 			# if user in obj.rating_set or something, then obj.rating_set.remove()
 			# and then save the new rating. This allows users to re-rate.
-			if user.username != 'faaiz': #God mode	
-				existing_ratings = route.rating_set.filter(user=user).count()
-				if existing_ratings == 1:
-					route.rating_set.get(user=user).delete()
-				elif existing_ratings > 1:
-					print("Must be in God mode.")
+
+			existing_ratings = route.rating_set.filter(user=user).count()
+			if existing_ratings == 1:
+				route.rating_set.get(user=user).delete()
+			elif existing_ratings > 1:
+				print("Must be in God mode.")
 					#return a response
 			#Save the rating object
 			rating.save()

@@ -6,7 +6,6 @@ from .import views
 urlpatterns = [
 	path('', views.RoutesHome.as_view(), name='routes-home'),
 	path('<route_id>/', views.RouteView.as_view(), name='route-view'),
-	path('<route_id>/rateroute/', views.RouteRatingRedirect.as_view(), name='rate-route'),
 	path('rateapi/<route_id>/raterouteapi1/', views.RouteRatingRedirectAPI1.as_view(), name='rate-route-api-1'),
 	path('rateapi/<route_id>/raterouteapi2/', views.RouteRatingRedirectAPI2.as_view(), name='rate-route-api-2'),
 	path('rateapi/<route_id>/raterouteapi3/', views.RouteRatingRedirectAPI3.as_view(), name='rate-route-api-3'),

@@ -1,7 +1,7 @@
 from django import template
 from utils.conversions import convert_units
 from django.utils.safestring import mark_safe
-from django.utils.html import escape
+
 #from grades.models import Grade
 
 register = template.Library()

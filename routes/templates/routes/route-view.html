@@ -27,7 +27,7 @@
 
 	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
-	<p id='route-rating'>This route is rated: {{route|inline_rating}}</p>
+	<p id='route-rating'>This route is rated: {{route|inline_rating}} with {{route.rating_set.all.count}} votes</p>
 
 	<!--custom CSS for star ratings -->
 	<link rel="stylesheet" type="text/css" href="{% static 'ratings/star_rating.css' %}" rel="stylesheet">
