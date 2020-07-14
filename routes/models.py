@@ -1,6 +1,6 @@
 from django.db import models
 from crags.models import Crag
-from routetypes.models import *
+
 
 class Route(models.Model):
     rname = models.CharField(max_length=500, verbose_name='Route Name')
@@ -13,7 +13,8 @@ class Route(models.Model):
     # this should be set once and never changed.
     base_unit = models.CharField(max_length=50, verbose_name='R Base_unit')
 
-    rtype = models.ForeignKey(RouteType, on_delete=models.SET_NULL, null=True)
+
+    rtype = models.CharField(max_length=50, verbose_name="Type of route")
 
     numpitch = models.CharField(max_length=500, verbose_name='Single or Multi')
 

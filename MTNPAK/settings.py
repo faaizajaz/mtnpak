@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ascents.apps.AscentsConfig',
     'pitches.apps.PitchConfig',
-    'routetypes.apps.RoutetypesConfig',
     'grades.apps.GradesConfig',
     'homepage.apps.HomepageConfig',
     'ratings.apps.RatingsConfig',
