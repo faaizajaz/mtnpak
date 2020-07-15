@@ -3,6 +3,21 @@
 <!doctype html>
 <html lang="en">
   <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+        <!--custom CSS for inline star ratings -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage_carousel/css/homepage_carousel.css' %}">
+
     
     <!--Load jQuery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,11 +25,7 @@
       <!-- Bootstrap core JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
 
 
     <!-- Make title of page -->
@@ -24,12 +35,9 @@
     </title>
     
 
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--custom CSS for inline star ratings -->
-    <link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
-    
+
+
   </head>
 
   <body>
@@ -76,17 +84,30 @@
     </nav>
 
     <!-- Page content -->
-    <br><br><br>
+    
 
-    <div class="container">
+    <div class="container" id="homepage-container">
+
+      {% block home_carousel %}
+      {% endblock %}
+
+      {% block home_leaderboard %}
+      {% endblock %}
+
+
+
+
+
       <div class="row">
-        <div class="col-lg-12 text-left">
-          
+         <div class="col-lg-12 text-left">
+            
           {% block content %}
           {% endblock %}
 
-        </div>
+          </div>
+    
       </div>
+      
     </div>
 
 

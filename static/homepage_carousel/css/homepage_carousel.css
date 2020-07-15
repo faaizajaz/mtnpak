@@ -1,0 +1,27 @@
+.carousel {
+	
+	overflow:hidden;
+	height:290px;
+	
+}
+
+#toproutes {
+	font-size: 13px;
+}
+
+#toproutes > thead > tr > th, 
+#toproutes > tbody > tr > th,
+#toproutes > thead > tr > td,
+#toproutes > tbody > tr > td {
+	padding-bottom: 0px;
+	padding-top: 1px;
+
+}
+
+#homepage-container {
+	padding-top: 10px;
+}
+
+#toproutes > tbody > tr > td > .score {
+	font-size: 13px;
+}

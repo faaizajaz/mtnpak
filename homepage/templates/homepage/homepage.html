@@ -1,8 +1,83 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load view_filters %}
 
 {% block page_title %}
 	Crags.pk
 {% endblock %}
+
+
+
+{% block home_carousel %}
+
+
+
+
+  <div class="row">
+    <div class = "col-lg-9">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+<!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ul>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'homepage_carousel/images/0.JPG' %}" alt="Los Angeles">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'homepage_carousel/images/1.JPG' %}" alt="Chicago">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'homepage_carousel/images/2.JPG' %}" alt="New York">
+          </div>
+        </div>
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+
+      
+    </div>
+    <div class = "col-lg-3">
+      <table id="toproutes"class="table table-sm h-50">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for route in top_routes %}
+          <tr>
+            <td><a href="{% url 'route-view' route_id=route.id %}">{{route.rname}}</a></td>
+            <td>{{route|inline_rating}}</td>
+            <td>{{route.rtype}}</td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+      
+    </div>
+
+  </div>
+
+
+{% endblock %}
+
+
+
+
 
 
 {% block content %}
@@ -16,6 +91,10 @@
 	{% endfor %}
 	
 {% endif %}
+
+
+
+
 {% if user.is_authenticated %}
 	<a href="{% url 'logout' %}">Log out</a>
 	<br>
@@ -27,5 +106,9 @@
 <a href="{% url 'crags-home' %}">See crags</a>
 <br>
 <a href="{% url 'register' %}">Sign up now</a>
+
+
+
+
 
 {% endblock %}
