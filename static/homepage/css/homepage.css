@@ -6,7 +6,7 @@
 }
 
 #toproutes {
-	font-size: 13px;
+	font-size: 14px;
 }
 
 #toproutes > thead > tr > th, 
@@ -23,5 +23,5 @@
 }
 
 #toproutes > tbody > tr > td > .score {
-	font-size: 13px;
+	font-size: 14px;
 }

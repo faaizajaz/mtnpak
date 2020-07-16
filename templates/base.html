@@ -16,14 +16,19 @@
         <!--custom CSS for inline star ratings -->
     <link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'homepage_carousel/css/homepage_carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/css/homepage.css' %}">
 
+    {% block custom_css %}
+    {% endblock %}
     
     <!--Load jQuery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
       <!-- Bootstrap core JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+    {% block custom_js %}
+    {% endblock %}
 
 
 
@@ -88,12 +93,8 @@
 
     <div class="container" id="homepage-container">
 
-      {% block home_carousel %}
+      {% block home_content %}
       {% endblock %}
-
-      {% block home_leaderboard %}
-      {% endblock %}
-
 
 
 

@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load view_filters %}
+{% load leaflet_tags %}
+
+
+
+{% block custom_css %}  
+  {% leaflet_css %}
+{% endblock %}
+
+{% block custom_js %}
+  {% leaflet_js %}
+{% endblock %}
 
 {% block page_title %}
 	Crags.pk
@@ -8,70 +19,46 @@
 
 
 
-{% block home_carousel %}
-
-
-
+{% block home_content %}
 
   <div class="row">
     <div class = "col-lg-9">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    
+      <script>
+        function map_init_basic (map, options) {
+          map.setView([33.684, 73.047], 13);
+          marker = L.marker([33.684, 73.047]).on('click', onClick);
+          function onClick(e) {
+            alert("{{user.username}}")
+          }
+          marker.addTo(map)
+        }
+      </script>
 
-<!-- Indicators -->
-        <ul class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ul>
-        <!-- The slideshow -->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{% static 'homepage_carousel/images/0.JPG' %}" alt="Los Angeles">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'homepage_carousel/images/1.JPG' %}" alt="Chicago">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'homepage_carousel/images/2.JPG' %}" alt="New York">
-          </div>
-        </div>
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </a>
-      </div>
-
+      {% leaflet_map user.first_name callback="window.map_init_basic" %}
       
     </div>
     <div class = "col-lg-3">
       <table id="toproutes"class="table table-sm h-50">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Type</th>
+            <th scope="col">Top routes</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-
           {% for route in top_routes %}
           <tr>
             <td><a href="{% url 'route-view' route_id=route.id %}">{{route.rname}}</a></td>
             <td>{{route|inline_rating}}</td>
             <td>{{route.rtype}}</td>
           </tr>
-          {% endfor %}
-          
+          {% endfor %}          
         </tbody>
-      </table>
-      
+      </table>      
     </div>
-
   </div>
-
 
 {% endblock %}
 
