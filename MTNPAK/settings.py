@@ -142,10 +142,14 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = 'crags-home' #when log in, go to crags-home page.
+LOGIN_REDIRECT_URL = 'home-page' #when log in, go to crags-home page.
 
 LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+SERIALIZATION_MODULES = {
+    'geojson': 'djgeojson.serializers'
+}
 
 

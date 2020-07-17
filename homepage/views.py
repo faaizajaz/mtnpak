@@ -1,13 +1,24 @@
 from django.shortcuts import render
 from routes.models import Route
+from crags.models import Crag
+
 
 
 def HomePage(request):
-    # return HttpResponse('<h1>MTNPAK home page')
 
     top_routes = Route.objects.all().order_by('-avg_rating')[:10]
+    crag_list = []
 
-    context = {'top_routes': top_routes}
+
+    for crag in Crag.objects.all():
+    	crag_list.append({
+    		'name': crag.cname,
+    		'lat': crag.location['coordinates'][1],
+    		'lon': crag.location['coordinates'][0]
+    		})
+   
+
+    context = {'top_routes': top_routes, 'crag_list': crag_list}
 
 
     return render(request, 'homepage/homepage.html', context)
