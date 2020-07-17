@@ -13,6 +13,8 @@ def HomePage(request):
     for crag in Crag.objects.all():
     	crag_list.append({
     		'name': crag.cname,
+    		'crag_id': crag.id,
+    		'url' : crag.get_absolute_url(),
     		'lat': crag.location['coordinates'][1],
     		'lon': crag.location['coordinates'][0]
     		})

@@ -17,3 +17,8 @@ class Crag(models.Model):
     def __str__(self):
         return self.cname
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        # return the string URL for route-view (in urls.py) using self.id as arg
+        return reverse('crag-view', args=[str(self.id)])
+

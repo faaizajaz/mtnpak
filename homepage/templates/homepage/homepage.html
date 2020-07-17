@@ -24,16 +24,29 @@
 
   <div class="row map-row">
     <div class = "col-lg-9">
-    
+   
       <script>
         function map_init_basic (map, options) {
           map.setView([33.762521, 73.065268], 11.5);
 
           {% for crag in crag_list %}
-            L.marker(['{{crag.lat}}', '{{crag.lon}}']).bindPopup("{{crag.name}}").addTo(map);
+            var crag_id = '{{crag.crag_id}}';
+            var crag_name = '{{crag.name}}';
+            var link = '<a href="crags/' + crag_id + '">' + crag_name + '</a>';
+            //var link = '{{crag.url}}'
+            
+            L.marker(['{{crag.lat}}', '{{crag.lon}}']).bindPopup(link).addTo(map);
+            //L.marker(['{{crag.lat}}', '{{crag.lon}}']).on('click', onClick).addTo(map);
           {% endfor %}
 
+          //function onClick(e) {
+            //alert(this.getLatLng())
+
+            //this.bindPopup(link)
+          //}
         }
+
+
       </script>
 
       <!--{% leaflet_map user.first_name callback="window.map_init_basic" %} -->
