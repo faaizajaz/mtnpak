@@ -7,8 +7,8 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 @register.filter(name='grade_display')
-#the filter function takes two arguments, the grade object and request
-def grade_display(grade, request):
+#the filter function takes two arguments, the grade/pitch object and request
+def grade_display(obj, request):
 	
 	#Try reading the request.session variable for user pref
 	try:
@@ -19,19 +19,19 @@ def grade_display(grade, request):
 
 	#return the correct grade field to display in template
 	if grade_pref == 'French':
-		return grade.ggrade
+		return obj.grade.ggrade
 	elif grade_pref == 'YDS':
-		return grade.ydsgrade
+		return obj.grade.ydsgrade
 	elif grade_pref == 'Aus':
-		return grade.ausgrade
+		return obj.grade.ausgrade
 	elif grade_pref == 'UIAA':
-		return grade.uiaagrade
+		return obj.grade.uiaagrade
 	elif grade_pref == 'SA':
-		return grade.sagrade
+		return obj.grade.sagrade
 	elif grade_pref == 'UK':
-		return grade.ukgrade
+		return obj.grade.ukgrade
 	else:
-		return grade.ggrade
+		return obj.grade.ggrade
 
 
 #filter to change how units are displayed (feet or meter)

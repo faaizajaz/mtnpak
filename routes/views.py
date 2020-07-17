@@ -30,6 +30,7 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
+
 		return current_route
 
 
@@ -163,13 +164,17 @@ def AddPitchMulti(request, **kwargs):
 			if newpitch.proute.base_unit == newpitch.base_unit:
 				# if equal, add to route length
 				newpitch.proute.length += newpitch.length
-				newpitch.proute.save()
+				
 			else:
 				# if not equal, convery current pitch length to ROUTE base unit, then add
 				newpitch.proute.length += convert_units(newpitch.base_unit, newpitch.proute.base_unit, newpitch.length)
-				newpitch.proute.save()
 
+			newpitch.proute.save()
 			newpitch.save()
+
+			# Once route is saved, set grade to the highest grade of its pitch_set
+			newpitch.proute.get_highest_grade()
+			
 			return redirect('route-view', route_id=kwargs['route_id'])
 	else:
 		if grade_pref == "YDS":

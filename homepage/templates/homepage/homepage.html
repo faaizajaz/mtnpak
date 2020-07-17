@@ -35,7 +35,8 @@
         }
       </script>
 
-      {% leaflet_map user.first_name callback="window.map_init_basic" %}
+      <!--{% leaflet_map user.first_name callback="window.map_init_basic" %} -->
+      {% leaflet_map "test" callback="window.map_init_basic" %}
       
     </div>
     <div class = "col-lg-3">
@@ -52,7 +53,7 @@
           <tr>
             <td><a href="{% url 'route-view' route_id=route.id %}">{{route.rname}}</a></td>
             <td>{{route|inline_rating}}</td>
-            <td>{{route.rtype}}</td>
+            <td>{{route|grade_display:request}}</td>
           </tr>
           {% endfor %}          
         </tbody>

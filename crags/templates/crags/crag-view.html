@@ -25,7 +25,7 @@
 	{% for route in object.route_set.all %}
 		<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a>
 		{% for pitch in route.pitch_set.all %}
-			{{ pitch.pgrade|grade_display:request }}
+			{{ pitch|grade_display:request }}
 		{% endfor %}
 		{{route|inline_rating}}
 		</p>	

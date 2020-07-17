@@ -42,7 +42,7 @@
 		<p>This single pitch is {{ route|measurement_display:request }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<!--CHECK GRADE PREFERENCE AND DISPLAY GRADE ACCORDINGLY -->
-			{{ pitch.pgrade|grade_display:request }}
+			{{ pitch|grade_display:request }}
 			{{ pitch|measurement_display:request }}
 			{{ pitch|measurement_unit_display:request }}
 
@@ -56,7 +56,7 @@
 		<p>This multipitch is {{ route|measurement_display:request }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<p>
-			{{ pitch.pgrade|grade_display:request }}
+			{{ pitch|grade_display:request }}
 			{{ pitch|measurement_display:request }}
 			{{ pitch|measurement_unit_display:request }}
 			{{ pitch.pdescription }} 

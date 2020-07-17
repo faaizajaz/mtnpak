@@ -59,6 +59,7 @@ def AddRoute(request, **kwargs):
 			newroute.base_unit = request.session['measurement_pref']
 
 			newroute.length = newpitch.length
+			newroute.grade = newpitch.grade
 			
 			newroute.save()	
 			newpitch.save()			

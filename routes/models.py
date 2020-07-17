@@ -1,5 +1,6 @@
 from django.db import models
 from crags.models import Crag
+from grades.models import Grade
 
 
 class Route(models.Model):
@@ -7,6 +8,8 @@ class Route(models.Model):
     rdescription = models.TextField(verbose_name='Route Description')
     ropener = models.CharField(max_length=500, verbose_name='Route Opener')
     rcrag = models.ForeignKey(Crag, on_delete=models.CASCADE, null=True, verbose_name='Crag')
+    #In case of multipitch, the highest grade of all pitches
+    grade = models.ForeignKey(Grade, on_delete=models.DO_NOTHING, verbose_name='Pitch Grade', null=True)
     
     # equal to pitch length if one pitch, otherwise sum of pitch length
     length = models.FloatField(verbose_name='Route Length', default=0)
@@ -80,6 +83,36 @@ class Route(models.Model):
     def get_api_rate_url_5(self):
         from django.urls import reverse
         return reverse('rate-route-api-5', args=[str(self.id)])
+
+
+    def get_highest_grade(self):        
+        all_grades = []
+        highest_grade_index = 0
+        for pitch in self.pitch_set.all():
+            all_grades.append(pitch.grade)
+        for i, grade in enumerate(all_grades): 
+            if all_grades[highest_grade_index].id > grade.id:
+                print("all good")
+            elif all_grades[highest_grade_index].id <= grade.id:
+                highest_grade_index = i
+        print("highest grade is", all_grades[highest_grade_index])
+        self.grade = all_grades[highest_grade_index]
+        self.save()
+        return            
+
+
+        
+
+
+
+        
+        
+
+
+
+
+
+
 
 
 

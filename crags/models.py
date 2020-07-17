@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
+from djgeojson.fields import PointField
+
 
 
 
@@ -9,6 +10,8 @@ class Crag(models.Model):
     cdescription = models.TextField(verbose_name='Crag description')
     cauthor = models.ForeignKey(  # Many crags can have one author
         User, on_delete=models.PROTECT, verbose_name='Page author')
+    location = PointField()
+
 
 
     def __str__(self):
