@@ -32,7 +32,8 @@
           {% for crag in crag_list %}
             var crag_id = '{{crag.crag_id}}';
             var crag_name = '{{crag.name}}';
-            var link = '<a href="crags/' + crag_id + '">' + crag_name + '</a>';
+            var route_count = '{{crag.route_count}}'
+            var link = '<a href="crags/' + crag_id + '">' + crag_name + '</a>' + '<br>' + route_count + " routes." ;
             //var link = '{{crag.url}}'
             
             L.marker(['{{crag.lat}}', '{{crag.lon}}']).bindPopup(link).addTo(map);
@@ -66,8 +67,9 @@
           {% for route in top_routes %}
           <tr>
             <td><a href="{% url 'route-view' route_id=route.id %}">{{route.rname}}</a></td>
-            <td>{{route|inline_rating}}</td>
+
             <td>{{route|grade_display:request}}</td>
+            <td>{{route|inline_rating}}</td>
           </tr>
           {% endfor %}          
         </tbody>

@@ -15,6 +15,7 @@ def HomePage(request):
     		'name': crag.cname,
     		'crag_id': crag.id,
     		'url' : crag.get_absolute_url(),
+    		'route_count': crag.count_routes(),
     		'lat': crag.location['coordinates'][1],
     		'lon': crag.location['coordinates'][0]
     		})

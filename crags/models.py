@@ -22,3 +22,6 @@ class Crag(models.Model):
         # return the string URL for route-view (in urls.py) using self.id as arg
         return reverse('crag-view', args=[str(self.id)])
 
+    def count_routes(self):
+    	return self.route_set.all().count()
+
