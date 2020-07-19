@@ -22,14 +22,7 @@ def grade_display(obj, request):
 		return obj.grade.ggrade
 	elif grade_pref == 'YDS':
 		return obj.grade.ydsgrade
-	elif grade_pref == 'Aus':
-		return obj.grade.ausgrade
-	elif grade_pref == 'UIAA':
-		return obj.grade.uiaagrade
-	elif grade_pref == 'SA':
-		return obj.grade.sagrade
-	elif grade_pref == 'UK':
-		return obj.grade.ukgrade
+
 	else:
 		return obj.grade.ggrade
 

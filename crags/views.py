@@ -7,8 +7,9 @@ from pitches.forms import *
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication, permissions
-from django.core import serializers
+from rest_framework import serializers
+#from rest_framework import authentication, permissions
+from django.core import serializers as coreserializers
 
 
 
@@ -34,12 +35,7 @@ class CragMapAPIView(APIView):
 	def get(self, request, format=None, crag_id=None):
 		crag = get_object_or_404(Crag, pk=crag_id)
 		#data = {}
-		data = serializers.serialize('python', crag.route_set.all())
-		#for route in crag.route_set.all():
-			#data[route.rname] = route.rname
-		#	data.append(route.rname)
-
-		print(data)
+		data = coreserializers.serialize('python', crag.route_set.all(), use_natural_foreign_keys=True)
 
 		return Response(data)
 

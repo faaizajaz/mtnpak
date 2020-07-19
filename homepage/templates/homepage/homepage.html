@@ -26,36 +26,16 @@
     <div class = "col-lg-9">
    
       <script>
-        /*class CragMarker extends L.marker {
-          constructor() {
-            super();
-            this.routes = []
-
-          }
-
-          getRoutes() {
-
-          }
-
-        };*/
-
         var CragMarker = L.Marker.extend({
           options: {
             api_link: "butts"
           },
-
           initialise: function(options) {
-
             L.setOptions(this, options)
-            //this.routes = routes;
           },
-
           getData: function() {
             return this.options.api_link
           }
-
-
-
         });
 
         function map_init_basic (map, options) {
@@ -71,8 +51,6 @@
             //var link = '{{crag.url}}'
             
             var instance = new CragMarker(['{{crag.lat}}', '{{crag.lon}}'], {api_link: api_link_}).bindPopup(link).addTo(map).on('click', onClick);
-
-
 
             console.log(instance.options.api_link);
             //L.marker(['{{crag.lat}}', '{{crag.lon}}']).on('click', onClick).addTo(map);
@@ -100,11 +78,6 @@
 
           }
 
-          //function onClick(e) {
-            //alert(this.getLatLng())
-
-            //this.bindPopup(link)
-          //}
         }
 
 

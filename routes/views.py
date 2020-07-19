@@ -143,14 +143,7 @@ def AddPitchMulti(request, **kwargs):
 			form = AddPitchFormYDSMulti(request.POST)
 		elif grade_pref == "French":
 			form = AddPitchFormFrenchMulti(request.POST)
-		elif grade_pref == "Aus":
-			form = AddPitchFormAusMulti(request.POST)
-		elif grade_pref == "UIAA":
-			form = AddPitchFormUIAAMulti(request.POST)
-		elif grade_pref == "SA":
-			form = AddPitchFormSAMulti(request.POST)
-		elif grade_pref == "UK":
-			form = AddPitchFormUKMulti(request.POST)
+		
 		
 
 		if form.is_valid():
@@ -181,14 +174,7 @@ def AddPitchMulti(request, **kwargs):
 			form = AddPitchFormYDSMulti()
 		elif grade_pref == "French":
 			form = AddPitchFormFrenchMulti()
-		elif grade_pref == "Aus":
-			form = AddPitchFormAusMulti()
-		elif grade_pref == "UIAA":
-			form = AddPitchFormUIAAMulti()
-		elif grade_pref == "SA":
-			form = AddPitchFormSAMulti()
-		elif grade_pref == "UK":
-			form = AddPitchFormUKMulti()
+
 
 	return render(request, 'routes/addpitch.html', {'form': form})
 
