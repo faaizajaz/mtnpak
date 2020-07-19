@@ -36,6 +36,8 @@ class CragMapAPIView(APIView):
 
 	def get(self, request, format=None, crag_id=None):
 		crag = get_object_or_404(Crag, pk=crag_id)
+
+		## FUCK DJANGO SERIALIZERS. I'M DOING IT MYSELF ##
 		json_list = []
 		route_dict = {}
 		fields_dict = {}		
@@ -47,7 +49,7 @@ class CragMapAPIView(APIView):
 				for route in crag.route_set.all():
 					fields_dict = {
 						"name": route.rname,
-						"grade": route.grade.ydsgrade# if request.session['grade_pref'] == "YDS" else route.grade.ggrade
+						"grade": route.grade.ydsgrade
 					}
 
 					route_dict = {
@@ -60,7 +62,7 @@ class CragMapAPIView(APIView):
 				for route in crag.route_set.all():
 					fields_dict = {
 						"name": route.rname,
-						"grade": route.grade.ggrade# if request.session['grade_pref'] == "YDS" else route.grade.ggrade
+						"grade": route.grade.ggrade
 					}
 
 					route_dict = {
@@ -74,7 +76,7 @@ class CragMapAPIView(APIView):
 			for route in crag.route_set.all():
 				fields_dict = {
 					"name": route.rname,
-					"grade": route.grade.ggrade# if request.session['grade_pref'] == "YDS" else route.grade.ggrade
+					"grade": route.grade.ggrade
 				}
 
 				route_dict = {
