@@ -28,7 +28,7 @@
       <script>
         var CragMarker = L.Marker.extend({
           options: {
-            api_link: "butts"
+            api_link: "ERROR"
           },
           initialise: function(options) {
             L.setOptions(this, options)
@@ -46,13 +46,11 @@
             var crag_name = '{{crag.name}}';
             var route_count = '{{crag.route_count}}'
             var link = '<a href="crags/' + crag_id + '">' + crag_name + '</a>' + '<br>' + route_count + " routes." ;
-            var api_link_ = '/crags/api/' + crag_id + "/"
+            var api_link_ = '/crags/api/' + crag_id + "/";
             
             //var link = '{{crag.url}}'
             
             var instance = new CragMarker(['{{crag.lat}}', '{{crag.lon}}'], {api_link: api_link_}).bindPopup(link).addTo(map).on('click', onClick);
-
-            console.log(instance.options.api_link);
             //L.marker(['{{crag.lat}}', '{{crag.lon}}']).on('click', onClick).addTo(map);
           {% endfor %}
 
@@ -62,16 +60,10 @@
               url: this.getData(),
               data: {},
               success: function(data){
-
-
                 routes = [];
-                console.log(data.length)
                 for (route = 0; route < data.length; route++) {
-
                   routes.push([data[route].fields.name, data[route].fields.grade]);
-                }
-                
-                console.log(routes);
+                }                
                 $(".dynamic-crag").html('<h1>' + routes + '</h1>');
               }
             })
@@ -112,7 +104,7 @@
     </div>
   </div>
 
-  <div class="dynamic-crag" id="buttsy"></div>
+  <div class="dynamic-crag"></div>
 
 
 {% endblock %}

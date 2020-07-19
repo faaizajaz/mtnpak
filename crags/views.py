@@ -43,6 +43,7 @@ class CragMapAPIView(APIView):
 
 		try:
 			pref = request.session['grade_pref']
+			
 			if pref == 'YDS':
 				for route in crag.route_set.all():
 					fields_dict = {
