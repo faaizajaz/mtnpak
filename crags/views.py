@@ -7,9 +7,9 @@ from pitches.forms import *
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import serializers
+
 #from rest_framework import authentication, permissions
-from django.core import serializers as coreserializers
+
 
 
 
@@ -28,16 +28,63 @@ class CragView(generic.DetailView):
 	def get_object(self):
 		return get_object_or_404(Crag, pk=self.kwargs['crag_id'])
 
+
+### NEED TO REDO THIS. NOT DRY, COULD ROLL MY OWN SERIALIZER ####
 class CragMapAPIView(APIView):
 	#authentication_classes = (authentication.SessionAuthentication,)
 	#permission_classes = (permissions.IsAuthenticated,)
 
 	def get(self, request, format=None, crag_id=None):
 		crag = get_object_or_404(Crag, pk=crag_id)
-		#data = {}
-		data = coreserializers.serialize('python', crag.route_set.all(), use_natural_foreign_keys=True)
+		
+		json_list = []
+		route_dict = {}
+		fields_dict = {}		
 
-		return Response(data)
+		try:
+			pref = request.session['grade_pref']
+			if pref == 'YDS':
+				for route in crag.route_set.all():
+					fields_dict = {
+						"name": route.rname,
+						"grade": route.grade.ydsgrade# if request.session['grade_pref'] == "YDS" else route.grade.ggrade
+					}
+
+					route_dict = {
+						"pk": route.id,
+						"fields": fields_dict
+					}
+					json_list.append(route_dict)
+
+			elif pref == 'French':
+				for route in crag.route_set.all():
+					fields_dict = {
+						"name": route.rname,
+						"grade": route.grade.ggrade# if request.session['grade_pref'] == "YDS" else route.grade.ggrade
+					}
+
+					route_dict = {
+						"pk": route.id,
+						"fields": fields_dict
+					}
+					json_list.append(route_dict)
+
+		except KeyError:
+
+			for route in crag.route_set.all():
+				fields_dict = {
+					"name": route.rname,
+					"grade": route.grade.ggrade# if request.session['grade_pref'] == "YDS" else route.grade.ggrade
+				}
+
+				route_dict = {
+					"pk": route.id,
+					"fields": fields_dict
+				}
+				json_list.append(route_dict)
+
+
+		return Response(json_list)
 
 
 #IN AddRoute, a route and pitch form are both created since for single
@@ -52,14 +99,7 @@ def AddRoute(request, **kwargs):
 			form2 = AddPitchFormYDS(request.POST)
 		elif request.session['grade_pref'] == "French":
 			form2 = AddPitchFormFrench(request.POST)
-		elif request.session['grade_pref'] == "Aus":
-			form2 = AddPitchFormAus(request.POST)
-		elif request.session['grade_pref'] == "UIAA":
-			form2 = AddPitchFormUIAA(request.POST)
-		elif request.session['grade_pref'] == "SA":
-			form2 = AddPitchFormSA(request.POST)
-		elif request.session['grade_pref'] == "UK":
-			form2 = AddPitchFormUK(request.POST)
+
 
 		if form.is_valid() and form2.is_valid():
 			newroute = form.save(commit=False)
@@ -90,14 +130,7 @@ def AddRoute(request, **kwargs):
 			form2 = AddPitchFormYDS()
 		elif request.session['grade_pref'] == "French":
 			form2 = AddPitchFormFrench()
-		elif request.session['grade_pref'] == "Aus":
-			form2 = AddPitchFormAus()
-		elif request.session['grade_pref'] == "UIAA":
-			form2 = AddPitchFormUIAA()
-		elif request.session['grade_pref'] == "SA":
-			form2 = AddPitchFormSA()
-		elif request.session['grade_pref'] == "UK":
-			form2 = AddPitchFormUK()
+
 
 	return render(request, 'crags/addroute.html', {'form': form, 'form2':form2})
 

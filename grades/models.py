@@ -1,5 +1,5 @@
 from django.db import models
-from rest_framework import serializers
+
 
 class Grade(models.Model):
     #ggrade is french grade, need to refactor
@@ -11,5 +11,9 @@ class Grade(models.Model):
 
     def natural_key(self):
     	return self.ydsgrade
+
+
+    def __unicode__(self):
+   		return self.ggrade
 
 
