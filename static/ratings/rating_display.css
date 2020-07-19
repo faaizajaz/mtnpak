@@ -25,33 +25,84 @@
 .score.s0::after {
   width: 0%;
 }
+
 .score.s1::after {
+  width: 6%;
+}
+
+.score.s2::after {
   width: 10%;
 }
-.score.s2::after {
+
+.score.s3::after {
+  width: 14%;
+}
+
+.score.s4::after {
   width: 20%;
 }
-.score.s3::after {
+
+.score.s5::after {
+  width: 26%;
+}
+
+.score.s6::after {
   width: 30%;
 }
-.score.s4::after {
+
+.score.s7::after {
+  width: 34%;
+}
+
+.score.s8::after {
   width: 40%;
 }
-.score.s5::after {
+
+.score.s9::after {
+  width: 46%;
+}
+
+.score.s10::after {
   width: 50%;
 }
-.score.s6::after {
+
+.score.s11::after {
+  width: 54%;
+}
+
+.score.s12::after {
   width: 60%;
 }
-.score.s7::after {
+
+.score.s13::after {
+  width: 66%;
+}
+
+.score.s14::after {
   width: 70%;
 }
-.score.s8::after {
+
+.score.s15::after {
+  width: 74%;
+}
+
+.score.s16::after {
   width: 80%;
 }
-.score.s9::after {
+
+.score.s17::after {
+  width: 86%;
+}
+
+.score.s18::after {
   width: 90%;
 }
-.score.s10::after {
+
+.score.s19::after {
+  width: 94%;
+}
+
+.score.s20::after {
   width: 100%;
 }
+

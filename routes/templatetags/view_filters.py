@@ -57,45 +57,85 @@ def inline_rating(route):
 		
 		return mark_safe('<span class="score s0"></span>')
 
-	elif percentage_rating >= 0 and percentage_rating < 11:
+	elif percentage_rating >= 0 and percentage_rating < 6:
 		
 		return mark_safe('<span class="score s1"></span>')
 
-	elif percentage_rating >= 11 and percentage_rating < 21:
+	elif percentage_rating >= 6 and percentage_rating < 11:
 		
 		return mark_safe('<span class="score s2"></span>')
 
-	elif percentage_rating >= 21 and percentage_rating < 31:
+	elif percentage_rating >= 11 and percentage_rating < 16:
 		
 		return mark_safe('<span class="score s3"></span>')
 
-	elif percentage_rating >= 31 and percentage_rating < 41:
+	elif percentage_rating >= 16 and percentage_rating < 21:
 		
 		return mark_safe('<span class="score s4"></span>')
 
-	elif percentage_rating >= 41 and percentage_rating < 51:
+	elif percentage_rating >= 21 and percentage_rating < 26:
 		
 		return mark_safe('<span class="score s5"></span>')
 
-	elif percentage_rating >= 51 and percentage_rating < 61:
+	elif percentage_rating >= 26 and percentage_rating < 31:
 		
 		return mark_safe('<span class="score s6"></span>')
 
-	elif percentage_rating >= 61 and percentage_rating < 71:
+	elif percentage_rating >= 31 and percentage_rating < 36:
 		
 		return mark_safe('<span class="score s7"></span>')
 
-	elif percentage_rating >= 71 and percentage_rating < 81:
+	elif percentage_rating >= 36 and percentage_rating < 41:
 		
 		return mark_safe('<span class="score s8"></span>')
 
-	elif percentage_rating >= 81 and percentage_rating < 91:
+	elif percentage_rating >= 41 and percentage_rating < 46:
 		
 		return mark_safe('<span class="score s9"></span>')
 
-	elif percentage_rating >= 91 and percentage_rating <= 100:
+	elif percentage_rating >= 46 and percentage_rating < 51:
 		
 		return mark_safe('<span class="score s10"></span>')
+
+	elif percentage_rating >= 51 and percentage_rating < 56:
+		
+		return mark_safe('<span class="score s11"></span>')
+
+	elif percentage_rating >= 56 and percentage_rating < 61:
+		
+		return mark_safe('<span class="score s12"></span>')
+
+	elif percentage_rating >= 61 and percentage_rating < 66:
+		
+		return mark_safe('<span class="score s13"></span>')
+
+	elif percentage_rating >= 66 and percentage_rating < 71:
+		
+		return mark_safe('<span class="score s14"></span>')
+
+	elif percentage_rating >= 71 and percentage_rating < 76:
+		
+		return mark_safe('<span class="score s15"></span>')
+
+	elif percentage_rating >= 76 and percentage_rating < 81:
+		
+		return mark_safe('<span class="score s16"></span>')
+
+	elif percentage_rating >= 81 and percentage_rating < 86:
+		
+		return mark_safe('<span class="score s17"></span>')
+
+	elif percentage_rating >= 81 and percentage_rating < 91:
+		
+		return mark_safe('<span class="score s18"></span>')
+
+	elif percentage_rating >= 81 and percentage_rating < 96:
+		
+		return mark_safe('<span class="score s19"></span>')
+
+	elif percentage_rating >= 96 and percentage_rating <= 100:
+		
+		return mark_safe('<span class="score s20"></span>')
 
 	else:
 		return "ERROR"
