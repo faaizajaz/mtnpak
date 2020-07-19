@@ -33,76 +33,19 @@ class RouteView(generic.DetailView):
 
 		return current_route
 
-
-#Making an API view
-class RouteRatingRedirectAPI1(APIView):
-	#I guess django rest needs to do this
+class RouteRatingAPI(APIView):
+	#make sure authenticated and permitted for api call
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)
-	# i think route_id=None otherwise it saus get got unexpected keyword arg
-	def get(self, request, format=None, route_id=None):
-		#get the route object using route_id
-		route = get_object_or_404(Route, pk=route_id)
-		# set the user to current user
-		user = self.request.user
-		# create a rating object with the score, current route, and current user
-		rating = Rating(score=1.0, route=route, user=user)
-		return Response(route.add_rating(user, rating))
 
-class RouteRatingRedirectAPI2(APIView):
-	#I guess django rest needs to do this
-	authentication_classes = (authentication.SessionAuthentication,)
-	permission_classes = (permissions.IsAuthenticated,)
-	# i think route_id=None otherwise it saus get got unexpected keyword arg
-	def get(self, request, format=None, route_id=None):
-		#get the route object using route_id
+	#routeid and score = None because otherwise it has unepected keyword arg error
+	def get(self, request, format=None, route_id=None, score=None):
 		route = get_object_or_404(Route, pk=route_id)
-		# set the user to current user
 		user = self.request.user
-		# create a rating object with the score, current route, and current user
-		rating = Rating(score=2.0, route=route, user=user)
-		return Response(route.add_rating(user, rating))
-
-class RouteRatingRedirectAPI3(APIView):
-	#I guess django rest needs to do this
-	authentication_classes = (authentication.SessionAuthentication,)
-	permission_classes = (permissions.IsAuthenticated,)
-	# i think route_id=None otherwise it saus get got unexpected keyword arg
-	def get(self, request, format=None, route_id=None):
-		#get the route object using route_id
-		route = get_object_or_404(Route, pk=route_id)
-		# set the user to current user
-		user = self.request.user
-		# create a rating object with the score, current route, and current user
-		rating = Rating(score=3.0, route=route, user=user)
-		return Response(route.add_rating(user, rating))
-
-class RouteRatingRedirectAPI4(APIView):
-	#I guess django rest needs to do this
-	authentication_classes = (authentication.SessionAuthentication,)
-	permission_classes = (permissions.IsAuthenticated,)
-	# i think route_id=None otherwise it saus get got unexpected keyword arg
-	def get(self, request, format=None, route_id=None):
-		#get the route object using route_id
-		route = get_object_or_404(Route, pk=route_id)
-		# set the user to current user
-		user = self.request.user
-		# create a rating object with the score, current route, and current user
-		rating = Rating(score=4.0, route=route, user=user)
-		return Response(route.add_rating(user, rating))
-
-class RouteRatingRedirectAPI5(APIView):
-	#I guess django rest needs to do this
-	authentication_classes = (authentication.SessionAuthentication,)
-	permission_classes = (permissions.IsAuthenticated,)
-	# i think route_id=None otherwise it saus get got unexpected keyword arg
-	def get(self, request, format=None, route_id=None):
-		#get the route object using route_id
-		route = get_object_or_404(Route, pk=route_id)
-		# set the user to current user
-		user = self.request.user
-		# create a rating object with the score, current route, and current user
-		rating = Rating(score=5.0, route=route, user=user)
+		#make rating 
+		rating = Rating(score=score, route=route, user=user)
+		#add rating to route.abs
+		# add_rating returns an average rating.
 		return Response(route.add_rating(user, rating))
 
 

@@ -108,6 +108,7 @@ def inline_user_rating(route, user):
 
 		user_rating_count = route.rating_set.filter(user=user).count()
 
+		#If user has not rated the route, show the star rating widget as usual
 		if user_rating_count == 0:
 
 			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
@@ -118,15 +119,16 @@ def inline_user_rating(route, user):
 				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 				</div>'	% (
 					
-				route.get_api_rate_url_5(),
-				route.get_api_rate_url_4(),
-				route.get_api_rate_url_3(),
-				route.get_api_rate_url_2(),
-				route.get_api_rate_url_1(),	
+				route.get_api_rate_url(5),
+				route.get_api_rate_url(4),
+				route.get_api_rate_url(3),
+				route.get_api_rate_url(2),
+				route.get_api_rate_url(1),	
 
 				))
 
-		elif route.rating_set.filter(user=user).count() > 0:
+		#If the user has already rated it, show the widget with the correct number of stars checked
+		elif user_rating_count > 0:
 
 			if route.rating_set.filter(user=user).count() > 1:
 				return("You are in god mode")
@@ -144,11 +146,11 @@ def inline_user_rating(route, user):
 					<input type="radio" id="star1" name="rating" value="1" data-api="%s" checked/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
-					route.get_api_rate_url_5(),
-					route.get_api_rate_url_4(),
-					route.get_api_rate_url_3(),
-					route.get_api_rate_url_2(),
-					route.get_api_rate_url_1(),	
+					route.get_api_rate_url(5),
+					route.get_api_rate_url(4),
+					route.get_api_rate_url(3),
+					route.get_api_rate_url(2),
+					route.get_api_rate_url(1),	
 
 					))
 
@@ -162,11 +164,11 @@ def inline_user_rating(route, user):
 					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
-					route.get_api_rate_url_5(),
-					route.get_api_rate_url_4(),
-					route.get_api_rate_url_3(),
-					route.get_api_rate_url_2(),
-					route.get_api_rate_url_1(),	
+					route.get_api_rate_url(5),
+					route.get_api_rate_url(4),
+					route.get_api_rate_url(3),
+					route.get_api_rate_url(2),
+					route.get_api_rate_url(1),	
 
 					))
 
@@ -180,11 +182,11 @@ def inline_user_rating(route, user):
 					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
-					route.get_api_rate_url_5(),
-					route.get_api_rate_url_4(),
-					route.get_api_rate_url_3(),
-					route.get_api_rate_url_2(),
-					route.get_api_rate_url_1(),	
+					route.get_api_rate_url(5),
+					route.get_api_rate_url(4),
+					route.get_api_rate_url(3),
+					route.get_api_rate_url(2),
+					route.get_api_rate_url(1),	
 
 					))
 
@@ -198,11 +200,11 @@ def inline_user_rating(route, user):
 					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
-					route.get_api_rate_url_5(),
-					route.get_api_rate_url_4(),
-					route.get_api_rate_url_3(),
-					route.get_api_rate_url_2(),
-					route.get_api_rate_url_1(),	
+					route.get_api_rate_url(5),
+					route.get_api_rate_url(4),
+					route.get_api_rate_url(3),
+					route.get_api_rate_url(2),
+					route.get_api_rate_url(1),	
 
 					))
 
@@ -216,11 +218,11 @@ def inline_user_rating(route, user):
 					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 
-					route.get_api_rate_url_5(),
-					route.get_api_rate_url_4(),
-					route.get_api_rate_url_3(),
-					route.get_api_rate_url_2(),
-					route.get_api_rate_url_1(),	
+					route.get_api_rate_url(5),
+					route.get_api_rate_url(4),
+					route.get_api_rate_url(3),
+					route.get_api_rate_url(2),
+					route.get_api_rate_url(1),	
 
 					))
 		

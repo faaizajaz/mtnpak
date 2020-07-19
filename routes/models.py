@@ -84,6 +84,10 @@ class Route(models.Model):
         from django.urls import reverse
         return reverse('rate-route-api-5', args=[str(self.id)])
 
+    def get_api_rate_url(self, score):
+        from django.urls import reverse
+        return reverse('rate-route-api', args=[str(self.id), score])
+
 
     def get_highest_grade(self):        
         all_grades = []

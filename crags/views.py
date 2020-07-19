@@ -36,7 +36,6 @@ class CragMapAPIView(APIView):
 
 	def get(self, request, format=None, crag_id=None):
 		crag = get_object_or_404(Crag, pk=crag_id)
-		
 		json_list = []
 		route_dict = {}
 		fields_dict = {}		
@@ -83,7 +82,6 @@ class CragMapAPIView(APIView):
 					"fields": fields_dict
 				}
 				json_list.append(route_dict)
-
 
 		return Response(json_list)
 
