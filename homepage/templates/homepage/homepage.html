@@ -26,6 +26,38 @@
     <div class = "col-lg-9">
    
       <script>
+        /*class CragMarker extends L.marker {
+          constructor() {
+            super();
+            this.routes = []
+
+          }
+
+          getRoutes() {
+
+          }
+
+        };*/
+
+        var CragMarker = L.Marker.extend({
+          options: {
+            api_link: "butts"
+          },
+
+          initialise: function(options) {
+
+            L.setOptions(this, options)
+            //this.routes = routes;
+          },
+
+          getData: function() {
+            return this.options.api_link
+          }
+
+
+
+        });
+
         function map_init_basic (map, options) {
           map.setView([33.762521, 73.065268], 11.5);
 
@@ -34,11 +66,39 @@
             var crag_name = '{{crag.name}}';
             var route_count = '{{crag.route_count}}'
             var link = '<a href="crags/' + crag_id + '">' + crag_name + '</a>' + '<br>' + route_count + " routes." ;
+            var api_link_ = '/crags/api/' + crag_id + "/"
+            
             //var link = '{{crag.url}}'
             
-            L.marker(['{{crag.lat}}', '{{crag.lon}}']).bindPopup(link).addTo(map);
+            var instance = new CragMarker(['{{crag.lat}}', '{{crag.lon}}'], {api_link: api_link_}).bindPopup(link).addTo(map).on('click', onClick);
+
+
+
+            console.log(instance.options.api_link);
             //L.marker(['{{crag.lat}}', '{{crag.lon}}']).on('click', onClick).addTo(map);
           {% endfor %}
+
+          function onClick(e) {
+            $.ajax({
+              type: 'GET',
+              url: this.getData(),
+              data: {},
+              success: function(data){
+
+
+                routes = [];
+                console.log(data.length)
+                for (route = 0; route < data.length; route++) {
+
+                  routes.push([data[route].fields.rname, data[route].fields.grade]);
+                }
+                
+                console.log(routes);
+                $(".dynamic-crag").html('<h1>' + routes + '</h1>');
+              }
+            })
+
+          }
 
           //function onClick(e) {
             //alert(this.getLatLng())
@@ -48,13 +108,15 @@
         }
 
 
+
+
       </script>
 
       <!--{% leaflet_map user.first_name callback="window.map_init_basic" %} -->
       {% leaflet_map "homepage-map" callback="window.map_init_basic" %}
       
     </div>
-    <div class = "col-lg-3">
+    <div class="col-lg-3">
       <table id="toproutes"class="table table-sm h-50">
         <thead class="thead-dark">
           <tr>
@@ -76,6 +138,9 @@
       </table>      
     </div>
   </div>
+
+  <div class="dynamic-crag" id="buttsy"></div>
+
 
 {% endblock %}
 

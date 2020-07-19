@@ -5,6 +5,11 @@ from django.shortcuts import get_object_or_404
 from .forms import AddRouteForm, AddCragForm, RouteChoiceForm, AddRouteMultiForm
 from pitches.forms import *
 from django.contrib.auth.decorators import login_required
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+from django.core import serializers
+
 
 
 
@@ -21,6 +26,23 @@ class CragView(generic.DetailView):
 
 	def get_object(self):
 		return get_object_or_404(Crag, pk=self.kwargs['crag_id'])
+
+class CragMapAPIView(APIView):
+	#authentication_classes = (authentication.SessionAuthentication,)
+	#permission_classes = (permissions.IsAuthenticated,)
+
+	def get(self, request, format=None, crag_id=None):
+		crag = get_object_or_404(Crag, pk=crag_id)
+		#data = {}
+		data = serializers.serialize('python', crag.route_set.all())
+		#for route in crag.route_set.all():
+			#data[route.rname] = route.rname
+		#	data.append(route.rname)
+
+		print(data)
+
+		return Response(data)
+
 
 #IN AddRoute, a route and pitch form are both created since for single
 #the route only had 1 pitch. We create the pitch and route here simultatenous
