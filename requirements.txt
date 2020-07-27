@@ -1,4 +1,5 @@
 Django~=3.0.7
+wheel~=0.34.2
 django-leaflet~=0.27.0
 djangorestframework~=3.11.0
 Pillow~=7.0.0
@@ -6,7 +7,6 @@ django-model-utils~=4.0.0
 numpy~=1.17.4
 olefile~=0.46
 pip~=20.0.2
-wheel~=0.34.2
 cryptography~=2.8
 pprint~=0.1
 keyring~=18.0.1
