@@ -20,3 +20,6 @@ docutils~=0.16
 setuptools~=45.2.0
 django-crispy-forms~=1.9.1
 swapper~=1.1.2.post1
+django-mathfilters~=1.0.0
+django-geojson [field]~=3.0.0
+
