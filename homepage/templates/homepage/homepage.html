@@ -26,13 +26,18 @@
     <div class = "col-lg-9">
    
       <script>
+        //extend crag marker to include a string attribute ('options' is how to do it in leaflet)
         var CragMarker = L.Marker.extend({
+          // define options default. 
           options: {
             api_link: "ERROR"
           },
+          // use leaflet set options method to set options
+          // options argument should be a dict.
           initialise: function(options) {
             L.setOptions(this, options)
           },
+          // define a function that returns the api_link option (data attrib) of the marker
           getData: function() {
             return this.options.api_link
           }
@@ -48,23 +53,28 @@
             var link = '<a href="crags/' + crag_id + '">' + crag_name + '</a>' + '<br>' + route_count + " routes." ;
             var api_link_ = '/crags/api/' + crag_id + "/";
             
-            //var link = '{{crag.url}}'
-            
+            // create a new CragMarker instance using the api_link of the crag as the CragMarker's 
+            // api_link option, then add to mapp and bind a click function to it. api_link is passed as a dict.        
             var instance = new CragMarker(['{{crag.lat}}', '{{crag.lon}}'], {api_link: api_link_}).bindPopup(link).addTo(map).on('click', onClick);
-            //L.marker(['{{crag.lat}}', '{{crag.lon}}']).on('click', onClick).addTo(map);
           {% endfor %}
 
+          // when clicked, ajax get request to the url returned by getData() of the current CragMarker
           function onClick(e) {
             $.ajax({
               type: 'GET',
               url: this.getData(),
               data: {},
               success: function(data){
+                $(".dynamic-crag").empty();
                 routes = [];
                 for (route = 0; route < data.length; route++) {
                   routes.push([data[route].fields.name, data[route].fields.grade]);
                 }                
-                $(".dynamic-crag").html('<h1>' + routes + '</h1>');
+                
+                for (route = 0; route < routes.length; route++) {
+                  $(".dynamic-crag").append('<tr>' + '<td>' + routes[route][0] + '</td>' + '<td>' + routes[route][1] + '</td>' + '</tr>');
+                }
+
               }
             })
 
@@ -82,7 +92,7 @@
       
     </div>
     <div class="col-lg-3">
-      <table id="toproutes"class="table table-sm h-50">
+      <table id="toproutes" class="table table-sm h-50">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Top routes</th>
