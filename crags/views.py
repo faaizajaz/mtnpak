@@ -10,10 +10,6 @@ from rest_framework.response import Response
 
 #from rest_framework import authentication, permissions
 
-
-
-
-
 class CragsHome(generic.ListView):
 	template_name = 'crags/crags-home.html'
 	model = Crag
