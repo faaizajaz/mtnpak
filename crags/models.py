@@ -14,7 +14,7 @@ class Crag(models.Model):
         User, on_delete=models.PROTECT, verbose_name='Page author')
     location = PointField()
 
-    comments = GenericRelation(Comment, related_query_name='comments')
+    comments = GenericRelation(Comment, related_query_name='crag-comments')
 
 
 
