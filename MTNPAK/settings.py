@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'grades.apps.GradesConfig',
     'homepage.apps.HomepageConfig',
     'ratings.apps.RatingsConfig',
+    'comments.apps.CommentsConfig',
     'rest_framework',
     'mathfilters',
     'django.contrib.admin',

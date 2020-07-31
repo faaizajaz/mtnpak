@@ -1,0 +1,11 @@
+>>> route = Route.objects.get(pk=4)
+>>> user = User.objects.get(pk=1)
+>>> Comment.objects.create(content_object=route, user=user)
+<Comment: Comment object (1)>
+
+
+>>> route.comments.values_list('user__first_name', flat=True)
+<QuerySet ['Faaiz', 'Aisha']>
+
+>>> route.comments.count()
+2

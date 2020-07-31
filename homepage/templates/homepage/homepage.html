@@ -23,8 +23,7 @@
 {% block home_content %}
 
   <div class="row map-row">
-    <div class = "col-lg-9">
-   
+    <div class = "col-lg-9">   
       <script>
         //extend crag marker to include a string attribute ('options' is how to do it in leaflet)
         var CragMarker = L.Marker.extend({
@@ -74,12 +73,10 @@
                 for (route = 0; route < routes.length; route++) {
                   $(".dynamic-crag").append('<tr>' + '<td>' + routes[route][0] + '</td>' + '<td>' + routes[route][1] + '</td>' + '</tr>');
                 }
-
               }
-            })
-
+            });
+            
           }
-
         }
 
 
