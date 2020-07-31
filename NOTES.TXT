@@ -9,3 +9,5 @@
 
 >>> route.comments.count()
 2
+
+>>> Comment.objects.filter(comments__user=user)

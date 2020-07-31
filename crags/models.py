@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from djgeojson.fields import PointField
+from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
 
 
@@ -13,7 +14,7 @@ class Crag(models.Model):
         User, on_delete=models.PROTECT, verbose_name='Page author')
     location = PointField()
 
-    comments = GenericRelation(Comment)
+    comments = GenericRelation(Comment, related_query_name='comments')
 
 
 
