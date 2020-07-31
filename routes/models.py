@@ -3,11 +3,14 @@ from crags.models import Crag
 from grades.models import Grade
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
+from django_quill.fields import QuillField
 
 
 class Route(models.Model):
     rname = models.CharField(max_length=500, verbose_name='Route Name')
-    rdescription = models.CharField(max_length=10000, verbose_name='Route Description')
+    #rdescription = models.CharField(max_length=10000, verbose_name='Route Description')
+    rdescription = QuillField(max_length=10000, verbose_name='Route description')
+
     ropener = models.CharField(max_length=500, verbose_name='Route Opener')
     rcrag = models.ForeignKey(Crag, on_delete=models.CASCADE, null=True, verbose_name='Crag')
     #In case of multipitch, the highest grade of all pitches
@@ -23,7 +26,9 @@ class Route(models.Model):
 
     comments = GenericRelation(Comment)
 
+    
 
+    
     def __str__(self):
         return self.rname
 

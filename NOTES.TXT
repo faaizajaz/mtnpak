@@ -11,3 +11,19 @@
 2
 
 >>> Comment.objects.filter(comments__user=user)
+
+
+
+
+
+## TO Change height of quill box do this in template with the form #
+
+{% block custom_css %}
+<style>
+
+.ql-editor{
+    min-height:200px;
+}
+
+</style>
+{% endblock %}

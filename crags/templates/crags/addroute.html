@@ -3,6 +3,20 @@
 
 {% load crispy_forms_tags %}
 
+{% block custom_js %}
+{{ form.media }}
+{% endblock %}
+
+{% block custom_css %}
+<style>
+
+.ql-editor{
+    min-height:200px;
+}
+
+</style>
+{% endblock %}
+
 {% block page_title %}
 	Add a route
 {% endblock %}

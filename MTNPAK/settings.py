@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'routes.apps.RoutesConfig',
     'crags.apps.CragsConfig',
     'users.apps.UsersConfig',
+    'django_quill',
     'crispy_forms',
     'ascents.apps.AscentsConfig',
     'pitches.apps.PitchConfig',
