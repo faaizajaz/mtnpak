@@ -2,7 +2,6 @@ $(document).ready(function(){
 	$("#star5").click(function(e){
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");
-		console.log(rateUrl)
 		$.ajax({
 			type: 'GET',
 			url: rateUrl,
@@ -12,7 +11,7 @@ $(document).ready(function(){
 				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
-				console.log("error");
+				
 			}
 		});
 
@@ -22,7 +21,6 @@ $(document).ready(function(){
 		//e.preventDefault();
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");
-		console.log(rateUrl)
 		$.ajax({
 			type: 'GET',
 			url: rateUrl,
@@ -34,7 +32,7 @@ $(document).ready(function(){
 				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
-				console.log("error");
+				
 			}
 		});
 
@@ -44,7 +42,6 @@ $(document).ready(function(){
 		//e.preventDefault();
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");
-		console.log(rateUrl)
 		$.ajax({
 			type: 'GET',
 			url: rateUrl,
@@ -56,7 +53,7 @@ $(document).ready(function(){
 				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
-				console.log("error");
+				
 			}
 		});
 
@@ -66,7 +63,6 @@ $(document).ready(function(){
 		//e.preventDefault();
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");
-		console.log(rateUrl)
 		$.ajax({
 			type: 'GET',
 			url: rateUrl,
@@ -78,7 +74,7 @@ $(document).ready(function(){
 				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
-				console.log("error");
+				
 			}
 		});
 
@@ -88,7 +84,6 @@ $(document).ready(function(){
 		//e.preventDefault();
 		var this_ = $(this);
 		var rateUrl = this_.attr("data-api");
-		console.log(rateUrl)
 		$.ajax({
 			type: 'GET',
 			url: rateUrl,
@@ -100,7 +95,7 @@ $(document).ready(function(){
 				$( "#route-rating" ).load(window.location.href + " #route-rating" );
 			}, error: function(error){
 				console.log(error);
-				console.log("error");
+				
 			}
 		});
 

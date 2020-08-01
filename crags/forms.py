@@ -22,7 +22,7 @@ class AddRouteForm(ModelForm):
 
 	class Meta:
 		model = Route
-		fields = ('rname', 'rdescription', 'rtype')
+		fields = ('rname', 'rdescription', 'rtype',)
 		#rlength is set equal to pitch length once pitch is created
 		#exclude = ['rcrag', 'ropener', 'numpitch', 'length', 'base_unit', 'avg_rating', 'grade']
 

@@ -5,11 +5,20 @@
 
 {% block custom_css %}
 	{% leaflet_css plugins="forms" %}
+
+	<style>
+
+		.ql-editor{
+    		min-height:200px;
+		}
+
+	</style>
 {% endblock %}
 
 
 {% block custom_js %}
 	{% leaflet_js plugins="forms" %}
+	{{ form.media }}
 {% endblock %}
 
 

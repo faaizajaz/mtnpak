@@ -10,6 +10,13 @@ from ratings.models import Rating
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
+from comments.models import Comment
+from comments.forms import AddCommentForm
+from django.http import HttpResponseForbidden
+
+import json
+
+
 
 
 
@@ -30,8 +37,31 @@ class RouteView(generic.DetailView):
 	def get_object(self):
 		#get current route and store in variable
 		current_route = get_object_or_404(Route, pk=self.kwargs['route_id'])
-
 		return current_route
+
+
+	# This adds the comment form to the context.
+	def get_context_data(self, **kwargs):
+		context = super(RouteView, self).get_context_data(**kwargs)
+		context['comment_form'] = AddCommentForm()
+		return context
+
+
+class RouteCommentAPI(APIView):
+	authentication_classes = (authentication.SessionAuthentication,)
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def post(self, request, route_id=None, format=None):
+		#print(request.data['csrfmiddlewaretoken'])
+		route = get_object_or_404(Route, pk=route_id)
+		user = self.request.user
+		body = request.data['body']
+		route.comments.create(body=body, user=user)
+		return Response("success")
+		
+
+
+
 
 class RouteRatingAPI(APIView):
 	#make sure authenticated and permitted for api call

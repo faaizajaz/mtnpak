@@ -6,6 +6,7 @@ from django.utils import timezone
 
 
 
+
 # Create your models here.
 # class X FK(Y) : an X can only have one Y 
 
@@ -17,7 +18,7 @@ class Comment(models.Model):
 	updated = models.DateTimeField(verbose_name="Edited date and time", default=timezone.now)
 
 	# Comment body
-	body = models.TextField()
+	body = models.TextField(verbose_name="Comment body")
 
 	# Mandatory stuff for Generic relations
 	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
