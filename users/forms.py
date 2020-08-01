@@ -27,6 +27,7 @@ class UserRegistrationForm(UserCreationForm):
 		user = super(UserRegistrationForm, self).save(commit=False)
 		user.first_name = self.cleaned_data['firstname']
 		user.last_name = self.cleaned_data['lastname']
+		user.is_active = False
 
 		if commit:
 			user.save()
