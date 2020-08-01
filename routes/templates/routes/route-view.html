@@ -96,12 +96,13 @@
 		<input type="submit"></form></input>
 	</form>
 
-
+	<div class="comment-container">
 	{% for comment in route.comments.all %}
 		<p>
 		{{ comment.body}}
 		</p>
 	{% endfor %}
+	</div>
 
 <!--custom js for star rating updates -->
 <script src="{% static 'ratings/rating_update.js' %}" type="text/javascript"></script>
