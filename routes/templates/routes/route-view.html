@@ -5,8 +5,8 @@
 {% load crispy_forms_tags %}
 
 {% block custom_js %}
-{{ comment_form.media }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+	{{ comment_form.media }}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 {% endblock %}
 
 
@@ -62,10 +62,10 @@
 		<p>This multipitch is {{ route|measurement_display:request }}</p>
 		{% for pitch in route.pitch_set.all %}
 			<p>
-			{{ pitch|grade_display:request }}
-			{{ pitch|measurement_display:request }}
-			{{ pitch|measurement_unit_display:request }}
-			{{ pitch.pdescription }} 
+				{{ pitch|grade_display:request }}
+				{{ pitch|measurement_display:request }}
+				{{ pitch|measurement_unit_display:request }}
+				{{ pitch.pdescription }} 
 			</p>
 		{% endfor %}
 	{% endif %}
@@ -77,7 +77,7 @@
 
 	<!-- display all ascents for the route -->
 	{% for ascent in route.ascent_set.all %}
-		<p>{{ ascent.date }}  <a href="{% url 'profile' username=ascent.climber.username %}">{{ ascent.climber.username }}</a></p>
+		<p>{{ ascent.date }} <a href="{% url 'profile' username=ascent.climber.username %}">{{ ascent.climber.username }}</a></p>
 	{% endfor %}
 	
 	<!-- add ascent button -->
@@ -95,17 +95,33 @@
 	<!---SHOW COMMENTS -->
 	<div class="comment-container">
 	{% for comment in route.comments.all %}
-		<p>
-		{{comment.user.username}} {{ comment.body}}
-		</p>
+		<div class="comment-card card bg-light">
+			<div class="card-body">
+				<p>
+					<h6 class="card-title">
+						{{comment.user.username}} @ {{comment.created}}
+					</h6>
+
+					<p class="card-text">
+						{{ comment.body}}
+					</p>
+				</p>
+			</div>
+		</div>
+		<br>
 	{% endfor %}
 	</div>
+	
 
+	<div class="card bg-light">
+		<div class="card-body">
 	<form class="route-comment-form" method="post" data-api="{% url 'route-comment-api' route_id=route.id %}">
 		{% csrf_token %}
 		{{comment_form|crispy}}
 		<input type="submit"></form></input>
 	</form>
+</div>
+	</div>
 
 <!--custom js for star rating updates -->
 <script src="{% static 'ratings/rating_update.js' %}" type="text/javascript"></script>

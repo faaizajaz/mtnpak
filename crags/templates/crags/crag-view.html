@@ -19,6 +19,8 @@
 	{% endif %}
 	<h1>{{ crag.cname }}</h1>
 	<h4>Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></h4>
+
+	<p>{{ crag.cdescription.html|safe}}</p>	
 	
 
 	<!-- list all the routes -->
