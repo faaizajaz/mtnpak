@@ -1,8 +1,17 @@
+<!--#####################################################-->
+<!--###################### IMPORTS ######################-->
+<!--#####################################################-->
+
 {% extends 'base.html' %}
 {% load view_filters %}
 {% load mathfilters %}
 {% load static %}
 {% load crispy_forms_tags %}
+
+
+<!--#####################################################-->
+<!--################# CUSTOM JAVASCRIPT #################-->
+<!--#####################################################-->
 
 {% block custom_js %}
 	{{ comment_form.media }}
@@ -10,10 +19,19 @@
 {% endblock %}
 
 
+<!--#####################################################-->
+<!--#################### TITLE BLOCK ####################-->
+<!--#####################################################-->
 
 {% block page_title %}
 	{{ route.rname }}
 {% endblock %}
+
+
+
+<!--#####################################################-->
+<!--#################### CONTENT BLOCK ##################-->
+<!--#####################################################-->
 
 
 {% block content %}
@@ -91,36 +109,42 @@
 	{% endif %}
 
 
+	<p>
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment-collapse" aria-expanded="false" aria-controls="comment-collapse">Show comments</button>
 
-	<!---SHOW COMMENTS -->
-	<div class="comment-container">
-	{% for comment in route.comments.all %}
-		<div class="comment-card card bg-light">
-			<div class="card-body">
-				<p>
-					<h6 class="card-title">
-						{{comment.user.username}} @ {{comment.created}}
-					</h6>
+	</p>
 
-					<p class="card-text">
-						{{ comment.body}}
+	<div class="collapse" id="comment-collapse">
+		<!---SHOW COMMENTS -->
+		<div class="comment-container">
+		{% for comment in route.comments.all %}
+			<div class="comment-card card bg-light">
+				<div class="card-body" style="padding-top: 0px; padding-bottom: 0px">
+					<p>
+						<h6 class="card-title">
+							{{comment.user.username}} @ {{comment.created}}
+						</h6>
+
+						<p class="card-text">
+							{{ comment.body}}
+						</p>
 					</p>
-				</p>
+				</div>
+			</div>
+			<br>
+		{% endfor %}
+		</div>
+		
+		<!-- SHOW COMMENT BOX -->
+		<div class="card bg-light">
+			<div class="card-body">
+				<form class="route-comment-form" method="post" data-api="{% url 'route-comment-api' route_id=route.id %}">
+					{% csrf_token %}
+					{{comment_form|crispy}}
+					<input type="submit"></form></input>
+				</form>
 			</div>
 		</div>
-		<br>
-	{% endfor %}
-	</div>
-	
-
-	<div class="card bg-light">
-		<div class="card-body">
-	<form class="route-comment-form" method="post" data-api="{% url 'route-comment-api' route_id=route.id %}">
-		{% csrf_token %}
-		{{comment_form|crispy}}
-		<input type="submit"></form></input>
-	</form>
-</div>
 	</div>
 
 <!--custom js for star rating updates -->

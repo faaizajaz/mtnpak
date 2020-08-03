@@ -19,6 +19,13 @@
 {% block custom_js %}
 	{% leaflet_js plugins="forms" %}
 	{{ form.media }}
+	<script type="text/javascript">
+		window.addEventListener("map:init", function(e) {
+			var detail = e.detail;
+			detail.map.setView([30.350459, 70.288831], 5);
+		}, false);
+
+	</script>
 {% endblock %}
 
 

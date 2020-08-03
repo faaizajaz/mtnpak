@@ -156,4 +156,7 @@ SERIALIZATION_MODULES = {
     'geojson': 'djgeojson.serializers'
 }
 
+LEAFLET_CONFIG = {
+    'ATTRIBUTION_PREFIX': None
+}
 

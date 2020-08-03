@@ -47,6 +47,8 @@ class RouteView(generic.DetailView):
 		return context
 
 
+# this is the comment api for routes. Comments are posted to this
+# API endpoint.
 class RouteCommentAPI(APIView):
 	authentication_classes = (authentication.SessionAuthentication,)
 	permission_classes = (permissions.IsAuthenticated,)

@@ -52,7 +52,12 @@ class RouteChoiceForm(forms.Form):
 
 
 class AddCragForm(ModelForm):
+
 	class Meta:
+		LEAFLET_WIDGET_ATTRS = {
+			'map_height': '500px',
+			'map_width': '500px',
+		}
 		model = Crag
 		exclude = ['cauthor']
-		widgets = {'location': LeafletWidget()}
+		widgets = {'location': LeafletWidget(LEAFLET_WIDGET_ATTRS)}
