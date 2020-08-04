@@ -11,7 +11,7 @@ class Crag(models.Model):
     cname = models.CharField(max_length=500, verbose_name='Name')
     cdescription = QuillField(max_length=50000, verbose_name='Crag description')
     cauthor = models.ForeignKey(  # Many crags can have one author
-        User, on_delete=models.PROTECT, verbose_name='Page author')
+        User, on_delete=models.CASCADE, verbose_name='Page author')
     location = PointField()
 
     comments = GenericRelation(Comment, related_query_name='crag-comments')

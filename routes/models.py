@@ -14,7 +14,7 @@ class Route(models.Model):
     ropener = models.CharField(max_length=500, verbose_name='Route Opener')
     rcrag = models.ForeignKey(Crag, on_delete=models.CASCADE, null=True, verbose_name='Crag')
     #In case of multipitch, the highest grade of all pitches
-    grade = models.ForeignKey(Grade, on_delete=models.DO_NOTHING, verbose_name='Pitch Grade', null=True)
+    grade = models.ForeignKey(Grade, on_delete=models.CASCADE, verbose_name='Pitch Grade', null=True)
     
     # equal to pitch length if one pitch, otherwise sum of pitch length
     length = models.FloatField(verbose_name='Route Length', default=0)
