@@ -67,4 +67,4 @@ class UpdateUserPrefsForm(forms.ModelForm):
 
 	class Meta:
 		model = UserPref
-		fields = ['grade_pref', 'measurement_pref']
+		fields = ['grade_pref', 'measurement_pref', 'timezone_pref']

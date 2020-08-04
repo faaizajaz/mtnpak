@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from model_utils import Choices
+from timezone_utils.fields import TimeZoneField
+from timezone_utils.choices import PRETTY_ALL_TIMEZONES_CHOICES
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -48,6 +50,8 @@ class UserPref(models.Model):
 		verbose_name='Measurement system preference',
 		max_length=20
 		)
+
+	timezone_pref = TimeZoneField(choices=PRETTY_ALL_TIMEZONES_CHOICES, default='Asia/Karachi')
 
 	def __str__(self):
 		return self.user.first_name

@@ -6,6 +6,8 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
+import pytz
 
 
 def RegisterUser(request):
@@ -79,7 +81,15 @@ def UpdateUserPrefs(request, **kwargs):
 			#Also done in users.signals.create_pref_session when session is created
 			request.session['grade_pref'] = request.user.userpref.grade_pref
 			request.session['measurement_pref'] = request.user.userpref.measurement_pref
-			return redirect('profile', username=kwargs['username'])
+
+
+			if request.user.userpref.timezone_pref:
+				request.session['timezone_pref'] = str(request.user.userpref.timezone_pref)
+				timezone.activate(pytz.timezone(request.session['timezone_pref']))
+			else:
+				timezone.activate(pytz.timezone('Asia/Karachi'))
+
+
 			
 	else:
 		form = UpdateUserPrefsForm(instance = instance)
