@@ -5,6 +5,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
 from django_quill.fields import QuillField
 from cities.models import City
+from utils.spatial import calculate_distance
 
 
 
@@ -36,6 +37,16 @@ class Crag(models.Model):
     	return self.route_set.all().count()
 
 
-    def get_nearest_city(self):
+    #def get_nearest_city(self):
+
+
+
+
+
+
+
+
+
         
+
 
