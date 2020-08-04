@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 import pytz
+from django.conf import settings
 
 
 def RegisterUser(request):
@@ -83,12 +84,15 @@ def UpdateUserPrefs(request, **kwargs):
 			request.session['measurement_pref'] = request.user.userpref.measurement_pref
 
 
+			# if timezone_pref is set, activate timezone, else use default.
 			if request.user.userpref.timezone_pref:
 				request.session['timezone_pref'] = str(request.user.userpref.timezone_pref)
 				timezone.activate(pytz.timezone(request.session['timezone_pref']))
 			else:
-				timezone.activate(pytz.timezone('Asia/Karachi'))
+				timezone.activate(pytz.timezone(settings.TIME_ZONE))
 
+			# once saved, redirect to user profile.
+			return redirect('profile', username=kwargs['username'])
 
 			
 	else:
