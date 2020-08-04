@@ -54,7 +54,7 @@ class RouteChoiceForm(forms.Form):
 
 class AddCragForm(ModelForm):
 
-	city = forms.ModelChoiceField(City.objects.all())
+	#city = forms.ModelChoiceField(City.objects.all())
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {
@@ -62,5 +62,5 @@ class AddCragForm(ModelForm):
 			'map_width': '500px',
 		}
 		model = Crag
-		exclude = ['cauthor']
+		exclude = ['cauthor', 'city']
 		widgets = {'location': LeafletWidget(LEAFLET_WIDGET_ATTRS)}

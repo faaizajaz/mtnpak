@@ -37,7 +37,19 @@ class Crag(models.Model):
     	return self.route_set.all().count()
 
 
-    #def get_nearest_city(self):
+    def get_nearest_city(self):
+        cities_dict = {}
+        cities = City.objects.all()
+        for city in cities:
+            cities_dict[city.pk] = calculate_distance(self.location, city.location)
+
+        cities_dict_sorted = {k: v for k, v in sorted(cities_dict.items(), key=lambda x: x[1])}
+        nearest_city_key = next(iter(cities_dict_sorted))
+
+        nearest_city = cities.filter(pk=nearest_city_key).first()
+        self.city = nearest_city
+        print(nearest_city)
+        return
 
 
 

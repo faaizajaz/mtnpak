@@ -3,7 +3,7 @@
 {% load view_filters %}
 
 {% block page_title %}
-	{{ crag.cname }}
+	{{ crag.cname }} 
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 	{% else %}	
 		<a href="{% url 'login' %}">Log in</a>
 	{% endif %}
-	<h1>{{ crag.cname }}</h1>
+	<h1>{{ crag.cname }} {{ crag.city.name }}</h1>
 	<h4>Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></h4>
 
 	<p>{{ crag.cdescription.html|safe}}</p>	

@@ -180,6 +180,7 @@ def AddCrag(request, **kwargs):
 		if form.is_valid():
 			newcrag = form.save(commit=False)
 			newcrag.cauthor = request.user
+			newcrag.get_nearest_city()
 			newcrag.save()
 
 			return redirect('crags-home')
