@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from routes.models import Route
 from .models import Crag
 from leaflet.forms.widgets import LeafletWidget
+from cities.models import City
 
 
 
@@ -52,6 +53,8 @@ class RouteChoiceForm(forms.Form):
 
 
 class AddCragForm(ModelForm):
+
+	city = forms.ModelChoiceField(City.objects.all())
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {

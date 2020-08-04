@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ratings.apps.RatingsConfig',
     'comments.apps.CommentsConfig',
     'routefinder.apps.RoutefinderConfig',
+    'cities.apps.CitiesConfig',
     'rest_framework',
     'mathfilters',
     'django.contrib.admin',

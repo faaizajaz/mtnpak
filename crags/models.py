@@ -4,6 +4,7 @@ from djgeojson.fields import PointField
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
 from django_quill.fields import QuillField
+from cities.models import City
 
 
 
@@ -15,6 +16,11 @@ class Crag(models.Model):
     location = PointField()
 
     comments = GenericRelation(Comment, related_query_name='crag-comments')
+
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='City')
+
+
+
 
 
 
@@ -28,4 +34,8 @@ class Crag(models.Model):
 
     def count_routes(self):
     	return self.route_set.all().count()
+
+
+    def get_nearest_city(self):
+        
 
