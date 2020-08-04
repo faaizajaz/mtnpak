@@ -20,6 +20,7 @@ class Route(models.Model):
     length = models.FloatField(verbose_name='Route Length', default=0)
     # this should be set once and never changed.
     base_unit = models.CharField(max_length=50, verbose_name='R Base_unit')
+    
     rtype = models.CharField(max_length=50, verbose_name="Type of route")
     numpitch = models.CharField(max_length=500, verbose_name='Single or Multi')
     avg_rating = models.FloatField(verbose_name='Average rating', default=0)

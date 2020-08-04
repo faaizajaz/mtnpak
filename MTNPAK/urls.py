@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('crags/', include('crags.urls')),
     path('routes/', include('routes.urls')),
+    path('routefinder/', include('routefinder.urls')),
     path('', include('homepage.urls')),
     path('register/', user_views.RegisterUser, name="register"),
     #path('profile/', user_views.UserProfile, name="profile"),

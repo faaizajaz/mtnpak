@@ -3,432 +3,330 @@
     "model": "grades.grade",
     "pk": 6,
     "fields": {
+        "numgrade": 1,
         "ggrade": "1-",
-        "ydsgrade": "3rd",
-        "ausgrade": "1",
-        "uiaagrade": "I",
-        "sagrade": "1",
-        "ukgrade": "M 1a"
+        "ydsgrade": "3rd"
+
     }
 },
 {
     "model": "grades.grade",
     "pk": 7,
     "fields": {
+        "numgrade": 2,
         "ggrade": "1",
-        "ydsgrade": "4th",
-        "ausgrade": "2",
-        "uiaagrade": "I",
-        "sagrade": "2",
-        "ukgrade": "M 1b"
+        "ydsgrade": "4th"
     }
 },
 {
     "model": "grades.grade",
     "pk": 8,
     "fields": {
+        "numgrade": 3,
         "ggrade": "1+",
-        "ydsgrade": "Easy 5th",
-        "ausgrade": "3",
-        "uiaagrade": "I",
-        "sagrade": "5",
-        "ukgrade": "M 1c"
+        "ydsgrade": "Easy 5th"
+
     }
 },
 {
     "model": "grades.grade",
     "pk": 9,
     "fields": {
+        "numgrade": 4,
         "ggrade": "2-",
-        "ydsgrade": "5",
-        "ausgrade": "4",
-        "uiaagrade": "I",
-        "sagrade": "6",
-        "ukgrade": "MM 1c"
+        "ydsgrade": "5"
+
     }
 },
 {
     "model": "grades.grade",
     "pk": 10,
     "fields": {
+        "numgrade": 5,
         "ggrade": "2",
-        "ydsgrade": "5.1",
-        "ausgrade": "6",
-        "uiaagrade": "II",
-        "sagrade": "7",
-        "ukgrade": "MD 2a"
+        "ydsgrade": "5.1"
     }
 },
 {
     "model": "grades.grade",
     "pk": 11,
     "fields": {
+        "numgrade": 6,
         "ggrade": "3",
-        "ydsgrade": "5.2",
-        "ausgrade": "8",
-        "uiaagrade": "II",
-        "sagrade": "8",
-        "ukgrade": "D 2c"
+        "ydsgrade": "5.2"
+
     }
 },
 {
     "model": "grades.grade",
     "pk": 12,
     "fields": {
+        "numgrade": 7,
         "ggrade": "3+",
-        "ydsgrade": "5.3",
-        "ausgrade": "10",
-        "uiaagrade": "III",
-        "sagrade": "9",
-        "ukgrade": "VD 3a"
+        "ydsgrade": "5.3"
     }
+
 },
 {
     "model": "grades.grade",
     "pk": 13,
     "fields": {
+        "numgrade": 8,
         "ggrade": "4a",
-        "ydsgrade": "5.4",
-        "ausgrade": "12",
-        "uiaagrade": "IV",
-        "sagrade": "10",
-        "ukgrade": "VC 3c"
+        "ydsgrade": "5.4"
+
     }
 },
 {
     "model": "grades.grade",
     "pk": 14,
     "fields": {
+        "numgrade": 9,
         "ggrade": "4b",
-        "ydsgrade": "5.5",
-        "ausgrade": "13",
-        "uiaagrade": "IV+",
-        "sagrade": "11",
-        "ukgrade": "MS 4a"
+        "ydsgrade": "5.5"
     }
 },
 {
     "model": "grades.grade",
     "pk": 15,
     "fields": {
+        "numgrade": 10,
         "ggrade": "4c",
-        "ydsgrade": "5.6",
-        "ausgrade": "14",
-        "uiaagrade": "V",
-        "sagrade": "12",
-        "ukgrade": "S 4b"
+        "ydsgrade": "5.6"
     }
 },
 {
     "model": "grades.grade",
     "pk": 16,
     "fields": {
+        "numgrade": 11,
         "ggrade": "5a",
-        "ydsgrade": "5.7",
-        "ausgrade": "15",
-        "uiaagrade": "V+",
-        "sagrade": "13",
-        "ukgrade": "MVS 4b"
+        "ydsgrade": "5.7"
     }
 },
 {
     "model": "grades.grade",
     "pk": 17,
     "fields": {
+        "numgrade": 12,
         "ggrade": "5b",
-        "ydsgrade": "5.8",
-        "ausgrade": "16",
-        "uiaagrade": "VI-",
-        "sagrade": "15",
-        "ukgrade": "HVS 4c"
+        "ydsgrade": "5.8"
     }
 },
 {
     "model": "grades.grade",
     "pk": 18,
     "fields": {
+        "numgrade": 13,
         "ggrade": "5c",
-        "ydsgrade": "5.9",
-        "ausgrade": "17",
-        "uiaagrade": "VI",
-        "sagrade": "17",
-        "ukgrade": "HVS 5a"
+        "ydsgrade": "5.9"
     }
 },
 {
     "model": "grades.grade",
     "pk": 19,
     "fields": {
+        "numgrade": 14,
         "ggrade": "6a",
-        "ydsgrade": "5.10a",
-        "ausgrade": "18",
-        "uiaagrade": "VI+",
-        "sagrade": "18",
-        "ukgrade": "E 5a"
+        "ydsgrade": "5.10a"
     }
 },
 {
     "model": "grades.grade",
     "pk": 20,
     "fields": {
+        "numgrade": 15,
         "ggrade": "6a+",
-        "ydsgrade": "5.10b",
-        "ausgrade": "19",
-        "uiaagrade": "VII-",
-        "sagrade": "19",
-        "ukgrade": "E2 5b"
+        "ydsgrade": "5.10b"
     }
 },
 {
     "model": "grades.grade",
     "pk": 21,
     "fields": {
+        "numgrade": 16,
         "ggrade": "6b",
-        "ydsgrade": "5.10c",
-        "ausgrade": "20",
-        "uiaagrade": "VII",
-        "sagrade": "20",
-        "ukgrade": "E2 5b"
+        "ydsgrade": "5.10c"
     }
 },
 {
     "model": "grades.grade",
     "pk": 22,
     "fields": {
+        "numgrade": 17,
         "ggrade": "6b+",
-        "ydsgrade": "5.10d",
-        "ausgrade": "21",
-        "uiaagrade": "VII+",
-        "sagrade": "21",
-        "ukgrade": "E3 5b"
+        "ydsgrade": "5.10d"
     }
 },
 {
     "model": "grades.grade",
     "pk": 23,
     "fields": {
+        "numgrade": 18,
         "ggrade": "6c",
-        "ydsgrade": "5.11a",
-        "ausgrade": "22",
-        "uiaagrade": "VII+",
-        "sagrade": "22",
-        "ukgrade": "E3 5c"
+        "ydsgrade": "5.11a"
     }
 },
 {
     "model": "grades.grade",
     "pk": 24,
     "fields": {
+        "numgrade": 19,
         "ggrade": "6c+",
-        "ydsgrade": "5.11c",
-        "ausgrade": "24",
-        "uiaagrade": "VIII-",
-        "sagrade": "24",
-        "ukgrade": "E4 6a"
+        "ydsgrade": "5.11c"
     }
 },
 {
     "model": "grades.grade",
     "pk": 25,
     "fields": {
+        "numgrade": 20,
         "ggrade": "7a",
-        "ydsgrade": "5.11d",
-        "ausgrade": "24",
-        "uiaagrade": "VIII",
-        "sagrade": "25",
-        "ukgrade": "E5 6a"
+        "ydsgrade": "5.11d"
     }
 },
 {
     "model": "grades.grade",
     "pk": 26,
     "fields": {
+        "numgrade": 21,
         "ggrade": "7a+",
-        "ydsgrade": "5.12a",
-        "ausgrade": "25",
-        "uiaagrade": "VIII+",
-        "sagrade": "25",
-        "ukgrade": "E5 6a"
+        "ydsgrade": "5.12a"
     }
 },
 {
     "model": "grades.grade",
     "pk": 27,
     "fields": {
+        "numgrade": 22,
         "ggrade": "7b",
-        "ydsgrade": "5.12b",
-        "ausgrade": "26",
-        "uiaagrade": "VIII+",
-        "sagrade": "26",
-        "ukgrade": "E5 6b"
+        "ydsgrade": "5.12b"
     }
 },
 {
     "model": "grades.grade",
     "pk": 28,
     "fields": {
+        "numgrade": 23,
         "ggrade": "7b+",
-        "ydsgrade": "5.12c",
-        "ausgrade": "27",
-        "uiaagrade": "IX-",
-        "sagrade": "27",
-        "ukgrade": "E6 6b"
+        "ydsgrade": "5.12c"
     }
 },
 {
     "model": "grades.grade",
     "pk": 29,
     "fields": {
+        "numgrade": 24,
         "ggrade": "7c",
-        "ydsgrade": "5.12d",
-        "ausgrade": "28",
-        "uiaagrade": "IX",
-        "sagrade": "28",
-        "ukgrade": "E6 6b"
+        "ydsgrade": "5.12d"
     }
 },
 {
     "model": "grades.grade",
     "pk": 30,
     "fields": {
+        "numgrade": 25,
         "ggrade": "7c+",
-        "ydsgrade": "5.13a",
-        "ausgrade": "29",
-        "uiaagrade": "IX+",
-        "sagrade": "29",
-        "ukgrade": "E6 6c"
+        "ydsgrade": "5.13a"
     }
 },
 {
     "model": "grades.grade",
     "pk": 31,
     "fields": {
+        "numgrade": 26,
         "ggrade": "8a",
-        "ydsgrade": "5.13b",
-        "ausgrade": "29",
-        "uiaagrade": "IX+",
-        "sagrade": "30",
-        "ukgrade": "E7 6c"
+        "ydsgrade": "5.13b"
     }
 },
 {
     "model": "grades.grade",
     "pk": 32,
     "fields": {
+        "numgrade": 27,
         "ggrade": "8a+",
-        "ydsgrade": "5.13c",
-        "ausgrade": "30",
-        "uiaagrade": "X-",
-        "sagrade": "31",
-        "ukgrade": "E7 7a"
+        "ydsgrade": "5.13c"
     }
 },
 {
     "model": "grades.grade",
     "pk": 33,
     "fields": {
+        "numgrade": 28,
         "ggrade": "8b",
-        "ydsgrade": "5.13d",
-        "ausgrade": "31",
-        "uiaagrade": "X",
-        "sagrade": "32",
-        "ukgrade": "E8 7a"
+        "ydsgrade": "5.13d"
     }
 },
 {
     "model": "grades.grade",
     "pk": 34,
     "fields": {
+        "numgrade": 29,
         "ggrade": "8b+",
-        "ydsgrade": "5.14a",
-        "ausgrade": "32",
-        "uiaagrade": "X+",
-        "sagrade": "32",
-        "ukgrade": "E8 7a"
+        "ydsgrade": "5.14a"
     }
 },
 {
     "model": "grades.grade",
     "pk": 35,
     "fields": {
+        "numgrade": 30,
         "ggrade": "8c",
-        "ydsgrade": "5.14b",
-        "ausgrade": "33",
-        "uiaagrade": "X+",
-        "sagrade": "33",
-        "ukgrade": "E9 7b"
+        "ydsgrade": "5.14b"
     }
 },
 {
     "model": "grades.grade",
     "pk": 36,
     "fields": {
+        "numgrade": 31,
         "ggrade": "8c+",
-        "ydsgrade": "5.14c",
-        "ausgrade": "34",
-        "uiaagrade": "XI-",
-        "sagrade": "35",
-        "ukgrade": "E9 7b"
+        "ydsgrade": "5.14c"
     }
 },
 {
     "model": "grades.grade",
     "pk": 37,
     "fields": {
+        "numgrade": 32,
         "ggrade": "9a",
-        "ydsgrade": "5.14d",
-        "ausgrade": "35",
-        "uiaagrade": "XI",
-        "sagrade": "36",
-        "ukgrade": "E10 7c"
+        "ydsgrade": "5.14d"
     }
 },
 {
     "model": "grades.grade",
     "pk": 38,
     "fields": {
+        "numgrade": 33,
         "ggrade": "9a+",
-        "ydsgrade": "5.15a",
-        "ausgrade": "36",
-        "uiaagrade": "XI+",
-        "sagrade": "37",
-        "ukgrade": "E11 7c"
+        "ydsgrade": "5.15a"
     }
 },
 {
     "model": "grades.grade",
     "pk": 39,
     "fields": {
+        "numgrade": 34,
         "ggrade": "9b",
-        "ydsgrade": "5.15b",
-        "ausgrade": "37",
-        "uiaagrade": "XII-",
-        "sagrade": "38",
-        "ukgrade": "E11 8a"
+        "ydsgrade": "5.15b"
     }
 },
 {
     "model": "grades.grade",
     "pk": 40,
     "fields": {
+        "numgrade": 35,
         "ggrade": "9b+",
-        "ydsgrade": "5.15c",
-        "ausgrade": "38",
-        "uiaagrade": "XII",
-        "sagrade": "39",
-        "ukgrade": "E11 8a"
+        "ydsgrade": "5.15c"
     }
 },
 {
     "model": "grades.grade",
     "pk": 41,
     "fields": {
+        "numgrade": 36,
         "ggrade": "9c",
-        "ydsgrade": "5.15d",
-        "ausgrade": "39",
-        "uiaagrade": "XIII-",
-        "sagrade": "41",
-        "ukgrade": "E11 8c"
+        "ydsgrade": "5.15d"
     }
 }
 ]
