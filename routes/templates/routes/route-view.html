@@ -125,7 +125,7 @@
 				<div class="card-body" style="padding-top: 0px; padding-bottom: 0px">
 					<p>
 						<h6 class="card-title">
-							{{comment.user.username}} @ {{comment.created}} {{TIME_ZONE}}
+							{{comment.html_user|safe}} @ {{comment.created}} {{TIME_ZONE}}
 						</h6>
 
 						<p class="card-text">

@@ -16,6 +16,7 @@ class Comment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Comment author")
 	created = models.DateTimeField(verbose_name="Created date and time", editable=False, default=timezone.now)
 	updated = models.DateTimeField(verbose_name="Edited date and time", default=timezone.now)
+	html_user = models.CharField(verbose_name="User name formatted in html for display", max_length=1000)
 
 	# Comment body
 	body = models.TextField(verbose_name="Comment body")
@@ -32,5 +33,11 @@ class Comment(models.Model):
 			self.created = timezone.now()
 		# otherwise set modified
 		self.modified = timezone.now()
+
+		# set the html user display
+		self.html_user = '<a href="' + str(self.user.profile.get_absolute_url()) + '">' + str(self.user.username) + '</a>'
+
 		return super(Comment, self).save(*args, **kwargs)
+
+
 

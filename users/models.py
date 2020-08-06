@@ -26,6 +26,10 @@ class Profile(models.Model):
 			img.thumbnail(output_size)
 			img.save(self.image.path)
 
+	def get_absolute_url(self):
+		from django.urls import reverse
+		return reverse('profile', args=[str(self.user.username)])
+
 		
 
 class UserPref(models.Model):
