@@ -25,7 +25,8 @@ SECRET_KEY = '-045lnb7p(fy!ca40f*(@0akp@^(0xi4skrh3m^n7k0k-!gi+7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# For now, added my thinkpad ip address so that I can host runserver publicly
+ALLOWED_HOSTS = ["192.168.100.3"]
 
 
 # Application definition
