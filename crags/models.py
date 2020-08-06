@@ -20,11 +20,6 @@ class Crag(models.Model):
 
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='City')
 
-
-
-
-
-
     def __str__(self):
         return self.cname
 
@@ -37,18 +32,19 @@ class Crag(models.Model):
     	return self.route_set.all().count()
 
 
-    def get_nearest_city(self):
+    def set_nearest_city(self):
         cities_dict = {}
         cities = City.objects.all()
         for city in cities:
             cities_dict[city.pk] = calculate_distance(self.location, city.location)
 
+        # use dict comprehension to sort dict using the value as the "key" to sort by
         cities_dict_sorted = {k: v for k, v in sorted(cities_dict.items(), key=lambda x: x[1])}
         nearest_city_key = next(iter(cities_dict_sorted))
 
         nearest_city = cities.filter(pk=nearest_city_key).first()
         self.city = nearest_city
-        print(nearest_city)
+
         return
 
 

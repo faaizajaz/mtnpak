@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load view_filters %}
+{% load crispy_forms_tags %}
+{% load tz %}
+
+{% block custom_js %}
+	{{ comment_form.media }}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+{% endblock %}
 
 {% block page_title %}
 	{{ crag.cname }} 
@@ -38,5 +45,46 @@
 	{% if user.is_authenticated %}
 		<h4><a href="{% url 'route-choice' crag_id=crag.id %}">Add new route</a></h4>
 	{% endif %}
+
+	<p>
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment-collapse" aria-expanded="false" aria-controls="comment-collapse">Show comments</button>
+
+	</p>
+
+	<div class="collapse" id="comment-collapse">
+		<!---SHOW COMMENTS -->
+		<div class="comment-container">
+		{% for comment in crag.comments.all %}
+			<div class="comment-card card bg-light">
+				<div class="card-body" style="padding-top: 0px; padding-bottom: 0px">
+					<p>
+						<h6 class="card-title">
+							{{comment.user.username}} @ {{comment.created}} {{TIME_ZONE}}
+						</h6>
+
+						<p class="card-text">
+							{{ comment.body}}
+						</p>
+					</p>
+				</div>
+			</div>
+			<br>
+		{% endfor %}
+		</div>
+		
+		<!-- SHOW COMMENT BOX -->
+		<div class="card bg-light">
+			<div class="card-body">
+				<form class="crag-comment-form" method="post" data-api="{% url 'crag-comment-api' crag_id=crag.id %}">
+					{% csrf_token %}
+					{{comment_form|crispy}}
+					<input type="submit"></form></input>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--custom js for star rating updates -->
+	<script src="{% static 'comments/comments.js' %}" type="text/javascript"></script>
 
 {% endblock %}

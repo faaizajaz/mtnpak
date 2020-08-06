@@ -7,6 +7,8 @@ from pitches.forms import *
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from comments.forms import AddCommentForm
+from rest_framework import authentication, permissions
 
 #from rest_framework import authentication, permissions
 
@@ -23,6 +25,25 @@ class CragView(generic.DetailView):
 
 	def get_object(self):
 		return get_object_or_404(Crag, pk=self.kwargs['crag_id'])
+
+	# Add comment form to the context
+	def get_context_data(self, **kwargs):
+		context = super(CragView, self).get_context_data(**kwargs)
+		context['comment_form'] = AddCommentForm()
+		return context
+
+
+class CragCommentAPI(APIView):
+	authentication_classes = (authentication.SessionAuthentication,)
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def post(self, request, crag_id=None, format=None):
+		crag = get_object_or_404(Crag, pk=crag_id)
+		user = self.request.user
+		body = request.data['body']
+		crag.comments.create(body=body, user=user)
+		return Response("Idk")
+
 
 
 ### NEED TO REDO THIS. NOT DRY, COULD ROLL MY OWN SERIALIZER ####
@@ -180,7 +201,7 @@ def AddCrag(request, **kwargs):
 		if form.is_valid():
 			newcrag = form.save(commit=False)
 			newcrag.cauthor = request.user
-			newcrag.get_nearest_city()
+			newcrag.set_nearest_city()
 			newcrag.save()
 
 			return redirect('crags-home')

@@ -10,11 +10,7 @@ from ratings.models import Rating
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
-from comments.models import Comment
 from comments.forms import AddCommentForm
-from django.http import HttpResponseForbidden
-
-import json
 
 
 
@@ -40,7 +36,8 @@ class RouteView(generic.DetailView):
 		return current_route
 
 
-	# This adds the comment form to the context.
+	# This is a CBV built in method that you can override to add additional
+	# context so, in this case I'm adding the commentform()
 	def get_context_data(self, **kwargs):
 		context = super(RouteView, self).get_context_data(**kwargs)
 		context['comment_form'] = AddCommentForm()
