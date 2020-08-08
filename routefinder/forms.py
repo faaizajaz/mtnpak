@@ -1,35 +1,57 @@
 from django import forms
-from pitches.fields import YDSModelChoiceField, FrenchModelChoiceField
+from django.forms import ModelForm
+from .models import RoutefinderQuery
 from grades.models import Grade
-from cities.models import City
-from django.forms import ModelChoiceField
+from pitches.fields import *
+from leaflet.forms.widgets import LeafletWidget
 
 
 
 
 
-class RouteFinderFormYDS(forms.Form):
+
+class RouteFinderFormFrench(ModelForm):
 	TYPE_CHOICES = (
 	('Sport', 'Sport'),
 	('Trad', 'Trad'),
 	('Mixed', 'Mixed'),
 	)
 
-	max_grade = YDSModelChoiceField(queryset=Grade.objects.all())
 	route_type = forms.ChoiceField(choices=TYPE_CHOICES)
-	city = ModelChoiceField(queryset=City.objects.all())
-
-
-class RouteFinderFormFrench(forms.Form):
-	TYPE_CHOICES = (
-	('Sport', 'Sport'),
-	('Trad', 'Trad'),
-	('Mixed', 'Mixed'),
-	)
-
 	max_grade = FrenchModelChoiceField(queryset=Grade.objects.all(), empty_label="Any", required=False)
+
+	class Meta:
+		LEAFLET_WIDGET_ATTRS = {
+			'map_height': '500px',
+			'map_width': '500px',
+		}
+
+		model = RoutefinderQuery
+		exclude = ['user']
+		widgets = {'location': LeafletWidget(LEAFLET_WIDGET_ATTRS)}
+
+
+class RouteFinderFormYDS(ModelForm):
+	TYPE_CHOICES = (
+	('Sport', 'Sport'),
+	('Trad', 'Trad'),
+	('Mixed', 'Mixed'),
+	)
+
 	route_type = forms.ChoiceField(choices=TYPE_CHOICES)
-	city = ModelChoiceField(queryset=City.objects.all())
+	max_grade = YDSModelChoiceField(queryset=Grade.objects.all(), empty_label="Any", required=False)
+
+	class Meta:
+		LEAFLET_WIDGET_ATTRS = {
+			'map_height': '500px',
+			'map_width': '500px',
+		}
+		model = RoutefinderQuery
+		exclude = ['user']
+		widgets = {'location': LeafletWidget(LEAFLET_WIDGET_ATTRS)}
+
+
+
 
 
 

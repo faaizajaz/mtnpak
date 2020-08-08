@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load leaflet_tags %}
+
+{% block custom_css %}
+	{% leaflet_css plugins="forms" %}
+{% endblock %}
+
+
+{% block custom_js %}
+	{% leaflet_js plugins="forms" %}
+	{{ form.media }}
+	<script type="text/javascript">
+		window.addEventListener("map:init", function(e) {
+			var detail = e.detail;
+			detail.map.setView([30.350459, 70.288831], 5);
+		}, false);
+
+	</script>
+{% endblock %}
+
+{% block page_title %}
+	Route finder
+{% endblock %}
 
 
 {% block content %}

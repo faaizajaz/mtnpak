@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
+{% load view_filters %}
 
 {% block content %}
 
 {% for route in routes %}
-	{{route.rname}}
+	<p>
+		<b>{{route.rname}}</b> 
+		{% for pitch in route.pitch_set.all %} 
+			{{pitch|measurement_display:request}}
+			{{pitch|measurement_unit_display:request}}
+			{{pitch|grade_display:request}}
+		{% endfor %}
+
+	</p>
 {% endfor %}
 
 {% endblock %}
