@@ -43,7 +43,8 @@
         });
 
         function map_init_basic (map, options) {
-          map.setView([33.762521, 73.065268], 11.5);
+          //user_lat and user_lon and zoom_level come from homepage/views.py
+          map.setView(['{{user_lat}}', '{{user_lon}}'], '{{zoom_level}}');
 
           {% for crag in crag_list %}
             var crag_id = '{{crag.crag_id}}';
@@ -147,6 +148,7 @@
 <a href="{% url 'crags-home' %}">See crags</a>
 <br>
 <a href="{% url 'register' %}">Sign up now</a>
+
 
 
 

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
 # Application definition
 

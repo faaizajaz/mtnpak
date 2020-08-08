@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from routes.models import Route
 from crags.models import Crag
+from django.contrib.gis.geoip2 import GeoIP2
+from geoip2.errors import AddressNotFoundError
 
 
 
@@ -32,8 +34,25 @@ def HomePage(request):
         print('REMOTE_ADDR')
         user_ip = request.META.get('REMOTE_ADDR')
 
+    # build some coordinates for homepage map to set its view
+    try:
+        gip = GeoIP2()
+        user_lat, user_lon = list(gip.lat_lon(user_ip))
+        zoom_level = 11.5
+    except AddressNotFoundError:
+        user_lat, user_lon = [33.762521, 73.065268]
+        zoom_level = 11.5
+
+
+
     # build the context
-    context = {'top_routes': top_routes, 'crag_list': crag_list, 'user_ip': user_ip}
+    context = {
+        'top_routes': top_routes, 
+        'crag_list': crag_list, 
+        'user_lat': user_lat,
+        'user_lon': user_lon, 
+        'zoom_level': zoom_level
+    }
 
 
     return render(request, 'homepage/homepage.html', context)
