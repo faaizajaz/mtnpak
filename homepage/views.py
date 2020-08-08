@@ -39,9 +39,10 @@ def HomePage(request):
         gip = GeoIP2()
         user_lat, user_lon = list(gip.lat_lon(user_ip))
         zoom_level = 11.5
+    # If there is no address (e.g. on dev server) set a default map view
     except AddressNotFoundError:
         user_lat, user_lon = [33.762521, 73.065268]
-        zoom_level = 11.5
+        zoom_level = 9.5
 
 
 
