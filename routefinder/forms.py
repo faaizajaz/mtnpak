@@ -51,12 +51,3 @@ class RouteFinderFormYDS(ModelForm):
 		widgets = {'location': LeafletWidget(LEAFLET_WIDGET_ATTRS)}
 
 
-
-
-
-
-
-
-# first add map input to this form.
-
-
