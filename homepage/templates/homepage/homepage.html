@@ -142,12 +142,15 @@
 	<br>
 	<a href="{% url 'profile' username=user.username %}">My Profile</a>
 {% else %}	
+`<a href="{% url 'register' %}">Sign up now</a>
+<br>
 	<a href="{% url 'login' %}">Log in</a>
 {% endif %}
 <br>
 <a href="{% url 'crags-home' %}">See crags</a>
 <br>
-<a href="{% url 'register' %}">Sign up now</a>
+
+<a href="{% url 'route-finder' %}">Try the route finder!</a>
 
 
 

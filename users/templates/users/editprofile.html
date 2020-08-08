@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit your profile {{ user.first_name }}</title>
-</head>
-<body>
-	<!-- Use enctype for having multiple forms on one (in this case, userdata and profile -->
+{% extends 'base.html' %}
+
+{% block page_title %} Edit your profile {{ user.first_name }} {% endblock %}
+
+{% block content %}
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ user_form.as_p }}
@@ -15,5 +13,4 @@
 			</button>
 		</div>
 	</form>
-</body>
-</html>
+{% endblock %}
