@@ -20,10 +20,19 @@ def RouteFinderView(request):
 
 		# if form is valid, run a query on Route objects using form data
 		if form.is_valid():
+			# if the user doesn't select a grade, then select the highest grade.
+			if form.cleaned_data.get('max_grade'):
+				grade = form.cleaned_data.get('max_grade')
+				print(grade.id)
+			else:
+				# 41 is the PK for the 9c grade, which is the highest grade
+				grade = '41'
+
 			routes = Route.objects.filter(
 				# grades less than or equal to form grade
-				grade__lte=form.cleaned_data.get('max_grade'),
-				rtype=form.cleaned_data.get('route_type')
+				grade__lte=grade,
+				rtype=form.cleaned_data.get('route_type'),
+				rcrag__city=form.cleaned_data.get('city')
 			)
 			# return the query results to the results template
 			return render(request, 'routefinder/results.html', {'routes': routes})

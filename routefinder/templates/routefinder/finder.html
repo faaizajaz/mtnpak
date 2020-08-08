@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load leaflet_tags %}
+
+
+{% block custom_css %}
+	{% leaflet_css plugins="forms" %}
+{% endblock %}
+
+
+{% block custom_js %}
+	{% leaflet_js plugins="forms" %}
+	{{ form.media }}
+{% endblock %}
 
 {% block content %}
 

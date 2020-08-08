@@ -22,7 +22,7 @@ def HomePage(request):
     		'lon': crag.location['coordinates'][0]
     		})
     
-    # get the user IP
+    #get the user IP
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         print('x_forwarded_for')
@@ -34,15 +34,17 @@ def HomePage(request):
         print('REMOTE_ADDR')
         user_ip = request.META.get('REMOTE_ADDR')
 
+    #user_ip = [24.9043, 67.0817]
+
     # build some coordinates for homepage map to set its view
     try:
         gip = GeoIP2()
         user_lat, user_lon = list(gip.lat_lon(user_ip))
-        zoom_level = 11.5
+        zoom_level = 9
     # If there is no address (e.g. on dev server) set a default map view
     except AddressNotFoundError:
-        user_lat, user_lon = [33.762521, 73.065268]
-        zoom_level = 9.5
+        user_lat, user_lon = [31, 70]
+        zoom_level = 4.5
 
 
 
