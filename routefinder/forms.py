@@ -6,11 +6,6 @@ from cities.models import City
 from pitches.fields import *
 from leaflet.forms.widgets import LeafletWidget
 
-
-
-
-
-
 class RouteFinderFormFrench(ModelForm):
 	TYPE_CHOICES = (
 		('Any', 'Any'),
