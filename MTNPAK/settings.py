@@ -28,7 +28,8 @@ DEBUG = True
 # For now, added my thinkpad ip address so that I can host runserver publicly
 ALLOWED_HOSTS = [
     '192.168.100.3',
-    '127.0.0.1',
+    '192.168.100.21',
+    '127.0.0.1'
 ]
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
