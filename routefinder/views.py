@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import RouteFinderFormYDS, RouteFinderFormFrench
 from routes.models import Route
+from django.db.models import Q
 
 # Create your views here.
 def RouteFinderView(request):
@@ -20,20 +21,25 @@ def RouteFinderView(request):
 
 		# if form is valid, run a query on Route objects using form data
 		if form.is_valid():
-			# if the user doesn't select a grade, then select the highest grade.
-			if form.cleaned_data.get('max_grade'):
-				grade = form.cleaned_data.get('max_grade')
-				print(grade.id)
-			else:
-				# 41 is the PK for the 9c grade, which is the highest grade
-				grade = '41'
+			# save form data and create a query object
+			data = form.cleaned_data
+			query = Q()
 
-			routes = Route.objects.filter(
-				# grades less than or equal to form grade
-				grade__lte=grade,
-				rtype=form.cleaned_data.get('route_type'),
-				rcrag__city=form.cleaned_data.get('city')
-			)
+			# if the user has selected a grade, add it to the query
+			if data.get('max_grade'):
+				query.add(Q(grade__lte=data.get('max_grade')), Q.AND)
+
+			# if the user has selected a route type, add it to the query
+			if data.get('route_type') != "Any":
+				query.add(Q(rtype=data.get('route_type')), Q.AND)
+
+			# if the user has selected a city, add it to the query
+			if data.get('city'):
+				query.add(Q(rcrag__city=data.get('city')), Q.AND)
+
+			# filter route objects with the wuery
+			routes = Route.objects.filter(query)
+
 			# return the query results to the results template
 			return render(request, 'routefinder/results.html', {'routes': routes})
 
