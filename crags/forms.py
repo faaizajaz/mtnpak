@@ -33,7 +33,7 @@ class AddRouteMultiForm(ModelForm):
 		('Sport', 'Sport'),
 		('Trad', 'Trad'),
 		('Mixed', 'Mixed'),
-		)
+	)
 	rtype = forms.ChoiceField(choices=CHOICES)
 
 	class Meta:
@@ -47,7 +47,7 @@ class RouteChoiceForm(forms.Form):
 	CHOICES = (
 		('single', 'single'),
 		('multi', 'multi')
-		)
+	)
 	choice = forms.ChoiceField(choices=CHOICES)
 
 
@@ -55,6 +55,13 @@ class RouteChoiceForm(forms.Form):
 class AddCragForm(ModelForm):
 
 	#city = forms.ModelChoiceField(City.objects.all())
+	TOPROPE_CHOICES = (
+		('No information', 'No information'),
+		('No access', 'No access'),
+		('Some routes', 'Some routes'),
+		('All routes', 'All routes'),
+	)
+	toprope = forms.ChoiceField(choices=TOPROPE_CHOICES)
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {

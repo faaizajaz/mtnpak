@@ -15,10 +15,10 @@ class Crag(models.Model):
     cauthor = models.ForeignKey(  # Many crags can have one author
         User, on_delete=models.CASCADE, verbose_name='Page author')
     location = PointField()
-
     comments = GenericRelation(Comment, related_query_name='crag-comments')
-
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='City')
+    toprope = models.CharField(max_length=50, verbose_name='Top rope access')
+
 
     def __str__(self):
         return self.cname
