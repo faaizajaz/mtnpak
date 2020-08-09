@@ -9,6 +9,7 @@ class RoutefinderQuery(models.Model):
 	max_grade = models.ForeignKey(Grade, on_delete=models.CASCADE, verbose_name="Maximum grade")
 	city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='Query city')
 	route_type = models.CharField(max_length=100, verbose_name='Type of route')
+	toprope = models.CharField(max_length=100, verbose_name='Top rope access')
 	#location = PointField()
 
 

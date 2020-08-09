@@ -14,9 +14,15 @@ class RouteFinderFormFrench(ModelForm):
 		('Mixed', 'Mixed'),
 	)
 
+	TOPROPE_CHOICES = (
+		('Any', 'Any'),
+		('Must have toprope access', 'Must have toprope access'),
+	)
+
 	route_type = forms.ChoiceField(choices=TYPE_CHOICES)
 	max_grade = FrenchModelChoiceField(queryset=Grade.objects.all(), empty_label="Any", required=False)
 	city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Any", required=False)
+	toprope = forms.ChoiceField(choices=TOPROPE_CHOICES)
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {
@@ -36,10 +42,17 @@ class RouteFinderFormYDS(ModelForm):
 		('Trad', 'Trad'),
 		('Mixed', 'Mixed'),
 	)
+	
+	TOPROPE_CHOICES = (
+		('Any', 'Any'),
+		('Must have toprope access', 'Must have toprope access'),
+	)
 
 	route_type = forms.ChoiceField(choices=TYPE_CHOICES)
 	max_grade = YDSModelChoiceField(queryset=Grade.objects.all(), empty_label="Any", required=False)
 	city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Any", required=False)
+	toprope = forms.ChoiceField(choices=TOPROPE_CHOICES)
+
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {

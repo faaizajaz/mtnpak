@@ -5,7 +5,8 @@
 
 {% for route in routes %}
 	<p>
-		<b>{{route.rname}}</b> 
+		<b>{{route.rname}}</b>
+		<i><u>{{route.rcrag}}</u></i>
 		{% for pitch in route.pitch_set.all %} 
 			{{pitch|measurement_display:request}}
 			{{pitch|measurement_unit_display:request}}

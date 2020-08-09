@@ -30,15 +30,20 @@ def RouteFinderView(request):
 				query.add(Q(grade__lte=data.get('max_grade')), Q.AND)
 
 			# if the user has selected a route type, add it to the query
-			if data.get('route_type') != "Any":
+			if data.get('route_type') != 'Any':
 				query.add(Q(rtype=data.get('route_type')), Q.AND)
 
 			# if the user has selected a city, add it to the query
 			if data.get('city'):
 				query.add(Q(rcrag__city=data.get('city')), Q.AND)
 
+			if data.get('toprope') != 'Any':
+				query.add(Q(rcrag__toprope='Some routes'), Q.AND)
+				query.add(Q(rcrag__toprope='All routes'), Q.OR)
+
+
 			# filter route objects with the wuery
-			routes = Route.objects.filter(query)
+			routes = Route.objects.filter(query).order_by('rcrag')
 
 			# return the query results to the results template
 			return render(request, 'routefinder/results.html', {'routes': routes})
