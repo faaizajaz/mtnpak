@@ -37,12 +37,13 @@ def RouteFinderView(request):
 			if data.get('city'):
 				query.add(Q(rcrag__city=data.get('city')), Q.AND)
 
+			# if the user has selected a TR preference, build query with OR
 			if data.get('toprope') != 'Any':
 				query.add(Q(rcrag__toprope='Some routes'), Q.AND)
 				query.add(Q(rcrag__toprope='All routes'), Q.OR)
 
 
-			# filter route objects with the wuery
+			# filter ro ute objects with the query
 			routes = Route.objects.filter(query).order_by('rcrag')
 
 			# return the query results to the results template
