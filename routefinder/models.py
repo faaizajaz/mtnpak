@@ -12,8 +12,6 @@ class RoutefinderQuery(models.Model):
 	toprope = models.CharField(max_length=100, verbose_name='Top rope access')
 	#location = PointField()
 
-
-
 	def __str__(self):
 		return self.user
 
