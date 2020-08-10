@@ -13,10 +13,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 
-        <!--custom CSS for inline star ratings -->
-    <link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}">
-
-    <link rel="stylesheet" type="text/css" href="{% static 'homepage/css/homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/base.css' %}">
 
     {% block custom_css %}
     {% endblock %}
@@ -51,8 +48,8 @@
 
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark static-top">
+      <div class="container base-container">
         <a class="navbar-brand" href="{% url 'home-page' %}">Crags.pk</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
