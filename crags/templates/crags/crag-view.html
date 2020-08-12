@@ -77,7 +77,7 @@
 		<!-- SHOW COMMENT BOX -->
 		<div class="card bg-light">
 			<div class="card-body">
-				<form class="crag-comment-form" method="post" data-api="{% url 'crag-comment-api' crag_id=crag.id %}">
+				<form class="comment-form" method="post" data-api="{% url 'crag-comment-api' crag_id=crag.id %}">
 					{% csrf_token %}
 					{{comment_form|crispy}}
 					<input type="submit"></form></input>

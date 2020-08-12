@@ -141,7 +141,7 @@
 		<!-- SHOW COMMENT BOX -->
 		<div class="card bg-light">
 			<div class="card-body">
-				<form class="route-comment-form" method="post" data-api="{% url 'route-comment-api' route_id=route.id %}">
+				<form class="comment-form" method="post" data-api="{% url 'route-comment-api' route_id=route.id %}">
 					{% csrf_token %}
 					{{comment_form|crispy}}
 					<input type="submit"></form></input>
