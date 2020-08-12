@@ -2,7 +2,7 @@
 
 {% block page_title %} Edit your profile {{ user.first_name }} {% endblock %}
 
-{% block content %}
+{% block main_content %}
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ user_form.as_p }}
