@@ -11,6 +11,12 @@
 
 
 
+{% block custom_css %}
+    	<!--custom CSS for star ratings -->
+	<link rel="stylesheet" type="text/css" href="{% static 'ratings/star_rating.css' %}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 <!--#####################################################-->
 <!--################# CUSTOM JAVASCRIPT #################-->
@@ -56,8 +62,7 @@
 
 	<p id='route-rating'>This route is rated: {{route|inline_rating}} with {{route.rating_set.all.count}} votes</p>
 
-	<!--custom CSS for star ratings -->
-	<link rel="stylesheet" type="text/css" href="{% static 'ratings/star_rating.css' %}" rel="stylesheet">
+
 
 	{{ route|inline_user_rating:user }}	
 

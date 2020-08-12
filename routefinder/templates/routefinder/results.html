@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% load view_filters %}
+{% load static %}
+
+{% block custom_css %}
+    	<!--custom CSS for star ratings -->
+	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block main_content %}
 
