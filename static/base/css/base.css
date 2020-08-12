@@ -1,7 +1,39 @@
+/* sets the backround colr of the viewport */
 body {
 	background-color: #fffafb;
 }
 
+
+/* sets the color of the top navbar */
 .navbar {
-	background-color: #053B06;
+	background-color: #fffafb;
+	min-height: 104px;
 }
+
+/* sets the text and bg color of the side nav */
+.sidenav-col {
+	background-color: #2E282A;
+	color: #6A994E;
+}
+
+/* sets the link color in the side nav */
+.sidenav-col > div > ul > li > a {
+	color: #6A994E; 
+}
+
+.logo {
+	background-color: #6A994E;
+}
+
+
+.page-heading {
+	font-size: 50px;
+}
+
+/*.cola {
+	background-color: red;
+}.colb {
+	background-color: blue;
+}.colc {
+	background-color: green;
+}*/
