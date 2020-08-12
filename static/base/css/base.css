@@ -7,7 +7,8 @@ body {
 /* sets the color of the top navbar */
 .navbar {
 	background-color: #fffafb;
-	min-height: 104px;
+	min-height: 95px;
+	padding-bottom: 0px;
 }
 
 /* sets the text and bg color of the side nav */
@@ -37,3 +38,14 @@ body {
 }.colc {
 	background-color: green;
 }*/
+
+.nav-body-divider {
+	border-bottom: 1px solid #8c8b8b;
+	vertical-align: top;
+	margin-top: 0px;
+}
+
+.divider-row {
+	height: 25px;
+	vertical-align: top;
+}
