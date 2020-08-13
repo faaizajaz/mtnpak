@@ -2,6 +2,10 @@
 
 {% block page_title %} {{object.username}} {% endblock %}
 
+{% block body_title %}
+	{{ user.first_name }} {{ user.last_name }}
+{% endblock %}
+
 
 
 {% block main_content %}
