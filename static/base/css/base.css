@@ -18,7 +18,7 @@ body {
 }
 
 /* sets the link color in the side nav */
-.sidenav-col > div > ul > li > a {
+.sidenav-col > div > div> div> ul > li > a {
 	color: #6A994E; 
 }
 
@@ -48,4 +48,18 @@ body {
 .divider-row {
 	height: 25px;
 	vertical-align: top;
+}
+
+.nav-link {
+	padding-bottom: 0px;
+}
+
+.page-heading {
+	padding-bottom: 0px
+}
+
+@media (min-width: 1200px) {
+	.container {
+		min-width: 75%;
+	}
 }
