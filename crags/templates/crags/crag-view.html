@@ -4,6 +4,11 @@
 {% load crispy_forms_tags %}
 {% load tz %}
 
+{% block custom_css %}
+    	<!--custom CSS for star ratings -->
+	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block custom_js %}
 	{{ comment_form.media }}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
