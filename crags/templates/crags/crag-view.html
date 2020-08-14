@@ -25,6 +25,7 @@
 {% block main_content %}
 	<h2>{{ crag.city.name }}</h2>
 	<div class="row">
+		<!-- TAB NAVIGATION BAR -->
 		<div class="col-lg-6 text-center">
 			<span class="float-lg-left">
 				<ul class="nav nav-tabs">
@@ -40,6 +41,8 @@
 				</ul>
 			</span>
 		</div>
+
+		<!-- Crag maintainer info -->
 		<div class="col-lg-6 text-center">
 			<span class="float-lg-right">
 				Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a>
@@ -47,6 +50,7 @@
 		</div>
 	</div>
 
+	<!-- Tab content section -->
 	<div class="col-lg-12">
 		
 		<!-- Tab panes -->
