@@ -5,7 +5,7 @@
 {% load tz %}
 
 {% block custom_css %}
-    	<!--custom CSS for star ratings -->
+  <!--custom CSS for star ratings -->
 	<link rel="stylesheet" type="text/css" href="{% static 'ratings/rating_display.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -23,65 +23,60 @@
 {% endblock %}
 
 {% block main_content %}
-
 	<h2>{{ crag.city.name }}</h2>
-
-		<div class="row tabs-row">
-
-	<ul class="nav nav-tabs">
-
-			<div class="col-lg-6">
-			  <li class="nav-item">
-			    <a class="nav-link active" data-toggle="tab" href="#general">General</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" data-toggle="tab" href="#routes">Routes</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" data-toggle="tab" href="#map">Map</a>
-			  </li>
-			</div>
-			<div class="col-lg-6">
-		  	<span class="float-right">Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></span>
-		  </div>
-	
-
-	</ul>
-	  </div>
-
-	<!-- Tab panes -->
-	<div class="tab-content">
-		<!-- GENERAL TAB -->
-	  <div class="tab-pane container active" id="general">
-	  		<p><b>Toprope access:</b> {{crag.toprope}}</p>
-
-				<p>{{ crag.cdescription.html|safe}}</p>	
-
-	  	
-	  </div>
-
-	  <!-- MAP TAB -->
-	  <div class="tab-pane container fade" id="map">
-	  	Map here
-	  </div>
-	  <div class="tab-pane container fade" id="routes">
-	  		<!-- list all the routes -->
-			{% for route in object.route_set.all %}
-				<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a>
-				{% for pitch in route.pitch_set.all %}
-					{{ pitch|grade_display:request }}
-				{% endfor %}
-				{{route|inline_rating}}
-				</p>	
-			{% endfor %}
-	  	
-	  </div>
+	<div class="row">
+		<div class="col-lg-6 text-center">
+			<span class="float-lg-left">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+	    			<a class="nav-link active" data-toggle="tab" href="#general">General</a>
+	  			</li>
+	  			<li class="nav-item">
+	    			<a class="nav-link" data-toggle="tab" href="#routes">Routes</a>
+	  			</li>
+	  			<li class="nav-item">
+	    			<a class="nav-link" data-toggle="tab" href="#map">Map</a>
+	  			</li>
+				</ul>
+			</span>
+		</div>
+		<div class="col-lg-6 text-center">
+			<span class="float-lg-right">
+				Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a>
+			</span>		
+		</div>
 	</div>
 
-
-	
-
-
+	<div class="col-lg-12">
+		
+		<!-- Tab panes -->
+		<div class="tab-content">
+			
+			<!-- GENERAL TAB -->
+	  	<div class="tab-pane container active" id="general">
+	  		<p><b>Toprope access:</b> {{crag.toprope}}</p>
+				<p>{{ crag.cdescription.html|safe}}</p>	
+	  	</div>
+	  	
+	  	<!-- MAP TAB -->
+	  	<div class="tab-pane container fade" id="map">
+	  	Map here
+	  	</div>
+	  	
+	  	<!-- ROUTES TAB -->
+	  	<div class="tab-pane container fade" id="routes">
+	  		<!-- list all the routes -->
+				{% for route in object.route_set.all %}
+				<p>
+					<a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a>
+					{% for pitch in route.pitch_set.all %}
+						{{ pitch|grade_display:request }}
+					{% endfor %}
+					{{route|inline_rating}}
+				</p>	
+			{% endfor %}	  	
+	  </div>
+	</div>
 
 	<br><br><br>
 
@@ -89,17 +84,12 @@
 		<h4><a href="{% url 'route-choice' crag_id=crag.id %}">Add new route</a></h4>
 	{% endif %}
 
-
-
 	<!-- Comment toggle button -->
 	<p>
 		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment-collapse" aria-expanded="false" aria-controls="comment-collapse">Show comments</button>
-
 	</p>
 
-
 	<!-- COLLAPSIBLE COMMENTS BOX -->
-
 	<div class="collapse" id="comment-collapse">
 		<!---SHOW COMMENTS -->
 		<div class="comment-container">
@@ -135,5 +125,8 @@
 
 	<!--custom js for star rating updates -->
 	<script src="{% static 'comments/comments.js' %}" type="text/javascript"></script>
+
+</div>
+
 
 {% endblock %}
