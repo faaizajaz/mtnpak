@@ -1,7 +1,11 @@
 $(document).ready(function(){
-	$("#star5").click(function(e){
+	//If click on any of the individual stars
+	$(".indiv-star").click(function(e){
+		//set current star
 		var this_ = $(this);
+		//set rate api url to that of clicked star
 		var rateUrl = this_.attr("data-api");
+		//do an ajax get request to the apropriate url
 		$.ajax({
 			type: 'GET',
 			url: rateUrl,
@@ -14,101 +18,5 @@ $(document).ready(function(){
 				
 			}
 		});
-
 	});
-	$("#star4").click(function(e){
-	//$("input[name='rating']").click(function(e){
-		//e.preventDefault();
-		var this_ = $(this);
-		var rateUrl = this_.attr("data-api");
-		$.ajax({
-			type: 'GET',
-			url: rateUrl,
-			data: {},
-			success: function(data){
-				//$("#avg_score").html(data);
-				//$(".rating").hide();
-				//$(".user-rating").show();
-				$( "#route-rating" ).load(window.location.href + " #route-rating" );
-			}, error: function(error){
-				console.log(error);
-				
-			}
-		});
-
-	});
-	$("#star3").click(function(e){
-	//$("input[name='rating']").click(function(e){
-		//e.preventDefault();
-		var this_ = $(this);
-		var rateUrl = this_.attr("data-api");
-		$.ajax({
-			type: 'GET',
-			url: rateUrl,
-			data: {},
-			success: function(data){
-				//$("#avg_score").html(data);
-				//$(".rating").hide();
-				//$(".user-rating").show();
-				$( "#route-rating" ).load(window.location.href + " #route-rating" );
-			}, error: function(error){
-				console.log(error);
-				
-			}
-		});
-
-	});
-	$("#star2").click(function(e){
-	//$("input[name='rating']").click(function(e){
-		//e.preventDefault();
-		var this_ = $(this);
-		var rateUrl = this_.attr("data-api");
-		$.ajax({
-			type: 'GET',
-			url: rateUrl,
-			data: {},
-			success: function(data){
-				//$("#avg_score").html(data);
-				//$(".rating").hide();
-				//$(".user-rating").show();
-				$( "#route-rating" ).load(window.location.href + " #route-rating" );
-			}, error: function(error){
-				console.log(error);
-				
-			}
-		});
-
-	});
-	$("#star1").click(function(e){
-	//$("input[name='rating']").click(function(e){
-		//e.preventDefault();
-		var this_ = $(this);
-		var rateUrl = this_.attr("data-api");
-		$.ajax({
-			type: 'GET',
-			url: rateUrl,
-			data: {},
-			success: function(data){
-				//$("#avg_score").html(data);
-				//$(".rating").hide();
-				//$(".user-rating").show();
-				$( "#route-rating" ).load(window.location.href + " #route-rating" );
-			}, error: function(error){
-				console.log(error);
-				
-			}
-		});
-
-	});
-
-
-	//$("#user-rating").click(function(){
-	//	$("#re-rate").show();
-	//});
-
-	//$("#re-rate-link").click(function(){
-		//alert("want to re-rate")
-		
-	//});
 });
-//data.liked

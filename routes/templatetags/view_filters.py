@@ -152,11 +152,11 @@ def inline_user_rating(route, user):
 		if user_rating_count == 0:
 
 			return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
-				<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
-				<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
-				<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
-				<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
-				<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+				<input class="indiv-star" type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+				<input class="indiv-star" type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+				<input class="indiv-star" type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+				<input class="indiv-star" type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+				<input class="indiv-star" type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 				</div>'	% (
 					
 				route.get_api_rate_url(5),
@@ -179,11 +179,11 @@ def inline_user_rating(route, user):
 			if user_rating == 1 :
 				
 				return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
-					<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
-					<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
-					<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
-					<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
-					<input type="radio" id="star1" name="rating" value="1" data-api="%s" checked/><label class="full" for="star1" title="1 star"></label>\
+					<input class="indiv-star" type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+					<input class="indiv-star" type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+					<input class="indiv-star" type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+					<input class="indiv-star" type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+					<input class="indiv-star" type="radio" id="star1" name="rating" value="1" data-api="%s" checked/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
 					route.get_api_rate_url(5),
@@ -197,11 +197,11 @@ def inline_user_rating(route, user):
 			elif user_rating == 2:
 				
 				return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
-					<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
-					<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
-					<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
-					<input type="radio" id="star2" name="rating" value="2" data-api="%s" checked/><label class="full" for="star2" title="2 stars"></label> \
-					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+					<input class="indiv-star" type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+					<input class="indiv-star" type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+					<input class="indiv-star" type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+					<input class="indiv-star" type="radio" id="star2" name="rating" value="2" data-api="%s" checked/><label class="full" for="star2" title="2 stars"></label> \
+					<input class="indiv-star" type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
 					route.get_api_rate_url(5),
@@ -215,11 +215,11 @@ def inline_user_rating(route, user):
 			elif user_rating == 3:
 				
 				return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
-					<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
-					<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
-					<input type="radio" id="star3" name="rating" value="3" data-api="%s" checked/><label class="full" for="star3" title="3 stars"></label> \
-					<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
-					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+					<input class="indiv-star" type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+					<input class="indiv-star" type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+					<input class="indiv-star" type="radio" id="star3" name="rating" value="3" data-api="%s" checked/><label class="full" for="star3" title="3 stars"></label> \
+					<input class="indiv-star" type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+					<input class="indiv-star" type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
 					route.get_api_rate_url(5),
@@ -233,11 +233,11 @@ def inline_user_rating(route, user):
 			elif user_rating == 4:
 
 				return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
-					<input type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
-					<input type="radio" id="star4" name="rating" value="4" data-api="%s" checked/><label class="full" for="star4" title="4 stars"></label> \
-					<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
-					<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
-					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+					<input class="indiv-star" type="radio" id="star5" name="rating" value="5" data-api="%s"/><label class="full" for="star5" title="5 stars"></label> \
+					<input class="indiv-star" type="radio" id="star4" name="rating" value="4" data-api="%s" checked/><label class="full" for="star4" title="4 stars"></label> \
+					<input class="indiv-star" type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+					<input class="indiv-star" type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+					<input class="indiv-star" type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 						
 					route.get_api_rate_url(5),
@@ -251,11 +251,11 @@ def inline_user_rating(route, user):
 			elif user_rating == 5:
 
 				return mark_safe('<div data-api="#" class="rating" id="star-rating">Your rating: \
-					<input type="radio" id="star5" name="rating" value="5" data-api="%s" checked/><label class="full" for="star5" title="5 stars"></label> \
-					<input type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
-					<input type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
-					<input type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
-					<input type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
+					<input class="indiv-star" type="radio" id="star5" name="rating" value="5" data-api="%s" checked/><label class="full" for="star5" title="5 stars"></label> \
+					<input class="indiv-star" type="radio" id="star4" name="rating" value="4" data-api="%s"/><label class="full" for="star4" title="4 stars"></label> \
+					<input class="indiv-star" type="radio" id="star3" name="rating" value="3" data-api="%s"/><label class="full" for="star3" title="3 stars"></label> \
+					<input class="indiv-star" type="radio" id="star2" name="rating" value="2" data-api="%s"/><label class="full" for="star2" title="2 stars"></label> \
+					<input class="indiv-star" type="radio" id="star1" name="rating" value="1" data-api="%s"/><label class="full" for="star1" title="1 star"></label>\
 					</div>'	% (
 
 					route.get_api_rate_url(5),
