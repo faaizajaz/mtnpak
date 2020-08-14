@@ -1,12 +1,12 @@
 /* sets the backround colr of the viewport */
 body {
-	background-color: #fffafb;
+	background-color: #ffffff;
 }
 
 
 /* sets the color of the top navbar */
 .navbar {
-	background-color: #fffafb;
+	background-color: #ffffff;
 	min-height: 95px;
 	padding-bottom: 0px;
 }
