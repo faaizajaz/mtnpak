@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-no-right-panel.html' %}
 {% load static %}
 {% load view_filters %}
 {% load crispy_forms_tags %}
@@ -24,23 +24,64 @@
 
 {% block main_content %}
 
-	<h1>{{ crag.city.name }}</h1>
-	<h4>Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></h4>
+	<h2>{{ crag.city.name }}</h2>
 
-	<p><b>Toprope access:</b> {{crag.toprope}}</p>
+		<div class="row tabs-row">
 
-	<p>{{ crag.cdescription.html|safe}}</p>	
+	<ul class="nav nav-tabs">
+
+			<div class="col-lg-6">
+			  <li class="nav-item">
+			    <a class="nav-link active" data-toggle="tab" href="#general">General</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#routes">Routes</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#map">Map</a>
+			  </li>
+			</div>
+			<div class="col-lg-6">
+		  	<span class="float-right">Page maintained by: <a href="{% url 'profile' username=crag.cauthor %}">{{ crag.cauthor.first_name }} {{crag.cauthor.last_name}}</a></span>
+		  </div>
 	
 
-	<!-- list all the routes -->
-	{% for route in object.route_set.all %}
-		<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a>
-		{% for pitch in route.pitch_set.all %}
-			{{ pitch|grade_display:request }}
-		{% endfor %}
-		{{route|inline_rating}}
-		</p>	
-	{% endfor %}
+	</ul>
+	  </div>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<!-- GENERAL TAB -->
+	  <div class="tab-pane container active" id="general">
+	  		<p><b>Toprope access:</b> {{crag.toprope}}</p>
+
+				<p>{{ crag.cdescription.html|safe}}</p>	
+
+	  	
+	  </div>
+
+	  <!-- MAP TAB -->
+	  <div class="tab-pane container fade" id="map">
+	  	Map here
+	  </div>
+	  <div class="tab-pane container fade" id="routes">
+	  		<!-- list all the routes -->
+			{% for route in object.route_set.all %}
+				<p><a href="{% url 'route-view' route_id=route.id %}">{{ route.rname }}</a>
+				{% for pitch in route.pitch_set.all %}
+					{{ pitch|grade_display:request }}
+				{% endfor %}
+				{{route|inline_rating}}
+				</p>	
+			{% endfor %}
+	  	
+	  </div>
+	</div>
+
+
+	
+
+
 
 	<br><br><br>
 
@@ -48,10 +89,16 @@
 		<h4><a href="{% url 'route-choice' crag_id=crag.id %}">Add new route</a></h4>
 	{% endif %}
 
+
+
+	<!-- Comment toggle button -->
 	<p>
 		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment-collapse" aria-expanded="false" aria-controls="comment-collapse">Show comments</button>
 
 	</p>
+
+
+	<!-- COLLAPSIBLE COMMENTS BOX -->
 
 	<div class="collapse" id="comment-collapse">
 		<!---SHOW COMMENTS -->
