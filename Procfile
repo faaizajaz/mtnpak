@@ -1,1 +1,1 @@
-web: gunicorn mtnpak.wsgi:application
+web: gunicorn MTNPAK.wsgi:application
