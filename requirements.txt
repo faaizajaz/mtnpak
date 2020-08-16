@@ -29,7 +29,6 @@ multidict==4.7.6
 numpy==1.17.5
 olefile==0.46
 Pillow==7.0.0
-pprint==0.1
 psycopg2==2.8.5
 pycparser==2.20
 pytz==2019.3
