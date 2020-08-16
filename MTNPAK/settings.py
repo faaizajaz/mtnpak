@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'leaflet',
     'djgeojson',
+    'gunicorn'
 ]
 
 MIDDLEWARE = [
