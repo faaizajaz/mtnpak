@@ -11,7 +11,7 @@ from utils.spatial import calculate_distance
 
 class Crag(models.Model):
     cname = models.CharField(max_length=500, verbose_name='Name')
-    cdescription = QuillField(max_length=50000, verbose_name='Crag description')
+    cdescription = QuillField(max_length=50000, verbose_name='Crag description', null=True)
     cauthor = models.ForeignKey(  # Many crags can have one author
         User, on_delete=models.CASCADE, verbose_name='Page author')
     location = PointField()
