@@ -107,7 +107,7 @@ DATABASES = {
         'USER': 'faaiz',
         'PASSWORD': 'Outpo3t33',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432', #this seems to be default that the server wants
     }
 }
 
