@@ -29,7 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '192.168.100.3',
     '192.168.100.21',
-    '127.0.0.1'
+    '127.0.0.1',
+    '108.61.197.187'
 ]
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
