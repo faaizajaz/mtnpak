@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -103,15 +104,19 @@ WSGI_APPLICATION = 'MTNPAK.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mtnpak_db',
-        'USER': 'faaiz',
-        'PASSWORD': 'Outpo3t33',
-        'HOST': 'localhost',
-        'PORT': '5432', #this seems to be default that the server wants
-    }
+    'default': dj_database_url.config()
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'mtnpak_db',
+#        'USER': 'faaiz',
+#        'PASSWORD': 'Outpo3t33',
+#        'HOST': 'localhost',
+#        'PORT': '5432', #this seems to be default that the server wants
+#    }
+#}
 
 
 # Password validation
