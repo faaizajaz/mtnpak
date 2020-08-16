@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     '192.168.100.3',
     '192.168.100.21',
     '127.0.0.1',
-    '192.248.144.163'
+    '192.248.144.163',
+    'crags.pk'
 ]
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
