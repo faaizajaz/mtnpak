@@ -1,1 +1,3 @@
-web: gunicorn mtnpak.wsgi:application --log-file
+web: gunicorn config.wsgi:application
+
+release: python manage.py migrate --noinput
