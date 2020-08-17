@@ -103,20 +103,20 @@ WSGI_APPLICATION = 'MTNPAK.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': dj_database_url.config()
-# }
-
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'mtnpak',
-       'USER': 'faaiz',
-       'PASSWORD': 'Outpo3t33',
-       'HOST': '',
-       'PORT': '', #this seems to be default that the server wants
-   }
+    'default': dj_database_url.config()
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'mtnpak',
+#        'USER': 'faaiz',
+#        'PASSWORD': 'Outpo3t33',
+#        'HOST': '',
+#        'PORT': '', #this seems to be default that the server wants
+#    }
+# }
 
 
 # Password validation
@@ -168,7 +168,8 @@ STATICFILES_DIRS = [
 ]
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/storage'
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'home-page' #when log in, go to crags-home page.
