@@ -20,11 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checsklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-045lnb7p(fy!ca40f*(@0akp@^(0xi4skrh3m^n7k0k-!gi+7'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+
 
 # For now, added my thinkpad ip address so that I can host runserver publicly
 ALLOWED_HOSTS = [
@@ -40,6 +38,7 @@ GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'routes.apps.RoutesConfig',
     'crags.apps.CragsConfig',
     'users.apps.UsersConfig',
@@ -68,6 +67,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -103,20 +103,20 @@ WSGI_APPLICATION = 'MTNPAK.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config()
-}
-
 # DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'mtnpak',
-#        'USER': 'faaiz',
-#        'PASSWORD': 'Outpo3t33',
-#        'HOST': '',
-#        'PORT': '', #this seems to be default that the server wants
-#    }
+#     'default': dj_database_url.config()
 # }
+
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'mtnpak',
+       'USER': 'faaiz',
+       'PASSWORD': 'Outpo3t33',
+       'HOST': '',
+       'PORT': '', #this seems to be default that the server wants
+   }
+}
 
 
 # Password validation
@@ -168,8 +168,8 @@ STATICFILES_DIRS = [
 ]
 
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = '/storage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = '/storage'
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'home-page' #when log in, go to crags-home page.
@@ -186,3 +186,35 @@ LEAFLET_CONFIG = {
     'ATTRIBUTION_PREFIX': None
 }
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+##### CHANGE BELOW FOR DEPLOYMENT ######
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '-045lnb7p(fy!ca40f*(@0akp@^(0xi4skrh3m^n7k0k-!gi+7'
+
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/storage'
+
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config()
+}
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'mtnpak',
+#        'USER': 'faaiz',
+#        'PASSWORD': 'Outpo3t33',
+#        'HOST': '',
+#        'PORT': '', #this seems to be default that the server wants
+#    }
+# }
