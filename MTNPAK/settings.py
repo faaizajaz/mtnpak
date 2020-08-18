@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     '192.168.100.21',
     '127.0.0.1',
     '192.248.144.163',
-    'crags.pk'
+    'crags.pk',
+    '.crags.pk'
 ]
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
@@ -100,23 +101,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'MTNPAK.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': dj_database_url.config()
-# }
-
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'mtnpak',
-       'USER': 'faaiz',
-       'PASSWORD': 'Outpo3t33',
-       'HOST': '',
-       'PORT': '', #this seems to be default that the server wants
-   }
-}
 
 
 # Password validation
@@ -168,8 +152,6 @@ STATICFILES_DIRS = [
 ]
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#MEDIA_ROOT = '/storage'
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'home-page' #when log in, go to crags-home page.
@@ -187,6 +169,11 @@ LEAFLET_CONFIG = {
 }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+
+
+
 
 
 ##### CHANGE BELOW FOR DEPLOYMENT ######
