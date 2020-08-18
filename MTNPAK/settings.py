@@ -168,7 +168,7 @@ LEAFLET_CONFIG = {
     'ATTRIBUTION_PREFIX': None
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
@@ -188,8 +188,6 @@ SECRET_KEY = '-045lnb7p(fy!ca40f*(@0akp@^(0xi4skrh3m^n7k0k-!gi+7'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = '/storage'
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': dj_database_url.config()
