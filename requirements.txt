@@ -10,7 +10,7 @@ dj-database-url==0.5.0
 Django==3.0.8
 django-crispy-forms==1.9.2
 django-geojson==3.0.0
-django-leaflet==0.27.0
+git+git://github.com/faaizajaz/django-leaflet.git
 django-mathfilters==1.0.0
 django-model-utils==4.0.0
 django-quill-editor==0.1.12
