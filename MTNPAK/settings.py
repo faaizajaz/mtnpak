@@ -171,12 +171,9 @@ LEAFLET_CONFIG = {
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-
-
-
-
-
+########### DON't FORGET ###############
 ##### CHANGE BELOW FOR DEPLOYMENT ######
+########################################
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -185,12 +182,12 @@ DEBUG = False
 SECRET_KEY = '-045lnb7p(fy!ca40f*(@0akp@^(0xi4skrh3m^n7k0k-!gi+7'
 
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = '/storage'
 
 
 DATABASES = {
-    'default': dj_database_url.config()
+   'default': dj_database_url.config()
 }
 
 # DATABASES = {
