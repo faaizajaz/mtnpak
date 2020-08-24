@@ -10,7 +10,7 @@ class RoutefinderQuery(models.Model):
 	city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='Query city')
 	route_type = models.CharField(max_length=100, verbose_name='Type of route')
 	toprope = models.CharField(max_length=100, verbose_name='Top rope access')
-	location = PointField()
+	location = PointField(null=True)
 
 	def __str__(self):
 		return self.user
