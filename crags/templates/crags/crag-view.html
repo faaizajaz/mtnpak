@@ -116,15 +116,17 @@
 		</div>
 		
 		<!-- SHOW COMMENT BOX -->
-		<div class="card bg-light">
-			<div class="card-body">
-				<form class="comment-form" method="post" data-api="{% url 'crag-comment-api' crag_id=crag.id %}">
-					{% csrf_token %}
-					{{comment_form|crispy}}
-					<input type="submit"></form></input>
-				</form>
+		{% if user.is_authenticated and perms.comments.add_comment %}
+			<div class="card bg-light">
+				<div class="card-body">
+					<form class="comment-form" method="post" data-api="{% url 'crag-comment-api' crag_id=crag.id %}">
+						{% csrf_token %}
+						{{comment_form|crispy}}
+						<input type="submit"></form></input>
+					</form>
+				</div>
 			</div>
-		</div>
+		{% endif %}
 	</div>
 
 	<!--custom js for star rating updates -->
