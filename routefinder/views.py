@@ -44,6 +44,9 @@ def RouteFinderView(request):
 
 			# filter route objects with the query
 			routes = Route.objects.filter(query).order_by('rcrag')
+
+			# filter the routes by location
+			
 			
 
 			# return the query results to the results template

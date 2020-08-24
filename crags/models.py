@@ -9,6 +9,7 @@ from utils.spatial import calculate_distance
 
 
 
+
 class Crag(models.Model):
     cname = models.CharField(max_length=500, verbose_name='Name')
     cdescription = QuillField(max_length=50000, verbose_name='Crag description')

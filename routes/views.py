@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from comments.forms import AddCommentForm
-
+from django.contrib.auth.decorators import permission_required
 
 
 
@@ -99,6 +99,8 @@ def AddAscentToRoute(request, **kwargs):
 
 #WHY IS THIS VIEW HERE? OR RATHER WHY ARE ADD ROUTE/MULTI AND ROUTE CHOICE in crags.views?
 @login_required
+@permission_required('routes.can_add', login_url="/unauthorized_URL/")
+@permission_required('pitches.can_add', login_url="/unauthorized_URL/")
 def AddPitchMulti(request, **kwargs):
 	##SET SESSION PREFERENCE VARIABLES
 	try:

@@ -11,6 +11,7 @@ import pytz
 from django.conf import settings
 
 
+
 def RegisterUser(request):
 
 	# if request is POST (register button submitted) make user creation
@@ -106,3 +107,8 @@ def UpdateUserPrefs(request, **kwargs):
 
 	else:
 		print("wrong user")
+
+# This view handles it when somebody who does not have the correct permissions 
+# tries to circumvent auth by manually going to URL e.g. crag add, etc.
+def UnauthorizedURL(request):
+	return render(request, 'unauthorized-url.html')
