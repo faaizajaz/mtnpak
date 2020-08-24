@@ -69,7 +69,7 @@ def EditProfile(request, **kwargs):
 		return render(request, 'users/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
 	# this is if somebody manually goes to the edit route for a profile.
 	else:
-		print("Not the right user")
+		return render(request, 'unauthorized-url.html')
 
 
 @login_required
@@ -106,7 +106,7 @@ def UpdateUserPrefs(request, **kwargs):
 		return render(request, 'users/editprefs.html', {'form': form})
 
 	else:
-		print("wrong user")
+		return render(request, 'unauthorized-url.html')
 
 # This view handles it when somebody who does not have the correct permissions 
 # tries to circumvent auth by manually going to URL e.g. crag add, etc.
