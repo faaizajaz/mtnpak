@@ -84,7 +84,7 @@
 
 	<br><br><br>
 
-	{% if user.is_authenticated and perms.routes.can_add and perms.pitches.can_add %}
+	{% if user.is_authenticated and perms.routes.add_route%}
 		<h4><a href="{% url 'route-choice' crag_id=crag.id %}">Add new route</a></h4>
 	{% endif %}
 

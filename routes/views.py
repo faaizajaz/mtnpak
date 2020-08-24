@@ -99,8 +99,8 @@ def AddAscentToRoute(request, **kwargs):
 
 #WHY IS THIS VIEW HERE? OR RATHER WHY ARE ADD ROUTE/MULTI AND ROUTE CHOICE in crags.views?
 @login_required
-@permission_required('routes.can_add', login_url="/unauthorized_URL/")
-@permission_required('pitches.can_add', login_url="/unauthorized_URL/")
+@permission_required('routes.add_route', login_url="/unauthorized_URL/")
+@permission_required('pitches.add_pitch', login_url="/unauthorized_URL/")
 def AddPitchMulti(request, **kwargs):
 	##SET SESSION PREFERENCE VARIABLES
 	try:

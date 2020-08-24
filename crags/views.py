@@ -111,7 +111,7 @@ class CragMapAPIView(APIView):
 #the route only had 1 pitch. We create the pitch and route here simultatenous
 # TODO: add error page (wrong permissions)
 @login_required
-@permission_required('routes.can_add', login_url="/unauthorized_URL/")
+@permission_required('routes.add_route', login_url="/unauthorized_URL/")
 def AddRoute(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteForm(request.POST)
@@ -160,7 +160,7 @@ def AddRoute(request, **kwargs):
 #with no grade or length field in the form (because those are per pitch)
 
 @login_required
-@permission_required('routes.can_add', login_url="/unauthorized_URL/")
+@permission_required('routes.add_route', login_url="/unauthorized_URL/")
 def AddRouteMulti(request, **kwargs):
 	if request.method == 'POST':
 		form = AddRouteMultiForm(request.POST)
@@ -183,7 +183,7 @@ def AddRouteMulti(request, **kwargs):
 
 #choose between single and multipitch when adding new route.
 @login_required
-@permission_required('routes.can_add', login_url="/unauthorized_URL/")
+@permission_required('routes.add_route', login_url="/unauthorized_URL/")
 def RouteChoice(request, **kwargs):
 	if request.method == 'POST':
 		form = RouteChoiceForm(request.POST)
@@ -202,7 +202,7 @@ def RouteChoice(request, **kwargs):
 
 
 @login_required
-@permission_required('crags.can_add', login_url="/unauthorized_URL/")
+@permission_required('crags.add_crag', login_url="/unauthorized_URL/")
 def AddCrag(request, **kwargs):
 	if request.method == 'POST':
 		form = AddCragForm(request.POST)

@@ -21,8 +21,9 @@
 	{% endfor %}
 
 	<br><br><br><br>
+
 	
-	{% if user.is_authenticated and perms.crags.can_add %}
+	{% if user.is_authenticated and perms.crags.add_crag %}
 		<h4><a href="{% url 'add-crag' %}">Add a new crag</a></h4>
 	{% endif %}
 

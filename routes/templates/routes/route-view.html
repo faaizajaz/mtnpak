@@ -103,7 +103,7 @@
 
 
 	<!--If route is multipitch, show add pitch button -->
-	{% if route.numpitch == 'Multipitch' and  perms.pitches.can_add %}
+	{% if route.numpitch == 'Multipitch' and perms.pitches.add_pitch %}
 		<h3><a href="{% url 'add-pitch-multi' route_id=route.id %}">Add a pitch</a></h3>
 	{% endif %}
 
