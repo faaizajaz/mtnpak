@@ -5,6 +5,7 @@ from grades.models import Grade
 from cities.models import City
 from pitches.fields import *
 from leaflet.forms.widgets import LeafletWidget
+from djgeojson.fields import GeoJSONFormField
 
 class RouteFinderFormFrench(ModelForm):
 	TYPE_CHOICES = (
@@ -23,6 +24,7 @@ class RouteFinderFormFrench(ModelForm):
 	max_grade = FrenchModelChoiceField(queryset=Grade.objects.all(), empty_label="Any", required=False)
 	city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Any", required=False)
 	toprope = forms.ChoiceField(choices=TOPROPE_CHOICES)
+	location = GeoJSONFormField(geom_type='POINT')
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {
@@ -52,7 +54,7 @@ class RouteFinderFormYDS(ModelForm):
 	max_grade = YDSModelChoiceField(queryset=Grade.objects.all(), empty_label="Any", required=False)
 	city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Any", required=False)
 	toprope = forms.ChoiceField(choices=TOPROPE_CHOICES)
-
+	location = GeoJSONFormField(geom_type='POINT')
 
 	class Meta:
 		LEAFLET_WIDGET_ATTRS = {
