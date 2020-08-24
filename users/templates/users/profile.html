@@ -11,7 +11,7 @@
 {% block main_content %}
 	<h1>This is the profile page for {{object.username}}</h1>
 
-	{% if user.is_authenticated %}
+	{% if user.is_authenticated and object.username == request.user.username%}
 		<h5><a href="{% url 'edit-profile' username=user.username %}">Edit profile</a></h5>
 		<h5><a href="{% url 'edit-prefs' username=user.username %}">Edit preferences</a></h5>
 	{% endif %}
