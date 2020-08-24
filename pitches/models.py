@@ -13,3 +13,6 @@ class Pitch(models.Model):
 
 
     base_unit = models.CharField(max_length=50, verbose_name='P Base_unit')
+
+    def __str__(self):
+    	return f"{self.proute} - {self.grade} - {self.length}"

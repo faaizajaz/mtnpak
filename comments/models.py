@@ -26,6 +26,9 @@ class Comment(models.Model):
 	object_id = models.IntegerField()
 	content_object = GenericForeignKey()
 
+	def __str__(self):
+		return f"{self.user} - {self.content_object} - {self.created}"
+
 	# Overload save() method to puplated created/updated fields
 	def save(self, *args, **kwargs):
 		# if comment object doesn't already exist, set created

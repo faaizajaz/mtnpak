@@ -9,5 +9,6 @@ class Ascent(models.Model):
 	climber = models.ForeignKey(User, on_delete=models.CASCADE)
 	date = models.DateField(auto_now=False)
 
-	def __str(self):
-		return self.route.rcrag.cname 
+	def __str__(self):
+		#return self.route.rcrag.cname 
+		return f"{self.climber} - {self.route.rname} - {self.date}"

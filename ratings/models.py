@@ -7,4 +7,7 @@ class Rating(models.Model):
 	route = models.ForeignKey(Route, on_delete=models.CASCADE, verbose_name='Rating route')
 
 	score = models.IntegerField(verbose_name='Rating score', default=0)
+
+	def __str__(self):
+		return f"{self.user} - {self.route} - {self.score}"
 	
