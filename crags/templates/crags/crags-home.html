@@ -14,17 +14,18 @@
 
 
 {% block main_content %}
+	<div class="col-lg-8 colb">
 
+		{% for crag in crag_list %}
+			<h2><a href="{% url 'crag-view' crag_id=crag.id %}">{{ crag.cname }}</a></h2>		
+		{% endfor %}
 
-	{% for crag in crag_list %}
-		<h2><a href="{% url 'crag-view' crag_id=crag.id %}">{{ crag.cname }}</a></h2>		
-	{% endfor %}
+		<br><br><br><br>
 
-	<br><br><br><br>
-
-	
-	{% if user.is_authenticated and perms.crags.add_crag %}
-		<h4><a href="{% url 'add-crag' %}">Add a new crag</a></h4>
-	{% endif %}
+		
+		{% if user.is_authenticated and perms.crags.add_crag %}
+			<h4><a href="{% url 'add-crag' %}">Add a new crag</a></h4>
+		{% endif %}
+	</div>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base-no-right-panel.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load leaflet_tags %}
 
@@ -36,6 +36,7 @@
 {% endblock %}
 
 {% block main_content %}
+<div class="col-lg-12 colb">
 	<form method = "POST">
 		{% csrf_token %}
 		{{ form|crispy }}
@@ -45,4 +46,5 @@
 			</button>
 		</div>
 	</form>
+</div>	
 {% endblock %}

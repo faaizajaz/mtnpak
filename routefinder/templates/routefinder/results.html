@@ -8,21 +8,23 @@
 {% endblock %}
 
 {% block main_content %}
+<div class="col-lg-12 colb">
 
-{% for route in routes %}
-	<p>
-		<b>{{route.rname}}</b>
-		<i><u>{{route.rcrag}}</u></i>
-		{% for pitch in route.pitch_set.all %} 
-			{{pitch|measurement_display:request}}
-			{{pitch|measurement_unit_display:request}}
-			{{pitch|grade_display:request}}
-		{% endfor %}
-		{{route.rtype}}
-		{{route|inline_rating}}
+	{% for route in routes %}
+		<p>
+			<b>{{route.rname}}</b>
+			<i><u>{{route.rcrag}}</u></i>
+			{% for pitch in route.pitch_set.all %} 
+				{{pitch|measurement_display:request}}
+				{{pitch|measurement_unit_display:request}}
+				{{pitch|grade_display:request}}
+			{% endfor %}
+			{{route.rtype}}
+			{{route|inline_rating}}
 
 
-	</p>
-{% endfor %}
+		</p>
+	{% endfor %}
+</div>
 
 {% endblock %}

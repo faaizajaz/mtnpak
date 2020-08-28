@@ -48,6 +48,7 @@
 
 
 {% block main_content %}
+<div class="col-lg-12 colb">
 
 	<p>{{ route.numpitch }} {{ route.rtype }}</p>
 
@@ -148,8 +149,10 @@
 		{% endif %}
 	</div>
 
-<!--custom js for star rating updates -->
-<script src="{% static 'ratings/rating_update.js' %}" type="text/javascript"></script>
-<script src="{% static 'comments/comments.js' %}" type="text/javascript"></script>
+	<!--custom js for star rating updates -->
+	<script src="{% static 'ratings/rating_update.js' %}" type="text/javascript"></script>
+	<script src="{% static 'comments/comments.js' %}" type="text/javascript"></script>
+
+</div>
 
 {% endblock %}

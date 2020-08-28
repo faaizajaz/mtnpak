@@ -5,10 +5,13 @@ Logged out
 {% endblock %}
 
 {% block main_content %}
+<div class="col-lg-12 colb">
+
 	<h2>You have been logged out pal</h2>
 	<a href="{% url 'login' %}">Log back in</a>
 	<br>
 	<a href="{% url 'register' %}">Register</a>
 
 	<a href="{% url 'home-page' %}">Home</a>
+</div>
 {% endblock %}

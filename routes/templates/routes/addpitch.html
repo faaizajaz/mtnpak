@@ -7,13 +7,15 @@
 {% endblock %}
 
 {% block main_content %}
+<div class="col-lg-12 colb">
 	<form method = "POST">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form.crispy }}
 		<div>
 			<button type="submit">
 				Add pitch
 			</button>
 		</div>
 	</form>
+</div>
 {% endblock %}

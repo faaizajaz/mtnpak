@@ -9,6 +9,7 @@
 
 <!-- Remember that object is the profile being requested, user & request.user are the user viewing the profile-->
 {% block main_content %}
+<div class="col-lg-12 colb">
 	<h1>This is the profile page for {{object.username}}</h1>
 
 	{% if user.is_authenticated and object.username == request.user.username%}
@@ -26,6 +27,6 @@
 		<a href="{% url 'crag-view' crag_id=ascent.route.rcrag.id %}">{{ ascent.route.rcrag}}--------</a>
 		{{ascent.date}}</p>
 	{% endfor %}
-
+</div>
 
 {% endblock %}

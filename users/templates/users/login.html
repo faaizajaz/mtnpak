@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block page_title %}
 Login to MTNPAK
 {% endblock %}
+
 {% block main_content %}
+<div class="col-lg-12 colb">
 	{% if messages %}
 		{% for message in messages %}
 			{{message}}
@@ -11,11 +14,13 @@ Login to MTNPAK
 	{% endif %}
 	<form method="POST">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 		<div>
 			<button type="submit">
 				Log in
 			</button>
 		</div>
-	<a href="{% url 'register' %}">Sign up here</a>
+		<a href="{% url 'register' %}">Sign up here</a>
+	</form>
+</div>
 {% endblock %}
