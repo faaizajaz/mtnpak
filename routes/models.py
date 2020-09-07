@@ -69,27 +69,6 @@ class Route(models.Model):
         # return the string URL for route-view (in urls.py) using self.id as arg
         return reverse('route-view', args=[str(self.id)])
 
-    #Needed for API
-    def get_api_rate_url_1(self):
-        from django.urls import reverse
-        return reverse('rate-route-api-1', args=[str(self.id)])
-
-    def get_api_rate_url_2(self):
-        from django.urls import reverse
-        return reverse('rate-route-api-2', args=[str(self.id)])
-
-    def get_api_rate_url_3(self):
-        from django.urls import reverse
-        return reverse('rate-route-api-3', args=[str(self.id)])
-
-    def get_api_rate_url_4(self):
-        from django.urls import reverse
-        return reverse('rate-route-api-4', args=[str(self.id)])
-
-    def get_api_rate_url_5(self):
-        from django.urls import reverse
-        return reverse('rate-route-api-5', args=[str(self.id)])
-
     def get_api_rate_url(self, score):
         from django.urls import reverse
         return reverse('rate-route-api', args=[str(self.id), score])
