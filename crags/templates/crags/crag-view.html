@@ -127,7 +127,7 @@
 					{% if user.is_authenticated and perms.comments.add_comment %}
 						<div class="card bg-light">
 							<div class="card-body">
-								<form class="comment-reply-form" id="form-reply-{{comment.id}}" method="post" data-api="{% url 'crag-comment-reply-api' crag_id=crag.id parent_id=comment.id %}">
+								<form class="comment-reply-form" id="form-reply-{{comment.id}}" method="post" data-reply-api="{% url 'crag-comment-reply-api' crag_id=crag.id parent_id=comment.id %}">
 									{% csrf_token %}
 									{{comment_form|crispy}}
 									<input type="submit"></input>

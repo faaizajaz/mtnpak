@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	commentUrl = $(".comment-form").attr("data-api");
-	//commentReplyUrl = $(".comment-reply-form").attr("data-api")
+	commentReplyUrl = $(".comment-reply-form").attr("data-reply-api")
 	
 	$(".comment-form").ajaxForm({
 		url: commentUrl, 
@@ -13,14 +13,29 @@ $(document).ready(function(){
 	});
 
 	//NEED TO REFERENCE REPLY FORMS WITH IDS!!!!
-	$("[id^=form-reply-]").ajaxForm({
-		url: $("[id^=form-reply-]").attr("data-api"), 
+	/*$(".comment-reply-form").ajaxForm({
+		url: commentReplyUrl, 
 		type: "post",
 		success: function(data){
-			console.log($(this).closest("form").attr("data-api"))
+			console.log($(this).attr("data-reply-api"))
 			$( ".comment-container" ).load(window.location.href + " .comment-container" );
-			$("[id^=form-reply-]").clearForm();
+			$(".comment-reply-form").clearForm();
 		}
+	});*/
+	//This is necessary to do the form reply.
+	$(function () {
+		$('form').on('submit', function (e) {
+			$.ajax ({
+				type: 'post',
+				url: $(this).attr("data-reply-api"),
+				data: $(this).serialize(),
+				success: function () {
+					$( ".comment-container" ).load(window.location.href + " .comment-container" );
+					$(".comment-form").clearForm();
+				}
+			});
+			e.preventDefault();
+		});
 	});
 })
 
