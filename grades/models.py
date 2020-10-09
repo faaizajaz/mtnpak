@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Grade(models.Model):
     #ggrade is french grade, need to refactor
     numgrade = models.IntegerField(verbose_name='Integer representation of grades')
