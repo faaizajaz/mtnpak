@@ -1,164 +1,112 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179256873-2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
 
       gtag('config', 'UA-179256873-2');
     </script>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="{% static 'base/css/base.css' %}">
-
     {% block custom_css %}
     {% endblock %}
-    
     <!--Load jQuery -->
-       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-      <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
     {% block custom_js %}
     {% endblock %}
-
-
-
-
     <!-- Make title of page -->
     <title>
-      {% block page_title%}
-      {% endblock %}
+        {% block page_title%}
+        {% endblock %}
     </title>
-    
+</head>
 
-
-
-
-  </head>
-
-  <body>
-  
-
+<body>
     <div class="container" id="base-container">
-      <div class="row" id="base-row">
-        <div class="col-lg-2 sidenav-col">
-          <div class="row logo-row">
-            <div class="col-lg-12 logo-col">
-                <img src="{% static 'base/images/logo.png' %}" class="img-fluid logo" style="background-color: #6A994E;">
-              
-            </div>
-
-          </div>
-
-          <div class="row sidenav-row">
-            <div class="col-lg-12">
-
-
-              <div id="sidebar-wrapper">
-<!--                 <img src="{% static 'base/images/logo.png' %}" class="img-fluid logo" style="background-color: #6A994E;"> -->
-                <ul class="sidebar-nav">
-                  <br>
-
-                  <li> <a href="{% url 'crags-home' %}">See the crags</a> </li>
-                  <li> <a href="{% url 'route-finder' %}">Route finder</a> </li>
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        
-        </div>
-        <div class="col-lg-10">
-          <div class="row nav-row">
-            <div class="col-lg-12">
-              <nav class="navbar navbar-expand-lg navbar-light static-top align-items-end">
-                <div class="container nav-container">
-                  <a class="navbar-brand page-heading" href="{% url 'home-page' %}">{%block body_title %}{%endblock%}</a>
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'home-page' %}">Home
-                          <span class="sr-only">(current)</span>
-                        </a>
-                      </li>
-
-                      {% if user.is_authenticated %}
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'profile' username=request.user.username %}">My Profile</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        </li>
-                      {% else %}
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'login' %}">Login</a>
-                        </li>
-                      {% endif %}
-
-
-                    </ul>
-                  </div>
+        <div class="row" id="base-row">
+            <div class="col-lg-2 sidenav-col">
+                <div class="row logo-row">
+                    <div class="col-lg-12 logo-col">
+                        <img src="{% static 'base/images/logo.png' %}" class="img-fluid logo" style="background-color: #6A994E;">
+                    </div>
                 </div>
-              </nav>
-              <hr class="nav-body-divider col-lg-12"/>
+                <div class="row sidenav-row">
+                    <div class="col-lg-12">
+                        <div id="sidebar-wrapper">
+                            <!--                 <img src="{% static 'base/images/logo.png' %}" class="img-fluid logo" style="background-color: #6A994E;"> -->
+                            <ul class="sidebar-nav">
+                                <br>
+                                <li> <a href="{% url 'crags-home' %}">See the crags</a> </li>
+                                <li> <a href="{% url 'route-finder' %}">Route finder</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-          </div>
-
-          <div class="row body-row">
-
-            <!-- if you want a single column, change to col-lg-12 in the template
+            <div class="col-lg-10">
+                <div class="row nav-row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg navbar-light static-top align-items-end">
+                            <div class="container nav-container">
+                                <a class="navbar-brand page-heading" href="{% url 'home-page' %}">{%block body_title %}{%endblock%}</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarResponsive">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url 'home-page' %}">Home
+                                                <span class="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        {% if user.is_authenticated %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'profile' username=request.user.username %}">My Profile</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <hr class="nav-body-divider col-lg-12" />
+                    </div>
+                </div>
+                <div class="row body-row">
+                    <!-- if you want a single column, change to col-lg-12 in the template
               where you populate this block -->
-
-            <!--<div class="col-lg-8 colb">-->
-              {% block main_content %}
-              {% endblock %}
-            <!--</div>-->
-            <div class="col-lg-4 colc">
-              {% block rightpanel %}
-              {% endblock %}
+                    <!--<div class="col-lg-8 colb">-->
+                    {% block main_content %}
+                    {% endblock %}
+                    <!--</div>-->
+                    <div class="col-lg-4 colc">
+                        {% block rightpanel %}
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
-          </div>
-
         </div>
-
-    <div class="footer">
-      Version 0.0.4a
     </div>
-
-
-
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-
-  </body>
-
+</body>
 
 </html>

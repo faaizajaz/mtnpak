@@ -1,6 +1,7 @@
 /* sets the backround colr of the viewport */
 body {
 	background-color: #ffffff;
+	min-height: 100vh;
 }
 
 
@@ -15,6 +16,7 @@ body {
 .sidenav-col {
 	background-color: #2E282A;
 	color: #6A994E;
+	min-height: 100vh;
 }
 
 /* sets the link color in the side nav */
@@ -81,4 +83,8 @@ body {
 	color: white;
 
 
+}
+
+#base-container {
+	min-height: 100vh;
 }
