@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Crag
+from comments.models import Comment
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from .forms import AddRouteForm, AddCragForm, RouteChoiceForm, AddRouteMultiForm
@@ -43,9 +44,29 @@ class CragCommentAPI(APIView):
 		crag = get_object_or_404(Crag, pk=crag_id)
 		user = self.request.user
 		body = request.data['body']
-		crag.comments.create(body=body, user=user)
+		comment_level = 1
+		crag.comments.create(body=body, user=user, comment_level=comment_level)
 		return Response("Idk")
 
+class CragCommentReplyAPI(APIView):
+	authentication_classes = (authentication.SessionAuthentication,)
+	permission_classes = (permissions.IsAuthenticated,)	
+
+	def post(self, request, crag_id=None, parent_id=None, format=None):
+		max_comment_level = 4
+		crag = get_object_or_404(Crag, pk=crag_id)
+		user = self.request.user
+		body = request.data['body']
+		parent = get_object_or_404(Comment, pk=parent_id)
+		
+		if parent.comment_level < max_comment_level:
+			comment_level = int(parent.comment_level + 1)
+		else:
+			comment_level = 4
+		print("comment parent is " + parent_id)
+
+		crag.comments.create(body=body, user=user, parent=parent, comment_level=comment_level)
+		return Response("Idk")
 
 
 ### NEED TO REDO THIS. NOT DRY, COULD ROLL MY OWN SERIALIZER ####

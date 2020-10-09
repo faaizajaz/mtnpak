@@ -10,5 +10,5 @@ urlpatterns = [
     path('<crag_id>/routechoice/', views.RouteChoice, name='route-choice'),
     path('api/<crag_id>/', views.CragMapAPIView.as_view(), name='crag-map-api'),
     path('api/<crag_id>/comment/', views.CragCommentAPI.as_view(), name='crag-comment-api'),
-
+    path('api/<crag_id>/reply/<parent_id>/', views.CragCommentReplyAPI.as_view(), name='crag-comment-reply-api')
 ]

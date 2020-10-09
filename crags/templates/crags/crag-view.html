@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load view_filters %}
+{% load comment_tags %}
 {% load crispy_forms_tags %}
 {% load tz %}
 
@@ -100,8 +101,8 @@
 		<div class="collapse" id="comment-collapse">
 			<!---SHOW COMMENTS -->
 			<div class="comment-container">
-			{% for comment in crag.comments.all %}
-				<div class="comment-card card bg-light">
+			{% for comment in crag.comments.all|n_level_comments:1 %}
+				<div class="comment-card card bg-light comment-level-{{comment.comment_level}}">
 					<div class="card-body" style="padding-top: 0px; padding-bottom: 0px">
 						<p>
 							<h6 class="card-title">
@@ -109,15 +110,36 @@
 							</h6>
 
 							<p class="card-text">
-								{{ comment.body}}
+								comment id= {{comment.id}}
+								{{ comment.body }}
 							</p>
+							
+							<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment-{{comment.id}}" aria-expanded="false" aria-controls="comment-{{comment.id}}">Reply</button>
 						</p>
 					</div>
+					{% for reply in comment.comment_set.all %}
+						<p>{{reply}}</p>
+					{% endfor %}
 				</div>
 				<br>
+				<!-- COMMENT REPLY BOX GOES HERE -->
+				<div class="collapse" id="comment-{{comment.id}}">
+					{% if user.is_authenticated and perms.comments.add_comment %}
+						<div class="card bg-light">
+							<div class="card-body">
+								<form class="comment-reply-form" id="form-reply-{{comment.id}}" method="post" data-api="{% url 'crag-comment-reply-api' crag_id=crag.id parent_id=comment.id %}">
+									{% csrf_token %}
+									{{comment_form|crispy}}
+									<input type="submit"></input>
+								</form>
+							</div>
+						</div>
+					{% endif %}
+				</div>
+				<!-- -->
 			{% endfor %}
 			</div>
-			
+						
 			<!-- SHOW COMMENT BOX -->
 			{% if user.is_authenticated and perms.comments.add_comment %}
 				<div class="card bg-light">
@@ -125,7 +147,7 @@
 						<form class="comment-form" method="post" data-api="{% url 'crag-comment-api' crag_id=crag.id %}">
 							{% csrf_token %}
 							{{comment_form|crispy}}
-							<input type="submit"></form></input>
+							<input type="submit"></input>
 						</form>
 					</div>
 				</div>

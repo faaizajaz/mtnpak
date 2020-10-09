@@ -23,7 +23,7 @@ class Comment(models.Model):
     content_object = GenericForeignKey()
 
     def __str__(self):
-        return f"{self.user} - {self.content_object} - {self.created}"
+        return f"{self.user} - {self.body}"
 
     # Overload save() method to puplated created/updated fields
     def save(self, *args, **kwargs):
