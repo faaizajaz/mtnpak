@@ -21,12 +21,13 @@ class Comment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.IntegerField()
     content_object = GenericForeignKey()
-
+    
     def __str__(self):
         return f"{self.user} - {self.body}"
 
     # Overload save() method to puplated created/updated fields
     def save(self, *args, **kwargs):
+        # pylint: disable=E1101
         # if comment object doesn't already exist, set created
         if not self.id:
             self.created = timezone.now()
@@ -37,6 +38,3 @@ class Comment(models.Model):
         self.html_user = '<a href="' + str(self.user.profile.get_absolute_url()) + '">' + str(self.user.username) + '</a>'
 
         return super(Comment, self).save(*args, **kwargs)
-
-
-
