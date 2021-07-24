@@ -47,15 +47,3 @@ class Crag(models.Model):
         self.city = nearest_city
 
         return
-
-
-
-
-
-
-
-
-
-        
-
-
