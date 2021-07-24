@@ -1,4 +1,7 @@
-def calculate_distance(point1, point2):
+from djgeojson.fields import PointField
+
+def calculate_distance(point1: PointField, point2: PointField):
+	"""Return the distance between two points, passed in as PointField objects"""
 	import math
 
 	LON1, LAT1 = point1['coordinates']

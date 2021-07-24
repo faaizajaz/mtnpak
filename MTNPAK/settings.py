@@ -20,10 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checsklist/
 
-
-
-
-
 # For now, added my thinkpad ip address so that I can host runserver publicly
 ALLOWED_HOSTS = [
     '192.168.100.3',
@@ -176,27 +172,27 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ########################################
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-045lnb7p(fy!ca40f*(@0akp@^(0xi4skrh3m^n7k0k-!gi+7'
 
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = '/storage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = '/storage'
 
+
+#DATABASES = {
+#   'default': dj_database_url.config()
+#}
 
 DATABASES = {
-   'default': dj_database_url.config()
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'mtnpak',
+       'USER': 'faaiz',
+       'PASSWORD': 'Outpo3t33',
+       'HOST': '',
+       'PORT': '', #this seems to be default that the server wants
+   }
 }
-
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'mtnpak',
-#        'USER': 'faaiz',
-#        'PASSWORD': 'Outpo3t33',
-#        'HOST': '',
-#        'PORT': '', #this seems to be default that the server wants
-#    }
-# }

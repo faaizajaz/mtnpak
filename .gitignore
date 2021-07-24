@@ -145,3 +145,4 @@ cython_debug/
 
 #Pycharm stuff
 .idea/
+mtnpak.sublime-workspace

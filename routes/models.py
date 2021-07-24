@@ -27,11 +27,9 @@ class Route(models.Model):
 
     comments = GenericRelation(Comment, related_query_name='route-comments')
 
-    
-
-    
     def __str__(self):
         return self.rname
+
 
     #function to add rating object to route
     def add_rating(self, user, rating):
@@ -88,29 +86,3 @@ class Route(models.Model):
         self.grade = all_grades[highest_grade_index]
         self.save()
         return            
-
-
-        
-
-
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

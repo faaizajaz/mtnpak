@@ -8,8 +8,6 @@ from cities.models import City
 from utils.spatial import calculate_distance
 
 
-
-
 class Crag(models.Model):
     cname = models.CharField(max_length=500, verbose_name='Name')
     cdescription = QuillField(max_length=50000, verbose_name='Crag description')
@@ -27,6 +25,7 @@ class Crag(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
         # return the string URL for route-view (in urls.py) using self.id as arg
+
         return reverse('crag-view', args=[str(self.id)])
 
     def count_routes(self):
@@ -40,7 +39,7 @@ class Crag(models.Model):
             cities_dict[city.pk] = calculate_distance(self.location, city.location)
 
         # use dict comprehension to sort dict using the value as the "key" to sort by
-        cities_dict_sorted = {k: v for k, v in sorted(cities_dict.items(), key=lambda x: x[1])}
+        cities_dict_sorted = {k: v for k, v in sorted(cities_dict.items(), key=lambda x: x[1])}  # noqa: E501
         nearest_city_key = next(iter(cities_dict_sorted))
 
         nearest_city = cities.filter(pk=nearest_city_key).first()
