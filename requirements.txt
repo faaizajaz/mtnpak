@@ -28,7 +28,7 @@ keyring==18.0.1
 MarkupSafe==1.1.1
 maxminddb==2.0.2
 multidict==4.7.6
-numpy==1.17.5
+numpy==1.22.0
 olefile==0.46
 Pillow==7.0.0
 psycopg2==2.8.5
